@@ -6,9 +6,12 @@ using UnityEngine.AI;
 public class Player : MonoBehaviour
 {
     public float HP = 100.0f;
-    public int AP = 5;
+    public int AP = 10;
     public float moveSpeed = 1.0f;
     public Camera mainCamera;
+    public float multiplierAP = 1.0f;
+
+    public float distanceTravelled;
 
     public int lengthOfLineRenderer = 20;
     LayerMask groundLayerMask;
@@ -23,7 +26,6 @@ public class Player : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
-    // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -34,10 +36,8 @@ public class Player : MonoBehaviour
         lineRenderer.widthMultiplier = 0.2f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.0f, transform.position.z));
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -47,6 +47,9 @@ public class Player : MonoBehaviour
 
             DrawPath(agent.path);
 
+            //print("Distance: " + Vector3.Distance(transform.position, hit.point));
+            print("AP: " + AP);
+
             if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
             {
 
@@ -55,33 +58,21 @@ public class Player : MonoBehaviour
                     agent.isStopped = false;
 
                     startedMoving = true;
-                    //if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
-                    //{
-                    //    agent.destination = hit.point;
-                    //}
-                    //agent.destination = lineRenderer.GetPosition(1);
+
+                    
                 }
                 else
                 {
                     getPath();
                 }
 
-                //Vector3 position1 = new Vector3(transform.position.x, 0.0f, transform.position.z);
-                //Vector3 position2 = hit.point;
-
-                //if (Vector3.Distance(position1, position2) < AP)
-                //{
-                //    lineRenderer.SetPosition(0, position1);
-                //    lineRenderer.SetPosition(1, position2);
-                //}
-
-
-                //print(Vector3.Distance(position1, position2));
             }
 
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (agent.remainingDistance <= agent.stoppingDistance && startedMoving == true)
             {
                 startedMoving = false;
+
+                AP -= (int)Vector3.Distance(startPoint, endPoint);
             }
         }
         else
@@ -98,25 +89,27 @@ public class Player : MonoBehaviour
 
             startPoint = lineRenderer.GetPosition(0);
 
-            agent.SetDestination(hit.point);
+            if (Vector3.Distance(transform.position, hit.point) < AP * multiplierAP)
+            {
+                agent.SetDestination(hit.point);
 
-            endPoint = hit.point;
+                endPoint = hit.point;
+            }
 
             DrawPath(agent.path);
 
             agent.isStopped = true;
         }
-
     }
 
     void DrawPath(NavMeshPath path)
     {
-        if (path.corners.Length < 2)
-        {
-            return;
-        }
+        //if (path.corners.Length < 2)
+        //{
+        //    return;
+        //}
 
-        if (Vector3.Distance(startPoint, endPoint) < AP)
+        if (Vector3.Distance(transform.position, endPoint) < AP * multiplierAP)
         {
             lineRenderer.positionCount = path.corners.Length;
 
@@ -125,7 +118,5 @@ public class Player : MonoBehaviour
                 lineRenderer.SetPosition(i, path.corners[i]);
             }
         }
-        
-        
     }
 }
