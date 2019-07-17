@@ -13,6 +13,7 @@ public class CoverObject : MonoBehaviour
     Vector3 dimensions;
     Vector3[] frontCovers, backCovers, leftCovers, rightCovers;
     public Vector3[] coverPoints;
+    public bool[] pointTakenList;
     public int depthPoints, widthPoints;
     MeshRenderer render;
 
@@ -27,8 +28,8 @@ public class CoverObject : MonoBehaviour
         transform.rotation = initialRotation;
 
         //Calculate number of cover points available
-        depthPoints = Mathf.CeilToInt(extent.x * 2.0f); //Front & Back
-        widthPoints = Mathf.CeilToInt(extent.z * 2.0f); //Left & Right
+        depthPoints = Mathf.FloorToInt(extent.x * 2.0f); //Front & Back
+        widthPoints = Mathf.FloorToInt(extent.z * 2.0f); //Left & Right
 
         frontCovers = new Vector3[depthPoints];
         backCovers = new Vector3[depthPoints];
@@ -36,13 +37,14 @@ public class CoverObject : MonoBehaviour
         rightCovers = new Vector3[widthPoints];
 
         coverPoints = new Vector3[(depthPoints * 2) + (widthPoints * 2)];
+        pointTakenList = new bool[(depthPoints * 2) + (widthPoints * 2)];
 
         PositionCoverPoints();
 
-        //coverPoints[0] = frontCovers;
-        //coverPoints[1] = backCovers;
-        //coverPoints[2] = leftCovers;
-        //coverPoints[3] = rightCovers;
+        for (int i = 0; i < pointTakenList.Length; i++)
+        {
+            pointTakenList[i] = false;
+        }
     }
 
     private void Update()

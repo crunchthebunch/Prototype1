@@ -9,10 +9,13 @@ public class HumanAI : MonoBehaviour
     public int ap;
     public int speed;
 
+    int currentPointID; //id of the coverPoint taken on the current cover, -1 if not in cover
+
     bool isMyTurn;
     bool isAggro;
     bool isWandering;
 
+    private CoverObject currentCover;
     private CoverObject[] coverObjects;
     public GameObject player;
 
@@ -50,7 +53,7 @@ public class HumanAI : MonoBehaviour
     {
         if (!isMyTurn && CheckTurn() == true)
         {
-            isMyTurn = true;
+            //isMyTurn = true;
             if (isAggro)
             {
                 CombatBehaviour();
@@ -104,6 +107,7 @@ public class HumanAI : MonoBehaviour
         {
             Move(cover);
         }
+
     }
 
     Vector3 FindCover() //Finding the nearest reachable cover object
@@ -117,7 +121,6 @@ public class HumanAI : MonoBehaviour
         for (int i = 0; i < coverObjects.Length; i++)
         {
             CoverObject cover = coverObjects[i];
-            //float distance = Vector3.Distance(transform.position, cover.transform.position);
 
             NavMeshPath path = new NavMeshPath();
             agent.CalculatePath(cover.transform.position, path);
@@ -133,6 +136,7 @@ public class HumanAI : MonoBehaviour
                     {
                         bestCoverDist = dist;
                         bestCover = cover;
+                        currentCover = bestCover;
                     }
                 }
             }
@@ -141,17 +145,26 @@ public class HumanAI : MonoBehaviour
         //------------- Then find the furthest cover point on the cover object from the enemy ---------
         if (bestCover != null)
         {
-            for (int j = 0; j < bestCover.coverPoints.Length; j++)
+            //Setting the current cover point to be free
+            currentCover.pointTakenList[currentPointID] = false;
+            currentPointID = -1;
+
+            int bestPointID = -1;
+            for (int id = 0; id < bestCover.coverPoints.Length; id++)
             {
-                Vector3 coverPoint = bestCover.coverPoints[j];
+                Vector3 coverPoint = bestCover.coverPoints[id];
 
                 float dist = Vector3.Distance(coverPoint, player.transform.position);
-                if (dist > bestPointDist)
+
+                if (dist > bestPointDist && bestCover.pointTakenList[id] == false)
                 {
+                    bestPointID = id;
                     bestPointDist = dist;
                     bestPoint = coverPoint;
                 }
             }
+            currentPointID = bestPointID;       
+            currentCover.pointTakenList[bestPointID] = true;
         }
 
         return bestPoint;
