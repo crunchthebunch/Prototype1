@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemy;
     public TopDownCamera mainCamera;
     GameObject[] enemies;
-    public int initiativeCount = 0;
+    public static int initiativeCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
 
         if (Input.GetMouseButtonDown(1))
         {
