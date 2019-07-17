@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     LayerMask groundLayerMask;
     NavMeshAgent agent;
 
-    bool startedMoving, isMoving;
+    bool startedMoving;
 
     [SerializeField] LineRenderer lineRenderer;
 
@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        isMoving = false;
         groundLayerMask = LayerMask.GetMask("Ground");
         mainCamera = Camera.main;
         lineRenderer = gameObject.AddComponent<LineRenderer>();

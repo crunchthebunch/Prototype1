@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public GameObject player;
+    public Player player;
     public GameObject enemy;
     public TopDownCamera mainCamera;
     GameObject[] enemies;
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = FindObjectOfType<Player>();
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
@@ -27,7 +27,9 @@ public class GameManager : MonoBehaviour
             if (initiativeCount == enemies.Length)
             {
                 initiativeCount = 0;
-                mainCamera.changeTarget(player);
+                mainCamera.changeTarget(player.gameObject);
+                player.AP = 10;
+                
             }
             else
             {
