@@ -7,7 +7,8 @@ using System.Linq;
 [ExecuteInEditMode]
 public class CoverObject : MonoBehaviour
 {
-    public int hp;
+    public int hp = 0;
+    public bool isDestructible;
 
     Vector3 extent;
     Vector3 dimensions;
@@ -15,6 +16,7 @@ public class CoverObject : MonoBehaviour
     public Vector3[] coverPoints;
     public bool[] pointTakenList;
     public int depthPoints, widthPoints;
+    public bool isFullCover;
     MeshRenderer render;
 
     private void Awake()
@@ -24,12 +26,22 @@ public class CoverObject : MonoBehaviour
 
         render = GetComponent<MeshRenderer>();
         extent = render.bounds.extents;
-       
+
         transform.rotation = initialRotation;
 
         //Calculate number of cover points available
         depthPoints = Mathf.FloorToInt(extent.x * 2.0f); //Front & Back
         widthPoints = Mathf.FloorToInt(extent.z * 2.0f); //Left & Right
+
+        //Calculate if this is full-cover or not (half-cover)
+        if (Mathf.CeilToInt(extent.y * 2.0f) >= 2)
+        {
+            isFullCover = true;
+        }
+        else
+        {
+            isFullCover = false;
+        }
 
         frontCovers = new Vector3[depthPoints];
         backCovers = new Vector3[depthPoints];

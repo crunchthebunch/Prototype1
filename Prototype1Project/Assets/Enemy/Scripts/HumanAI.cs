@@ -53,10 +53,18 @@ public class HumanAI : MonoBehaviour
     {
         if (!isMyTurn && CheckTurn() == true)
         {
-            //isMyTurn = true;
+            isMyTurn = true;
             if (isAggro)
             {
                 CombatBehaviour();
+            }
+        }
+
+        if (isMyTurn)
+        {
+            if (agent.remainingDistance <= 0.1f)
+            {
+                isMyTurn = false;
             }
         }
     }
@@ -71,6 +79,7 @@ public class HumanAI : MonoBehaviour
                 }
             case AI.wander: //Wandering
                 {
+                    Wander();
                     break;
                 }
             case AI.search:
@@ -91,8 +100,11 @@ public class HumanAI : MonoBehaviour
     void Idle() //Idling
     {
     }
+
     void Wander() //Wandering
     {
+
+        isMyTurn = false;
     }
 
     void Search() //Searching for enemies
@@ -107,7 +119,6 @@ public class HumanAI : MonoBehaviour
         {
             Move(cover);
         }
-
     }
 
     Vector3 FindCover() //Finding the nearest reachable cover object
