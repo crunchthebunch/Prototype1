@@ -56,16 +56,6 @@ public class HumanAI : MonoBehaviour
                 CombatBehaviour();
             }
         }
-
-        //Moving if moveTo distance is large enough
-        //if (Vector3.Distance(transform.position,moveTo) > 1.0f)
-        //{
-        //    Move(moveTo);
-        //}
-        //else
-        //{
-        //    moveTo = transform.position;
-        //}
     }
 
     void CombatBehaviour()
