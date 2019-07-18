@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             DrawPath(agent.path);
 
             //print("Distance: " + Vector3.Distance(transform.position, hit.point));
-            print("AP: " + AP);
+            //print("AP: " + AP);
 
             if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
             {
