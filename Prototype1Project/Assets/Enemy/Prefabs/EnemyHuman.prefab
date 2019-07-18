@@ -143,6 +143,7 @@ MonoBehaviour:
   speed: 5
   initiative: 0
   gunObject: {fileID: 7700045153898449554}
+  gunSlot: {fileID: 706171797064818892}
   player: {fileID: 0}
 --- !u!195 &5240786738339347455
 NavMeshAgent:
