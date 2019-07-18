@@ -180,7 +180,7 @@ public class HumanAI : MonoBehaviour
         if (cover != null)
         {
             Move(cover);
-            Shoot();
+            //Shoot();
         }
         endTimer = 0.5f;
     }
