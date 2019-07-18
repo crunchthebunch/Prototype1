@@ -54,14 +54,7 @@ public class Guns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isShooting)
-        {
-            GunFire(CanFire);
-        }
-        else
-        {
-            GunFire(!CanFire);
-        }
+        GunFire(CanFire);
     }
 
     void GunFire(bool GunCanFire)
@@ -118,7 +111,7 @@ public class Guns : MonoBehaviour
     void GunSwap()
     {
         GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
-        GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
+        //GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
         CurrentMag = MaxMagSize[(int)SelectedGun];
         //AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
     }

@@ -14,9 +14,18 @@ public class GameManager : MonoBehaviour
     public bool camSwitch;
     public bool isShooting;
 
+    public enum PlayerState
+    {
+        MOVING,
+        SHOOTING
+    };
+
+    public PlayerState playerState;
+
     void Start()
     {
-        isShooting = false;
+        //isShooting = false;
+        playerState = PlayerState.MOVING;
 
         camSwitch = false;
         player = FindObjectOfType<Player>();
@@ -40,11 +49,11 @@ public class GameManager : MonoBehaviour
         {
             if (!camSwitch)
             {
-                isShooting = true;
+                playerState = PlayerState.SHOOTING;
             }
             else
             {
-                isShooting = false;
+                playerState = PlayerState.MOVING;
             }
             camSwitch = !camSwitch;
             playerCam.gameObject.SetActive(camSwitch);

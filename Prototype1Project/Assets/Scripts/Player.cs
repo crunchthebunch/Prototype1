@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public Camera mainCamera;
     public float multiplierAP = 1.0f;
 
-    public GameObject attachedGun;
+    public Guns attachedGun;
 
     public float distanceTravelled;
     public Camera playerCam;
@@ -51,8 +51,10 @@ public class Player : MonoBehaviour
 
         if (gameManager.initiativeCount == 0)
         {
-            if (gameManager.isShooting == false)
+            if (gameManager.playerState == GameManager.PlayerState.MOVING)
             {
+                attachedGun.CanFire = false;
+
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 lineRenderer.enabled = true;
@@ -90,6 +92,8 @@ public class Player : MonoBehaviour
 
             else
             {
+                attachedGun.CanFire = true;
+
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
 
@@ -99,6 +103,14 @@ public class Player : MonoBehaviour
                 transform.Rotate(0, X, 0);
                 attachedGun.transform.Rotate(-Y, 0, 0);
 
+                if (Input.GetMouseButtonDown(0))
+                {
+                    attachedGun.Fire = true;
+                }
+                else
+                {
+                    attachedGun.Fire = false;
+                }
 
                 if (playerCam.transform.eulerAngles.x + (Y) > 80 && playerCam.transform.eulerAngles.x + (Y) < 280)
                 { }
