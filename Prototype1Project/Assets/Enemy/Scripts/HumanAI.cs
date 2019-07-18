@@ -8,16 +8,21 @@ public class HumanAI : MonoBehaviour
     public int hp;
     public int ap;
     public int speed;
+    public int initiative;
 
     int currentPointID; //id of the coverPoint taken on the current cover, -1 if not in cover
 
     bool isMyTurn;
     bool isAggro;
     bool isWandering;
+    bool isEndingTurn;
 
+    private Vector3 moveDestination;
     private CoverObject currentCover;
     private CoverObject[] coverObjects;
     public GameObject player;
+
+    GameManager gameManager;
 
     Vector3 moveTo;
 
@@ -38,6 +43,8 @@ public class HumanAI : MonoBehaviour
         state = AI.engage;
         isMyTurn = false;
         agent = GetComponent<NavMeshAgent>();
+        gameManager = FindObjectOfType<GameManager>();
+        moveDestination = transform.position;
         if (coverObjects == null)
         {
             coverObjects = FindObjectsOfType<CoverObject>();
@@ -46,7 +53,21 @@ public class HumanAI : MonoBehaviour
 
     bool CheckTurn()
     {
-        return true;
+        if (GameManager.initiativeCount == initiative)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    void EndTurn()
+    {
+        if (isMyTurn)
+        {
+            gameManager.EndTurn();
+            isMyTurn = false;
+        }
     }
 
     void Update()
@@ -54,6 +75,7 @@ public class HumanAI : MonoBehaviour
         if (!isMyTurn && CheckTurn() == true)
         {
             isMyTurn = true;
+            isEndingTurn = false;
             if (isAggro)
             {
                 CombatBehaviour();
@@ -62,9 +84,11 @@ public class HumanAI : MonoBehaviour
 
         if (isMyTurn)
         {
-            if (agent.remainingDistance <= 0.1f)
+            float dist = Vector3.Distance(transform.position, moveDestination);
+
+            if ((dist <= 1.0f) && isEndingTurn)
             {
-                isMyTurn = false;
+                EndTurn();
             }
         }
     }
@@ -103,7 +127,6 @@ public class HumanAI : MonoBehaviour
 
     void Wander() //Wandering
     {
-
         isMyTurn = false;
     }
 
@@ -118,6 +141,7 @@ public class HumanAI : MonoBehaviour
         if (cover != null)
         {
             Move(cover);
+            isEndingTurn = true;
         }
     }
 
@@ -185,6 +209,7 @@ public class HumanAI : MonoBehaviour
     {
         if (agent.remainingDistance <= ap)
         {
+            moveDestination = destination;
             agent.destination = destination;
         }
     }

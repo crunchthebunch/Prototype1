@@ -16,26 +16,42 @@ public class GameManager : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            HumanAI ai = enemies[i].GetComponent<HumanAI>();
+            ai.initiative = i + 1;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if (initiativeCount >= enemies.Length + 1)
+        //{
+        //    initiativeCount = 0;
+        //    mainCamera.changeTarget(player.gameObject);
+        //    player.AP = 10;
+        //}
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && initiativeCount == 0)
         {
-            if (initiativeCount == enemies.Length)
-            {
-                initiativeCount = 0;
-                mainCamera.changeTarget(player.gameObject);
-                player.AP = 10;
-                
-            }
-            else
-            {
-                mainCamera.changeTarget(enemies[initiativeCount]);
-                initiativeCount++;
-            }
+            EndTurn();
+        }
+    }
+
+    public void EndTurn()
+    {
+        if (initiativeCount < enemies.Length)
+        {
+            mainCamera.changeTarget(enemies[initiativeCount]);
+            initiativeCount++;
+        }
+        else
+        {
+            initiativeCount = 0;
+            mainCamera.changeTarget(player.gameObject);
+            player.AP = 10;
         }
     }
 }
