@@ -119,7 +119,6 @@ public class HumanAI : MonoBehaviour
 
                         if (isEndingTurn)
                         {
-                            Shoot();
                             EndTurn();
                         }
                     }
