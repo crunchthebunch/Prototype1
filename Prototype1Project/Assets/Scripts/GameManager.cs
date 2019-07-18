@@ -31,12 +31,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     { 
-        if (Input.GetMouseButtonDown(1) && initiativeCount == 0)
+        if (Input.GetMouseButtonDown(1) && initiativeCount == 0 && !player.startedMoving)
         {
             EndTurn();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !player.startedMoving)
         {
             if (!camSwitch)
             {
