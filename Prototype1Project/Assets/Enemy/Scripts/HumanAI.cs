@@ -20,6 +20,7 @@ public class HumanAI : MonoBehaviour
     private Vector3 moveDestination;
     private CoverObject currentCover;
     private CoverObject[] coverObjects;
+    public GameObject gunSlot;
     public GameObject player;
 
     GameManager gameManager;
@@ -84,12 +85,19 @@ public class HumanAI : MonoBehaviour
 
         if (isMyTurn)
         {
-            float dist = Vector3.Distance(transform.position, moveDestination);
 
-            if ((dist <= 1.0f) && isEndingTurn)
+            //Ending turn if not moving and isEndingTurn is true
+            if (!agent.pathPending && isEndingTurn)
             {
-                EndTurn();
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                    {
+                        EndTurn();
+                    }
+                }
             }
+
         }
     }
 
@@ -118,6 +126,13 @@ public class HumanAI : MonoBehaviour
                 }
             default:
                 break;
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
         }
     }
 
@@ -214,5 +229,10 @@ public class HumanAI : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(gunSlot.transform.position, 0.2f);
+    }
 
 }
