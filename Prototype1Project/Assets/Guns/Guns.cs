@@ -86,7 +86,7 @@ public class Guns : MonoBehaviour
                     CurrentMag--;
                     Fire = false;
                     FireRateTimer = FireRate[(int)SelectedGun];
-                    AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+                    //AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
                 }
             }
         }
@@ -109,6 +109,6 @@ public class Guns : MonoBehaviour
         GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
         GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
         CurrentMag = MaxMagSize[(int)SelectedGun];
-        AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+        //AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
     }
 }
