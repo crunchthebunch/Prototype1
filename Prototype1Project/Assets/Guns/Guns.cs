@@ -7,9 +7,11 @@ public class Guns : MonoBehaviour
 {
     public GameObject Bullet;
     public Text AmmoText;
+    public Transform SnapPoint;
 
     public bool Fire;
     public bool CanFire;
+    public bool Attached;
 
     public Mesh[] M_guns;
     public Transform[] FirePoint;
@@ -41,15 +43,19 @@ public class Guns : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
-        CurrentMag = MaxMagSize[(int)SelectedGun];
-        AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+        GunSwap();
+        AttachGun(SnapPoint);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (CanFire)
+        GunFire(CanFire);
+    }
+
+    void GunFire(bool GunCanFire)
+    {
+        if (GunCanFire)
         {
             if (FireRateTimer > 0)
             {
@@ -84,5 +90,25 @@ public class Guns : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void AttachGun(Transform Attachment)
+    {
+        if (Attachment)
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().detectCollisions = false;
+            GetComponent<Rigidbody>().useGravity = false;
+            transform.position = Attachment.position;
+            transform.parent = Attachment;
+        }
+    }
+
+    void GunSwap()
+    {
+        GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
+        CurrentMag = MaxMagSize[(int)SelectedGun];
+        AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
     }
 }

@@ -41,9 +41,10 @@ GameObject:
   - component: {fileID: 470641276392592227}
   - component: {fileID: 470641276392592226}
   - component: {fileID: 470641276392592229}
-  - component: {fileID: 470641276392592228}
   - component: {fileID: 470641276392592231}
   - component: {fileID: 6549576445098708720}
+  - component: {fileID: 7366573499973520381}
+  - component: {fileID: 8666451816239931569}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Gun
@@ -113,19 +114,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &470641276392592228
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470641276392592230}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &470641276392592231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 7031919656593937678, guid: 2fa801c09ff77604d87c11c79b895413, type: 3}
   AmmoText: {fileID: 0}
+  SnapPoint: {fileID: 0}
   Fire: 0
   CanFire: 1
+  Attached: 0
   M_guns:
   - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
@@ -154,7 +144,10 @@ MonoBehaviour:
   - 0
   - 0.1
   - 1
-  Damage: []
+  Damage:
+  - 0
+  - 0
+  - 0
   MaxMagSize: 0a0000002800000005000000
   CurrentMag: 0
   Reload: []
@@ -164,7 +157,7 @@ MonoBehaviour:
   - 0.1
   - 0.5
   FireRateTimer: 0
-  SelectedGun: 1
+  SelectedGun: 0
 --- !u!135 &6549576445098708720
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -178,6 +171,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!64 &7366573499973520381
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470641276392592230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &8666451816239931569
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470641276392592230}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &470641276633098812
 GameObject:
   m_ObjectHideFlags: 0
