@@ -89,7 +89,6 @@ public class Player : MonoBehaviour
                     AP -= (int)Vector3.Distance(startPoint, endPoint);
                 }
             }
-
             else
             {
                 attachedGun.CanFire = true;

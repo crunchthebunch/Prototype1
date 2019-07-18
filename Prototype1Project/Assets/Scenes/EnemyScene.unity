@@ -312,7 +312,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1845898045}
+      objectReference: {fileID: 1818788989}
     - target: {fileID: 5240786738339347455, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
       propertyPath: m_Radius
@@ -406,7 +406,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1845898045}
+      objectReference: {fileID: 1818788989}
     - target: {fileID: 5240786738339347455, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
       propertyPath: m_Radius
@@ -500,7 +500,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1845898045}
+      objectReference: {fileID: 1818788989}
     - target: {fileID: 5240786738339347455, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
       propertyPath: m_Radius
@@ -1031,7 +1031,7 @@ Transform:
   - {fileID: 29866090}
   - {fileID: 1892743089}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1289417539 stripped
 MonoBehaviour:
@@ -1507,13 +1507,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6140cecda7d030f47a1e98f5745ef082, type: 3}
+--- !u!1 &1818788989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5817000561145188860, guid: de6c6fe2f3210814fad4979cf11ed57e,
+    type: 3}
+  m_PrefabInstance: {fileID: 630381186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1845898046 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
     type: 3}
   m_PrefabInstance: {fileID: 630381186}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1818788989}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b654f60896a40e9498ffe73910bf1136, type: 3}
@@ -1782,7 +1788,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1845898045}
+      objectReference: {fileID: 1818788989}
     - target: {fileID: 5240786738339347455, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
       propertyPath: m_Radius
@@ -1940,6 +1946,11 @@ PrefabInstance:
         type: 3}
       propertyPath: SelectedGun
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
+        type: 3}
+      propertyPath: Attached
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8666451816239931569, guid: 9b179534308030844a8fb283e4f93a1a,
         type: 3}

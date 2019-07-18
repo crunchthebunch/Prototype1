@@ -130,7 +130,7 @@ MonoBehaviour:
   AmmoText: {fileID: 0}
   SnapPoint: {fileID: 0}
   Fire: 0
-  CanFire: 1
+  CanFire: 0
   Attached: 0
   M_guns:
   - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   - 0.1
   - 0.5
   FireRateTimer: 0
-  SelectedGun: 0
+  SelectedGun: 1
 --- !u!135 &6549576445098708720
 SphereCollider:
   m_ObjectHideFlags: 0
