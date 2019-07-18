@@ -31,6 +31,8 @@ public class Guns : MonoBehaviour
     public float[] FireRate;
     public float FireRateTimer;
 
+    GameManager gameManager;
+
     public enum E_Guns
     {
         Sniper = 0,
@@ -43,6 +45,8 @@ public class Guns : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         GunSwap();
         AttachGun(SnapPoint);
     }
@@ -50,7 +54,14 @@ public class Guns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GunFire(CanFire);
+        if (gameManager.isShooting)
+        {
+            GunFire(CanFire);
+        }
+        else
+        {
+            GunFire(!CanFire);
+        }
     }
 
     void GunFire(bool GunCanFire)

@@ -387,6 +387,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: attachedGun
+      value: 
+      objectReference: {fileID: 978236850}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6c6fe2f3210814fad4979cf11ed57e, type: 3}
 --- !u!4 &630381187 stripped
@@ -509,6 +514,11 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1289417539}
+    - target: {fileID: 7242520051982610947, guid: b670f29aaf5215e4ab9340b3017c31bd,
+        type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1641642021}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b670f29aaf5215e4ab9340b3017c31bd, type: 3}
 --- !u!1001 &675444817
@@ -880,6 +890,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 1196bf11d7d3c5a44a2bfe6eb2e0e45d,
     type: 3}
   m_PrefabInstance: {fileID: 924664823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &978236850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 470641276392592230, guid: 9b179534308030844a8fb283e4f93a1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4465031696294732859}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1032796933
 GameObject:
@@ -1313,6 +1329,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1196bf11d7d3c5a44a2bfe6eb2e0e45d, type: 3}
+--- !u!20 &1641642021 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5600305901809022116, guid: de6c6fe2f3210814fad4979cf11ed57e,
+    type: 3}
+  m_PrefabInstance: {fileID: 630381186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1671095712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,7 +1939,12 @@ PrefabInstance:
     - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
         type: 3}
       propertyPath: SelectedGun
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666451816239931569, guid: 9b179534308030844a8fb283e4f93a1a,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b179534308030844a8fb283e4f93a1a, type: 3}

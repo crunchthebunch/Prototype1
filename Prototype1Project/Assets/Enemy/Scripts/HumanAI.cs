@@ -53,7 +53,7 @@ public class HumanAI : MonoBehaviour
 
     bool CheckTurn()
     {
-        if (GameManager.initiativeCount == initiative)
+        if (gameManager.initiativeCount == initiative)
         {
             return true;
         }

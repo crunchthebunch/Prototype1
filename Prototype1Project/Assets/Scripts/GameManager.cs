@@ -8,12 +8,17 @@ public class GameManager : MonoBehaviour
     public Player player;
     public GameObject enemy;
     public TopDownCamera mainCamera;
+    public Camera playerCam;
     GameObject[] enemies;
-    public static int initiativeCount = 0;
+    public int initiativeCount = 0;
+    public bool camSwitch;
+    public bool isShooting;
 
-    // Start is called before the first frame update
     void Start()
     {
+        isShooting = false;
+
+        camSwitch = false;
         player = FindObjectOfType<Player>();
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -24,19 +29,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
-    {
-        //if (initiativeCount >= enemies.Length + 1)
-        //{
-        //    initiativeCount = 0;
-        //    mainCamera.changeTarget(player.gameObject);
-        //    player.AP = 10;
-        //}
-
+    { 
         if (Input.GetMouseButtonDown(1) && initiativeCount == 0)
         {
             EndTurn();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!camSwitch)
+            {
+                isShooting = true;
+            }
+            else
+            {
+                isShooting = false;
+            }
+            camSwitch = !camSwitch;
+            playerCam.gameObject.SetActive(camSwitch);
+            mainCamera.gameObject.SetActive(!camSwitch);
         }
     }
 
