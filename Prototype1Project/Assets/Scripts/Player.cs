@@ -5,17 +5,23 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+
     public float HP = 100.0f;
     public int AP = 10;
     public float moveSpeed = 1.0f;
+    public float mouseSpeed = 6.0f;
     public Camera mainCamera;
     public float multiplierAP = 1.0f;
 
-    public float distanceTravelled;
+    public GameObject attachedGun;
 
+    public float distanceTravelled;
+    public Camera playerCam;
     public int lengthOfLineRenderer = 20;
     LayerMask groundLayerMask;
     NavMeshAgent agent;
+
+    GameManager gameManager;
 
     bool startedMoving;
 
@@ -28,11 +34,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         agent = GetComponent<NavMeshAgent>();
         groundLayerMask = LayerMask.GetMask("Ground");
         mainCamera = Camera.main;
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.widthMultiplier = 0.2f;
+        playerCam = GetComponentInChildren<Camera>();
+        playerCam.gameObject.SetActive(false);
     }
 
     void Update()
@@ -40,38 +49,59 @@ public class Player : MonoBehaviour
         lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.0f, transform.position.z));
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (GameManager.initiativeCount == 0)
+        if (gameManager.initiativeCount == 0)
         {
-            lineRenderer.enabled = true;
-
-            DrawPath(agent.path);
-
-            //print("Distance: " + Vector3.Distance(transform.position, hit.point));
-            //print("AP: " + AP);
-
-            if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
+            if (gameManager.isShooting == false)
             {
+                lineRenderer.enabled = true;
 
-                if (Input.GetMouseButtonDown(0))
+                DrawPath(agent.path);
+
+                //print("Distance: " + Vector3.Distance(transform.position, hit.point));
+                //print("AP: " + AP);
+
+                if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
                 {
-                    agent.isStopped = false;
 
-                    startedMoving = true;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        agent.isStopped = false;
 
-                    
+                        startedMoving = true;
+
+
+                    }
+                    else
+                    {
+                        getPath();
+                    }
+
                 }
-                else
+
+                if (agent.remainingDistance <= agent.stoppingDistance && startedMoving == true)
                 {
-                    getPath();
-                }
+                    startedMoving = false;
 
+                    AP -= (int)Vector3.Distance(startPoint, endPoint);
+                }
             }
 
-            if (agent.remainingDistance <= agent.stoppingDistance && startedMoving == true)
+            else
             {
-                startedMoving = false;
+                float X = Input.GetAxis("Mouse X") * mouseSpeed;
+                float Y = Input.GetAxis("Mouse Y") * mouseSpeed;
 
-                AP -= (int)Vector3.Distance(startPoint, endPoint);
+                transform.Rotate(0, X, 0);
+                attachedGun.transform.Rotate(-Y, 0, 0);
+
+
+                if (playerCam.transform.eulerAngles.x + (Y) > 80 && playerCam.transform.eulerAngles.x + (Y) < 280)
+                { }
+                else
+                {
+
+                    playerCam.transform.RotateAround(transform.position, playerCam.transform.right, -Y);
+                }
             }
         }
         else
