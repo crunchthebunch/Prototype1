@@ -17,12 +17,15 @@ public class HumanAI : MonoBehaviour
     bool isWandering;
     bool isEndingTurn;
 
+    float endTimer; //Timer for ending turn (used mostly for actions)
+
     private Vector3 moveDestination;
     private CoverObject currentCover;
     private CoverObject[] coverObjects;
-    public GameObject gunSlot;
+    public GameObject gunObject;
     public GameObject player;
 
+    Guns gun;
     GameManager gameManager;
 
     Vector3 moveTo;
@@ -46,6 +49,8 @@ public class HumanAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         gameManager = FindObjectOfType<GameManager>();
         moveDestination = transform.position;
+        gun = gunObject.GetComponent<Guns>();
+        endTimer = -1.0f;
         if (coverObjects == null)
         {
             coverObjects = FindObjectsOfType<CoverObject>();
@@ -73,27 +78,46 @@ public class HumanAI : MonoBehaviour
 
     void Update()
     {
+        //Checking for if it is this AI's turn
         if (!isMyTurn && CheckTurn() == true)
         {
             isMyTurn = true;
             isEndingTurn = false;
+            endTimer = -1.0f;
             if (isAggro)
             {
                 CombatBehaviour();
             }
         }
 
+        //This AI's turn
         if (isMyTurn)
         {
-
             //Ending turn if not moving and isEndingTurn is true
-            if (!agent.pathPending && isEndingTurn)
+            if (!agent.pathPending)
             {
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
-                        EndTurn();
+                        //End turn timer
+                        if (endTimer != -1.0f)
+                        {
+                            if (endTimer > 0.0f)
+                            {
+                                endTimer -= Time.deltaTime;
+                            }
+                            else if (endTimer <= 0.0f)
+                            {
+                                endTimer = -1.0f;
+                                isEndingTurn = true;
+                            }
+                        }
+
+                        if (isEndingTurn)
+                        {
+                            EndTurn();
+                        }
                     }
                 }
             }
@@ -156,8 +180,23 @@ public class HumanAI : MonoBehaviour
         if (cover != null)
         {
             Move(cover);
-            isEndingTurn = true;
+            Shoot();
         }
+        endTimer = 0.5f;
+    }
+
+    void Move(Vector3 destination)
+    {
+        if (agent.remainingDistance <= ap)
+        {
+            moveDestination = destination;
+            agent.destination = destination;
+        }
+    }
+
+    void Shoot()
+    {
+        gun.Fire = true;
     }
 
     Vector3 FindCover() //Finding the nearest reachable cover object
@@ -220,19 +259,10 @@ public class HumanAI : MonoBehaviour
         return bestPoint;
     }
 
-    void Move(Vector3 destination) 
-    {
-        if (agent.remainingDistance <= ap)
-        {
-            moveDestination = destination;
-            agent.destination = destination;
-        }
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(gunSlot.transform.position, 0.2f);
+        Gizmos.DrawSphere(gunObject.transform.position, 0.2f);
     }
 
 }
