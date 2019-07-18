@@ -223,10 +223,14 @@ MonoBehaviour:
   HP: 100
   AP: 10
   moveSpeed: 1
+  mouseSpeed: 6
   mainCamera: {fileID: 0}
   multiplierAP: 1
+  attachedGun: {fileID: 0}
   distanceTravelled: 0
+  playerCam: {fileID: 0}
   lengthOfLineRenderer: 20
+  startedMoving: 0
   lineRenderer: {fileID: 0}
 --- !u!1 &7441304758751737623
 GameObject:
@@ -254,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441304758751737623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.62, y: 0.754, z: -1.887}
+  m_LocalPosition: {x: 0.62, y: 1.177, z: -2.455}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1140218915060193179}
