@@ -5,19 +5,25 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+
     public float HP = 100.0f;
     public int AP = 10;
     public float moveSpeed = 1.0f;
+    public float mouseSpeed = 6.0f;
     public Camera mainCamera;
     public float multiplierAP = 1.0f;
 
-    public float distanceTravelled;
+    public Guns attachedGun;
 
+    public float distanceTravelled;
+    public Camera playerCam;
     public int lengthOfLineRenderer = 20;
     LayerMask groundLayerMask;
     NavMeshAgent agent;
 
-    bool startedMoving;
+    GameManager gameManager;
+
+    public bool startedMoving;
 
     [SerializeField] LineRenderer lineRenderer;
 
@@ -28,11 +34,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         agent = GetComponent<NavMeshAgent>();
         groundLayerMask = LayerMask.GetMask("Ground");
         mainCamera = Camera.main;
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.widthMultiplier = 0.2f;
+        playerCam = GetComponentInChildren<Camera>();
+        playerCam.gameObject.SetActive(false);
     }
 
     void Update()
@@ -40,38 +49,75 @@ public class Player : MonoBehaviour
         lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.0f, transform.position.z));
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (GameManager.initiativeCount == 0)
+        if (gameManager.initiativeCount == 0)
         {
-            lineRenderer.enabled = true;
-
-            DrawPath(agent.path);
-
-            //print("Distance: " + Vector3.Distance(transform.position, hit.point));
-            //print("AP: " + AP);
-
-            if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
+            if (gameManager.playerState == GameManager.PlayerState.MOVING)
             {
+                attachedGun.CanFire = false;
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                lineRenderer.enabled = true;
+
+                DrawPath(agent.path);
+
+                //print("Distance: " + Vector3.Distance(transform.position, hit.point));
+                //print("AP: " + AP);
+
+                if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
+                {
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        agent.isStopped = false;
+
+                        startedMoving = true;
+
+
+                    }
+                    else
+                    {
+                        getPath();
+                    }
+
+                }
+
+                if (agent.remainingDistance <= agent.stoppingDistance && startedMoving == true)
+                {
+                    startedMoving = false;
+
+                    AP -= (int)Vector3.Distance(startPoint, endPoint);
+                }
+            }
+            else
+            {
+                attachedGun.CanFire = true;
+
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+
+                float X = Input.GetAxis("Mouse X") * mouseSpeed;
+                float Y = Input.GetAxis("Mouse Y") * mouseSpeed;
+
+                transform.Rotate(0, X, 0);
+                attachedGun.transform.Rotate(-Y, 0, 0);
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    agent.isStopped = false;
-
-                    startedMoving = true;
-
-                    
+                    attachedGun.Fire = true;
                 }
                 else
                 {
-                    getPath();
+                    attachedGun.Fire = false;
                 }
 
-            }
+                if (playerCam.transform.eulerAngles.x + (Y) > 80 && playerCam.transform.eulerAngles.x + (Y) < 280)
+                { }
+                else
+                {
 
-            if (agent.remainingDistance <= agent.stoppingDistance && startedMoving == true)
-            {
-                startedMoving = false;
-
-                AP -= (int)Vector3.Distance(startPoint, endPoint);
+                    playerCam.transform.RotateAround(transform.position, playerCam.transform.right, -Y);
+                }
             }
         }
         else

@@ -31,6 +31,8 @@ public class Guns : MonoBehaviour
     public float[] FireRate;
     public float FireRateTimer;
 
+    GameManager gameManager;
+
     public enum E_Guns
     {
         Sniper = 0,
@@ -43,6 +45,8 @@ public class Guns : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         GunSwap();
         AttachGun(SnapPoint);
     }
@@ -107,7 +111,7 @@ public class Guns : MonoBehaviour
     void GunSwap()
     {
         GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
-        GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
+        //GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
         CurrentMag = MaxMagSize[(int)SelectedGun];
         //AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
     }

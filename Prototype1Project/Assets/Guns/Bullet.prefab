@@ -104,5 +104,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57344058bf37934488bd5465d691ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
-  KillTimer: 2
+  Speed: 10
+  KillTimer: 5
