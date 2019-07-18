@@ -93,6 +93,7 @@ public class HumanAI : MonoBehaviour
         //This AI's turn
         if (isMyTurn)
         {
+            gun.CanFire = true;
             //Ending turn if not moving and isEndingTurn is true
             if (!agent.pathPending)
             {
@@ -116,12 +117,17 @@ public class HumanAI : MonoBehaviour
 
                         if (isEndingTurn)
                         {
+                            Shoot();
                             EndTurn();
                         }
                     }
                 }
             }
 
+        }
+        else
+        {
+            gun.CanFire = false;
         }
     }
 
@@ -180,9 +186,9 @@ public class HumanAI : MonoBehaviour
         if (cover != null)
         {
             Move(cover);
-            Shoot();
+           
         }
-        endTimer = 0.5f;
+        endTimer = 0.1f;
     }
 
     void Move(Vector3 destination)
@@ -196,7 +202,7 @@ public class HumanAI : MonoBehaviour
 
     void Shoot()
     {
-        gun.Fire = true;
+       gun.Fire = true;
     }
 
     Vector3 FindCover() //Finding the nearest reachable cover object
