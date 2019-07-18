@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     GameManager gameManager;
 
-    bool startedMoving;
+    public bool startedMoving;
 
     [SerializeField] LineRenderer lineRenderer;
 
@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
         {
             if (gameManager.isShooting == false)
             {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 lineRenderer.enabled = true;
 
                 DrawPath(agent.path);
@@ -88,6 +90,9 @@ public class Player : MonoBehaviour
 
             else
             {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+
                 float X = Input.GetAxis("Mouse X") * mouseSpeed;
                 float Y = Input.GetAxis("Mouse Y") * mouseSpeed;
 
