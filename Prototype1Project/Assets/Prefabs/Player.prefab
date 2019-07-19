@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654f60896a40e9498ffe73910bf1136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 20
   AP: 10
   moveSpeed: 1
   mouseSpeed: 6
@@ -391,7 +391,7 @@ PrefabInstance:
     - target: {fileID: 3131508197375623769, guid: adb9978da50a4f7489674a751c90e24a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.121
+      value: 1.919
       objectReference: {fileID: 0}
     - target: {fileID: 3131508197375623769, guid: adb9978da50a4f7489674a751c90e24a,
         type: 3}
@@ -413,11 +413,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.00451164
       objectReference: {fileID: 0}
+    - target: {fileID: 3131508197375623769, guid: adb9978da50a4f7489674a751c90e24a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.594
+      objectReference: {fileID: 0}
+    - target: {fileID: 976130938254210278, guid: adb9978da50a4f7489674a751c90e24a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 479
+      objectReference: {fileID: 0}
     - target: {fileID: 2680906153128858417, guid: adb9978da50a4f7489674a751c90e24a,
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2728586567429800867}
     - target: {fileID: 2680906153128858417, guid: adb9978da50a4f7489674a751c90e24a,
         type: 3}
       propertyPath: Camera

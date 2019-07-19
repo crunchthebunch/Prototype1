@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "Gun" && collision.gameObject.tag != "Player")
+        if (collision.gameObject.CompareTag("Gun") && collision.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Bullet"))
         {
             Instantiate(BulletHit[(int)BulletType], transform.position, Quaternion.identity);
             Destroy(gameObject);
