@@ -41,11 +41,8 @@ public class PlayerUI : MonoBehaviour
             for (int i = 0; i < oldAP; i++)
             {
                 temp.x += tempWidth + 10;
-                Debug.Log(temp);
                 APTileSet[i] = Instantiate(APTile, transform);
-                Debug.Log(APTileSet[i].transform.position);
                 APTileSet[i].transform.localPosition = temp;
-                Debug.Log(APTileSet[i].transform.position);
             }
         }
     }
