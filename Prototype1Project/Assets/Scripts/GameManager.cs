@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     { 
-        if (Input.GetMouseButtonDown(1) && initiativeCount == 0 && !player.startedMoving)
+        if (Input.GetMouseButtonDown(1) && initiativeCount == 0 && !player.startedMoving && playerState != PlayerState.SHOOTING)
         {
             EndTurn();
         }
