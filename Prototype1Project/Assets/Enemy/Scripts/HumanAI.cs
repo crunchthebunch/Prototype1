@@ -23,6 +23,7 @@ public class HumanAI : MonoBehaviour
     private CoverObject currentCover;
     private CoverObject[] coverObjects;
     public GameObject gunObject;
+    public GameObject gunSlot;
     public GameObject player;
 
     Guns gun;
@@ -107,6 +108,7 @@ public class HumanAI : MonoBehaviour
                             if (endTimer > 0.0f)
                             {
                                 endTimer -= Time.deltaTime;
+                                Shoot();
                             }
                             else if (endTimer <= 0.0f)
                             {
@@ -117,7 +119,6 @@ public class HumanAI : MonoBehaviour
 
                         if (isEndingTurn)
                         {
-                            Shoot();
                             EndTurn();
                         }
                     }
@@ -186,9 +187,8 @@ public class HumanAI : MonoBehaviour
         if (cover != null)
         {
             Move(cover);
-           
         }
-        endTimer = 0.1f;
+        endTimer = 0.5f;
     }
 
     void Move(Vector3 destination)
@@ -202,7 +202,9 @@ public class HumanAI : MonoBehaviour
 
     void Shoot()
     {
-       gun.Fire = true;
+        Vector3 offset = new Vector3(0.0f, 0.0f, 0.0f);
+        gun.transform.LookAt(player.transform.position + offset, Vector3.up);
+        gun.Fire = true;
     }
 
     Vector3 FindCover() //Finding the nearest reachable cover object
