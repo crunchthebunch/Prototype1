@@ -61,6 +61,11 @@ public class Player : MonoBehaviour
 
                 DrawPath(agent.path);
 
+                if (startedMoving)
+                {
+                    AP = (int)Vector3.Distance(transform.position, endPoint);
+                }
+
                 //print("Distance: " + Vector3.Distance(transform.position, hit.point));
                 //print("AP: " + AP);
 
@@ -73,7 +78,7 @@ public class Player : MonoBehaviour
 
                         startedMoving = true;
 
-
+                        
                     }
                     else
                     {
@@ -86,7 +91,7 @@ public class Player : MonoBehaviour
                 {
                     startedMoving = false;
 
-                    AP -= (int)Vector3.Distance(startPoint, endPoint);
+                    
                 }
             }
             else
