@@ -13,6 +13,7 @@ public class CoverObject : MonoBehaviour
     Vector3 extent;
     Vector3 dimensions;
     Vector3[] frontCovers, backCovers, leftCovers, rightCovers;
+    public Vector3 originOffset;
     public Vector3[] coverPoints;
     public bool[] pointTakenList;
     public int depthPoints, widthPoints;
