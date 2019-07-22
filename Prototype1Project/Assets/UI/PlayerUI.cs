@@ -30,7 +30,10 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Piviot.rotation = Camera.rotation;
+        if (Camera && Piviot)
+        {
+            Piviot.rotation = Camera.rotation;
+        }
         if (player.AP != oldAP)
         {
             oldAP = player.AP;

@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
+    //UI stuff
+    public GameObject TDUI;
+    public GameObject FPSUI;
+
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -53,6 +57,7 @@ public class Player : MonoBehaviour
         {
             if (gameManager.playerState == GameManager.PlayerState.MOVING)
             {
+                FPS(false);
                 attachedGun.CanFire = false;
 
                 Cursor.lockState = CursorLockMode.None;
@@ -96,6 +101,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                FPS(true);
                 attachedGun.CanFire = true;
 
                 Cursor.lockState = CursorLockMode.Locked;
@@ -168,5 +174,11 @@ public class Player : MonoBehaviour
                 lineRenderer.SetPosition(i, path.corners[i]);
             }
         }
+    }
+
+    void FPS(bool value)
+    {
+        FPSUI.SetActive(value);
+        TDUI.SetActive(!value);
     }
 }
