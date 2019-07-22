@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     public int AP = 10;
     public int lengthOfLineRenderer = 20;
+    int distanceSelected = 0;
 
     public float HP = 100.0f;
     public float moveSpeed = 1.0f;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     float rotVertical;
 
     public bool startedMoving;
+    bool updatingAP;
 
     Vector3 startPoint, endPoint;
     Ray ray;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         lineRenderer.widthMultiplier = 0.2f;
         playerCam = GetComponentInChildren<Camera>();
         playerCam.gameObject.SetActive(false);
+        updatingAP = false;
     }
 
     void Update()
@@ -64,10 +67,7 @@ public class Player : MonoBehaviour
                 DrawPath(agent.path);
 
                 // Update AP with movement
-                if (startedMoving)
-                {
-                    AP = (int)Vector3.Distance(transform.position, endPoint);
-                }
+                
 
                 // Raycasting from camera to ground
                 if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
@@ -77,10 +77,22 @@ public class Player : MonoBehaviour
                         agent.isStopped = false;
 
                         startedMoving = true;
+
+                        updatingAP = true;
                     }
                     else
                     {
                         getPath();
+                    }
+                }
+
+                if (startedMoving)
+                {
+                    elapsed += Time.deltaTime;
+                    if (elapsed >= 0.5f)
+                    {
+                        elapsed = elapsed % 0.5f;
+                        APDrain();
                     }
                 }
 
@@ -100,7 +112,7 @@ public class Player : MonoBehaviour
                 if (elapsed >= 3f)
                 {
                     elapsed = elapsed % 3f;
-                    ShootingModeAPDrain();
+                    APDrain();
                 }
 
                 // Lock Cursor
@@ -214,7 +226,7 @@ public class Player : MonoBehaviour
     }
 
     // Drains AP by 1
-    void ShootingModeAPDrain()
+    void APDrain()
     {
         if (AP > 0)
         {
