@@ -73,7 +73,7 @@ public class Guns : MonoBehaviour
             }
             else
             {
-                if ((Input.GetMouseButton(0) || Fire) && CurrentMag > 0)
+                if (Fire && CurrentMag > 0)
                 {
                     Vector3 shootDirection;
                     if (SelectedGun == E_Guns.ShotGun)
