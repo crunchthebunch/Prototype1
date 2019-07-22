@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     NavMeshAgent agent;
     LayerMask groundLayerMask;
     [SerializeField] LineRenderer lineRenderer;
+    public Animator animator;
 
     public int AP = 10;
     public int lengthOfLineRenderer = 20;
@@ -25,11 +26,15 @@ public class Player : MonoBehaviour
     private float elapsed = 0.0f;
     private float viewRange = 60.0f;
     float rotVertical;
+    float X, Y;
 
     public bool startedMoving;
     bool updatingAP;
+    bool isCrouching;
 
     Vector3 startPoint, endPoint;
+    public GameObject defaultCam;
+    public GameObject crouchCam;
     Ray ray;
     RaycastHit hit;
 
@@ -41,6 +46,7 @@ public class Player : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         agent = GetComponent<NavMeshAgent>();
+        agent.angularSpeed = 360.0f;
         groundLayerMask = LayerMask.GetMask("Ground");
         mainCamera = Camera.main;
         lineRenderer = gameObject.AddComponent<LineRenderer>();
@@ -48,6 +54,9 @@ public class Player : MonoBehaviour
         playerCam = GetComponentInChildren<Camera>();
         playerCam.gameObject.SetActive(false);
         updatingAP = false;
+        isCrouching = false;
+        animator.speed = 0.75f;
+        
     }
 
     void Update()
@@ -56,10 +65,20 @@ public class Player : MonoBehaviour
         lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.0f, transform.position.z));
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
+        if (isCrouching)
+        {
+            playerCam.transform.position = crouchCam.transform.position;
+        }
+        else
+        {
+            playerCam.transform.position = defaultCam.transform.position;
+        }
+
         if (gameManager.initiativeCount == 0)
         {
             if (gameManager.playerState == GameManager.PlayerState.MOVING)
             {
+                animator.SetBool("isAiming", false);
                 FPS(false);
                 attachedGun.CanFire = false;
 
@@ -81,6 +100,8 @@ public class Player : MonoBehaviour
                     {
                         agent.isStopped = false;
 
+                        animator.SetBool("isMoving", true);
+
                         startedMoving = true;
 
                         updatingAP = true;
@@ -101,15 +122,34 @@ public class Player : MonoBehaviour
                     }
                 }
 
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    if (!isCrouching)
+                    {
+                        animator.SetBool("isCrouching", true);
+                        isCrouching = true;
+                        AP -= 1;
+                    }
+                    else
+                    {
+                        animator.SetBool("isCrouching", false);
+                        isCrouching = false;
+                        AP -= 1;
+                    }
+                    
+                }
+
                 // Player has reached target position, stops
                 if (agent.remainingDistance <= agent.stoppingDistance && startedMoving == true)
                 {
                     startedMoving = false;
+                    animator.SetBool("isMoving", false);
                 }
             }
 
             else if (gameManager.playerState == GameManager.PlayerState.SHOOTING)
             {
+                animator.SetBool("isAiming", true);
                 FPS(true);
                 attachedGun.CanFire = true;
 
@@ -126,24 +166,24 @@ public class Player : MonoBehaviour
                 Cursor.visible = false;
 
                 // Rotate gun with mouse
-                float X = Input.GetAxis("Mouse X") * mouseSpeed;
-                float Y = Input.GetAxis("Mouse Y") * mouseSpeed;
-
-                Y = Mathf.Clamp(Y, -60.0f, 60.0f);
+                X = Input.GetAxis("Mouse X") * mouseSpeed;
+                Y += Input.GetAxis("Mouse Y") * mouseSpeed;
+                Y = Mathf.Clamp(Y, -45.0f, 45.0f);
 
                 transform.Rotate(0, X, 0);
-                attachedGun.transform.Rotate(-Y, 0, 0);
+                transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
 
+                
 
                 // Rotate camera with mouse
-                if (playerCam.transform.eulerAngles.x + (Y) > 80 && playerCam.transform.eulerAngles.x + (Y) < 280)
-                {
-                 
-                }
-                else
-                {
-                    playerCam.transform.RotateAround(transform.position, playerCam.transform.right, -Y);
-                }
+                //if (playerCam.transform.eulerAngles.x + (Y) > 80 && playerCam.transform.eulerAngles.x + (Y) < 280)
+                //{
+
+                //}
+                //else
+                //{
+                //playerCam.transform.RotateAround(transform.position, playerCam.transform.right, -Y);
+                //}
 
 
 
@@ -158,6 +198,7 @@ public class Player : MonoBehaviour
                             if (AP >= 3)
                             {
                                 attachedGun.Fire = true;
+                                animator.SetBool("isShooting", true);
                                 AP -= 3;
                             }
                             break;
@@ -167,7 +208,9 @@ public class Player : MonoBehaviour
                             if (AP >= 2)
                             {
                                 attachedGun.Fire = true;
+                                animator.SetBool("isShooting", true);
                                 AP -= 2;
+                                print(AP);
                             }
                             break;
 
@@ -176,14 +219,37 @@ public class Player : MonoBehaviour
                             if (AP >= 1)
                             {
                                 attachedGun.Fire = true;
+                                animator.SetBool("isShooting", true);
                                 AP -= 1;
                             }
+                            break;
+
+                        default:
+                            
                             break;
                     }
                 }
                 else
                 {
+                    animator.SetBool("isShooting", false);
                     attachedGun.Fire = false;
+                }
+
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    if (!isCrouching)
+                    {
+                        animator.SetBool("isCrouching", true);
+                        isCrouching = true;
+                        AP -= 1;
+                    }
+                    else
+                    {
+                        animator.SetBool("isCrouching", false);
+                        isCrouching = false;
+                        AP -= 1;
+                    }
+
                 }
             }
         }
@@ -214,6 +280,8 @@ public class Player : MonoBehaviour
             DrawPath(agent.path);
 
             agent.isStopped = true;
+
+           
         }
     }
 
