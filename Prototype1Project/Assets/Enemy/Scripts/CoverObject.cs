@@ -30,7 +30,7 @@ public class CoverObject : MonoBehaviour
     public bool isFullCover;
     MeshRenderer render;
 
-    private void Awake()
+    private void Start()
     {
         Quaternion initialRotation = transform.rotation;
         transform.rotation = Quaternion.identity;

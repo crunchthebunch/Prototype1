@@ -284,10 +284,13 @@ public class HumanAI : MonoBehaviour
 
                 float dist = Vector3.Distance(coverPoint.pos, player.transform.position);
 
-                if (dist > bestPointDist && coverPoint.isTaken == false)
+                if (dist > bestPointDist && bestCover.coverPoints[id].isTaken == false)
                 {
+                    currentCover = bestCover;
                     bestPointID = coverPoint.id;
+                    coverPointID = coverPoint.id;
                     bestCover.coverPoints[id].isTaken = true;
+                    currentCover.coverPoints[coverPointID].isTaken = true;
                     bestPointDist = dist;
                     bestPoint = coverPoint.pos;
                 }
@@ -301,11 +304,7 @@ public class HumanAI : MonoBehaviour
     {
         Vector3 initialPoint = transform.position;
 
-        if (currentCover != null)
-        {
-            currentCover.coverPoints[coverPointID].isTaken = false;
-        }
-        viablePoints.Clear();
+        viablePoints = new List<CoverPoint>();
 
         //------------ Find all cover objects within range
         for (int i = 0; i < coverObjects.Length; i++)
@@ -319,7 +318,7 @@ public class HumanAI : MonoBehaviour
             if (agent.pathStatus == NavMeshPathStatus.PathComplete)
             {
                 //If within range
-                if (Vector3.Distance(transform.position, cover.transform.position) < ap)
+                if (Vector3.Distance(transform.position, cover.transform.position) < ap*2.0f)
                 {
                     //Find and add all furthest points
                     int furthest = cover.FurthestSide(player.transform.position);
@@ -345,6 +344,11 @@ public class HumanAI : MonoBehaviour
 
         if (viablePoints.Count > 0)
         {
+            if (currentCover != null)
+            {
+               // currentCover.coverPoints[coverPointID].isTaken = false;
+            }
+
             int randomPoint = Random.Range(0, viablePoints.Count);
             coverPointID = viablePoints[randomPoint].id;
             currentCover = viablePoints[randomPoint].parent;
