@@ -33,6 +33,10 @@ public class Player : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
+    //UI stuff
+    public GameObject TDUI;
+    public GameObject FPSUI;
+
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -56,6 +60,7 @@ public class Player : MonoBehaviour
         {
             if (gameManager.playerState == GameManager.PlayerState.MOVING)
             {
+                FPS(false);
                 attachedGun.CanFire = false;
 
                 // Unlock cursor
@@ -105,6 +110,7 @@ public class Player : MonoBehaviour
 
             else if (gameManager.playerState == GameManager.PlayerState.SHOOTING)
             {
+                FPS(true);
                 attachedGun.CanFire = true;
 
                 // Constant shooting mode AP drain
@@ -223,6 +229,12 @@ public class Player : MonoBehaviour
                 lineRenderer.SetPosition(i, path.corners[i]);
             }
         }
+    }
+
+    void FPS(bool value)
+    {
+        FPSUI.SetActive(value);
+        TDUI.SetActive(!value);
     }
 
     // Drains AP by 1
