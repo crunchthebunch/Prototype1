@@ -163,7 +163,7 @@ MonoBehaviour:
   Reload: []
   ReloadTimer: 0
   FireRate:
-  - 3
+  - 1
   - 0.1
   - 0.5
   FireRateTimer: 0
