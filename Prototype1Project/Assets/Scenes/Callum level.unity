@@ -2952,18 +2952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b654f60896a40e9498ffe73910bf1136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &133562425 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 755964483}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fbb007a09196e14497e0b5adfed1a69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &133799253 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 2300fb84098d9a04894576d411665f25,
@@ -16894,12 +16882,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 9180488811018604449, guid: a778d348055babc46a244aa57eba13d9, type: 3}
---- !u!4 &792766029 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8841994453171466076, guid: de6c6fe2f3210814fad4979cf11ed57e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2031244819}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &794220374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45651,11 +45633,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5973102506672138199, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1235153638999867437, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
