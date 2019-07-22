@@ -22,6 +22,7 @@ public class CoverObject : MonoBehaviour
 
     Vector3 extent;
     Vector3 dimensions;
+    public bool[] isTakenList;
     public CoverPoint[] frontPoints, backPoints, leftPoints, rightPoints;
     public Vector3[] frontGizmos, backGizmos, leftGizmos, rightGizmos;
     public Vector3 originOffset;
@@ -66,6 +67,7 @@ public class CoverObject : MonoBehaviour
 
 
         coverPoints = new CoverPoint[(depthPoints * 2) + (widthPoints * 2)];
+        isTakenList = new bool[(depthPoints * 2) + (widthPoints * 2)];
 
         //Set all coverpoint IDs, and also parent to this
         for (int c = 0; c < coverPoints.Length; c++)

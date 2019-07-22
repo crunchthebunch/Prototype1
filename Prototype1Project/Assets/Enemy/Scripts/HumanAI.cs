@@ -130,6 +130,8 @@ public class HumanAI : MonoBehaviour
                             else if (endTimer <= 0.0f)
                             {
                                 endTimer = -1.0f;
+                                gun.CanFire = false;
+                                gun.Fire = false;
                                 isEndingTurn = true;
                             }
                         }
@@ -222,6 +224,7 @@ public class HumanAI : MonoBehaviour
         Vector3 offset = new Vector3(0.0f, 0.0f, 0.0f);
         gun.transform.LookAt(player.transform.position + offset, Vector3.up);
         gun.Fire = true;
+        isShooting = false;
     }
 
     bool CheckLineOfSight(Vector3 checkPosition)
@@ -326,7 +329,7 @@ public class HumanAI : MonoBehaviour
                     for (int id = 0; id < cover.coverPoints.Length; id++)
                     {
                         CoverPoint point = cover.coverPoints[id];
-                        if (point.isTaken == false)
+                        if (cover.isTakenList[id] == false)
                         {
                             if (point.side == furthest)
                             {
@@ -346,13 +349,13 @@ public class HumanAI : MonoBehaviour
         {
             if (currentCover != null)
             {
-               // currentCover.coverPoints[coverPointID].isTaken = false;
+               currentCover.isTakenList[coverPointID] = false;
             }
 
             int randomPoint = Random.Range(0, viablePoints.Count);
             coverPointID = viablePoints[randomPoint].id;
             currentCover = viablePoints[randomPoint].parent;
-            currentCover.coverPoints[coverPointID].isTaken = true;
+            currentCover.isTakenList[coverPointID] = true;
             return viablePoints[randomPoint].pos;
         }
         else
