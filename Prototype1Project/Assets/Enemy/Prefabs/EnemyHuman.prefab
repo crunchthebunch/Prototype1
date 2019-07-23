@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cacbe6e64b82844cb90a47f41c67934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
-  ap: 5
+  HP: 5
+  AP: 5
   speed: 5
   initiative: 0
   gunObject: {fileID: 7700045153898449554}
@@ -164,7 +164,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 2
 --- !u!1001 &2658880164198038697
 PrefabInstance:
   m_ObjectHideFlags: 0
