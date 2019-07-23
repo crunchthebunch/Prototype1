@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1402815846596174610, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}
       propertyPath: m_Name
-      value: Muzzle
+      value: Muzzle Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1402815846596174611, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}
@@ -66,6 +66,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402815846047814336, guid: 664dddeb63b78504a9b83c9b5c95585e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.073
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402815846047814336, guid: 664dddeb63b78504a9b83c9b5c95585e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402815846047814336, guid: 664dddeb63b78504a9b83c9b5c95585e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.116
       objectReference: {fileID: 0}
     - target: {fileID: 1402815845269266569, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}
@@ -132,25 +147,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.137
       objectReference: {fileID: 0}
-    - target: {fileID: 1402815846047814336, guid: 664dddeb63b78504a9b83c9b5c95585e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.073
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402815846047814336, guid: 664dddeb63b78504a9b83c9b5c95585e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.128
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402815846047814336, guid: 664dddeb63b78504a9b83c9b5c95585e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.116
-      objectReference: {fileID: 0}
     - target: {fileID: 1402815845269266571, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1402815845269266571, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}
@@ -271,7 +271,7 @@ PrefabInstance:
     - target: {fileID: 1402815845613258016, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1402815845613258016, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}
@@ -436,7 +436,7 @@ PrefabInstance:
     - target: {fileID: 1402815846047814338, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1402815846047814338, guid: 664dddeb63b78504a9b83c9b5c95585e,
         type: 3}

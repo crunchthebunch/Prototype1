@@ -39902,29 +39902,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -732599202707360921, guid: 2300fb84098d9a04894576d411665f25, type: 3}
---- !u!1 &1641451673 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6442713139316905713, guid: df98879a1a1ce774a99b5ddda81029dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1151773312}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1641451674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641451673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2a3d5288432ec841bdd76d1b2919aa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectTile: {fileID: 0}
-  InitiativeTile: {fileID: 3250926193488758294, guid: 14bfeb710227a1e46bd72fa8f037182d,
-    type: 3}
-  StartLocation: {x: -300, y: 220, z: 0}
-  Offset: 70
 --- !u!1 &1641524867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 2300fb84098d9a04894576d411665f25,
@@ -49632,7 +49609,7 @@ PrefabInstance:
     - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: SelectedGun
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
@@ -49709,6 +49686,16 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 1899978894}
+    - target: {fileID: 9079298786597250662, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.341
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079298786597250662, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.605
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6c6fe2f3210814fad4979cf11ed57e, type: 3}
 --- !u!1 &2031879258 stripped

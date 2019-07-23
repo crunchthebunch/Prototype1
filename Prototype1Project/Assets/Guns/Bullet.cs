@@ -9,15 +9,16 @@ public class Bullet : MonoBehaviour
     public GameObject[] BulletHit;
     public GameObject[] bulletTrail;
     public Guns.E_Guns BulletType;
-
-    private void Awake()
-    {
-        Instantiate(bulletTrail[(int)BulletType], transform);
-    }
+    private bool Trail = true;
 
     // Update is called once per frame
     void Update()
     {
+        if (Trail)
+        {
+            Instantiate(bulletTrail[(int)BulletType], transform);
+            Trail = false;
+        }
         if (KillTimer <= 0)
         {
             Destroy(gameObject);
@@ -31,7 +32,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Gun") && collision.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Bullet"))
+        if (!collision.gameObject.CompareTag("Gun") && !collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Bullet"))
         {
             Instantiate(BulletHit[(int)BulletType], transform.position, Quaternion.identity);
             Destroy(gameObject);

@@ -15,6 +15,7 @@ public class InitiativeUI : MonoBehaviour
 
     private GameManager Manager;
     private GameObject player;
+    private int enemyNum;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,10 @@ public class InitiativeUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (enemyNum != Manager.enemies.Length)
+        {
+            updateList();
+        }
     }
 
     void updateList()
@@ -37,8 +41,10 @@ public class InitiativeUI : MonoBehaviour
         {
             Destroy(G);
         }
-        InitiativeList = new GameObject[Manager.enemies.Length + 1];
 
+        StartLocation.x = -((Manager.enemies.Length * Offset) / 2);
+
+        InitiativeList = new GameObject[Manager.enemies.Length + 1];
         InitiativeList[0] = Instantiate(InitiativeTile, transform);
         InitiativeList[0].transform.localPosition = StartLocation;
         InitiativeList[0].GetComponent<CharacterInfo>().Referance = player;
@@ -55,5 +61,6 @@ public class InitiativeUI : MonoBehaviour
             InitiativeList[Initiative].GetComponentInChildren<TextMeshProUGUI>().text = G.tag;
             Initiative++;
         }
+        enemyNum = Manager.enemies.Length;
     }
 }
