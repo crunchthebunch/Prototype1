@@ -7898,7 +7898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: -13.22, y: 3.7395997, z: -14.75}
   - {x: -14.02, y: 3.7396, z: -14.75}
@@ -7909,11 +7909,13 @@ MonoBehaviour:
   - {x: -14.02, y: 3.7396, z: -15.25}
   - {x: -14.82, y: 3.7396002, z: -15.25}
   - {x: -15.62, y: 3.7396004, z: -15.25}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -12.42, y: 3.7395995, z: -15}
+  rightGizmos:
+  - {x: -16.42, y: 3.7396004, z: -15}
   originOffset: {x: -1.42, y: 0.74, z: 0}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
 --- !u!64 &280393901
 MeshCollider:
@@ -8198,7 +8200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: -25.370014, y: 2.9639, z: -50.11999}
   - {x: -24.570013, y: 2.9639, z: -50.119995}
@@ -8209,11 +8211,13 @@ MonoBehaviour:
   - {x: -24.57001, y: 2.9639, z: -49.619995}
   - {x: -23.77001, y: 2.9638999, z: -49.620003}
   - {x: -22.970009, y: 2.9638999, z: -49.620007}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -26.170012, y: 2.9639, z: -49.869987}
+  rightGizmos:
+  - {x: -22.170012, y: 2.9639, z: -49.87001}
   originOffset: {x: 2.83, y: 0, z: 0.13}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
 --- !u!64 &288781073
 MeshCollider:
@@ -35284,6 +35288,25 @@ PrefabInstance:
       objectReference: {fileID: 133409694}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 940afa3025e760f4d9fdf492598c4b4e, type: 3}
+--- !u!1 &1209080246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8027014447159660426, guid: 940afa3025e760f4d9fdf492598c4b4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1209080245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1209080247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209080246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 727a89c2df93e474297acdaa608c48bf, type: 2}
 --- !u!1 &1210820983 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 2300fb84098d9a04894576d411665f25,
@@ -39061,7 +39084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: 0.32000023, y: 3.599599, z: -12.750001}
   - {x: 1.1200002, y: 3.5995996, z: -12.75}
@@ -39072,11 +39095,13 @@ MonoBehaviour:
   - {x: 1.1199998, y: 3.5995996, z: -12.25}
   - {x: 1.9199998, y: 3.5996, z: -12.249999}
   - {x: 2.7199998, y: 3.5996008, z: -12.249998}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -0.48000002, y: 3.5995984, z: -12.500002}
+  rightGizmos:
+  - {x: 3.52, y: 3.5996013, z: -12.499998}
   originOffset: {x: 1.52, y: 0.6, z: 0}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
 --- !u!64 &1348364575
 MeshCollider:
@@ -39138,7 +39163,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1209080245}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1209080246}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2132c69288acc7d44b0f9d6f57af136f, type: 3}
@@ -40078,7 +40103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: 0.3500002, y: 3.5896, z: -6.620002}
   - {x: 1.1500002, y: 3.5896, z: -6.620001}
@@ -40089,11 +40114,13 @@ MonoBehaviour:
   - {x: 1.1499997, y: 3.5896, z: -6.12}
   - {x: 1.9499998, y: 3.5895998, z: -6.119999}
   - {x: 2.7499998, y: 3.5895996, z: -6.119998}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -0.45000005, y: 3.5896003, z: -6.3700023}
+  rightGizmos:
+  - {x: 3.55, y: 3.5895994, z: -6.3699975}
   originOffset: {x: 1.55, y: 0.59, z: 0.13}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
 --- !u!64 &1368678415
 MeshCollider:
@@ -43912,20 +43939,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
-  - {x: -25.059996, y: 2.9995997, z: -39.05}
-  - {x: -25.06, y: 2.9996, z: -40.05}
-  - {x: -25.060001, y: 2.9996004, z: -41.05}
+  - {x: -25.059996, y: 2.9995995, z: -38.85}
+  - {x: -25.059998, y: 2.9995997, z: -39.649998}
+  - {x: -25.060001, y: 2.9996002, z: -40.449997}
+  - {x: -25.060003, y: 2.9996004, z: -41.25}
   backGizmos:
-  - {x: -24.559996, y: 2.9995997, z: -39.05}
-  - {x: -24.56, y: 2.9996, z: -40.05}
-  - {x: -24.560001, y: 2.9996004, z: -41.05}
-  leftGizmos: []
-  rightGizmos: []
+  - {x: -24.559996, y: 2.9995995, z: -38.85}
+  - {x: -24.559998, y: 2.9995997, z: -39.649998}
+  - {x: -24.560001, y: 2.9996002, z: -40.449997}
+  - {x: -24.560003, y: 2.9996004, z: -41.25}
+  leftGizmos:
+  - {x: -24.809994, y: 2.9995992, z: -38.05}
+  rightGizmos:
+  - {x: -24.810005, y: 2.9996006, z: -42.05}
   originOffset: {x: 0.19, y: 0, z: -2.05}
-  depthPoints: 3
-  widthPoints: 0
+  depthPoints: 4
+  widthPoints: 1
   isFullCover: 1
 --- !u!64 &1518737226
 MeshCollider:
