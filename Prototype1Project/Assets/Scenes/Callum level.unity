@@ -140,20 +140,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
-  - {x: -11.064457, y: 0.30900002, z: -65.94742}
-  - {x: -10.207543, y: 0.30900002, z: -65.94742}
+  - {x: -11.278685, y: 0.30900002, z: -65.94742}
+  - {x: -10.636, y: 0.30900002, z: -65.94742}
+  - {x: -9.993315, y: 0.30900002, z: -65.94742}
   backGizmos:
-  - {x: -11.064457, y: 0.30900002, z: -67.53258}
-  - {x: -10.207543, y: 0.30900002, z: -67.53258}
+  - {x: -11.278685, y: 0.30900002, z: -67.53258}
+  - {x: -10.636, y: 0.30900002, z: -67.53258}
+  - {x: -9.993315, y: 0.30900002, z: -67.53258}
   leftGizmos:
-  - {x: -11.92137, y: 0.30900002, z: -66.74}
+  - {x: -11.92137, y: 0.30900002, z: -67.00419}
+  - {x: -11.92137, y: 0.30900002, z: -66.47581}
   rightGizmos:
-  - {x: -9.35063, y: 0.30900002, z: -66.74}
+  - {x: -9.35063, y: 0.30900002, z: -67.00419}
+  - {x: -9.35063, y: 0.30900002, z: -66.47581}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 2
-  widthPoints: 1
+  depthPoints: 3
+  widthPoints: 2
   isFullCover: 0
 --- !u!64 &2114829
 MeshCollider:
@@ -1145,20 +1149,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1415094269}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &47439071
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 47439070}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 1376563684284497086, guid: c76a30e792717ff4db7bcbf41c6825fc, type: 3}
 --- !u!114 &47439074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,7 +1163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: -1.2499998, y: 0.59, z: -6.619999}
   - {x: -2.0499997, y: 0.59, z: -6.62}
@@ -1184,12 +1174,28 @@ MonoBehaviour:
   - {x: -2.0500007, y: 0.59, z: -6.119999}
   - {x: -2.8500006, y: 0.59, z: -6.12}
   - {x: -3.6500006, y: 0.59, z: -6.120001}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -0.45000005, y: 0.59, z: -6.3699975}
+  rightGizmos:
+  - {x: -4.45, y: 0.59, z: -6.3700023}
   originOffset: {x: 1.55, y: 0.59, z: 0.13}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
+--- !u!64 &47439075
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47439070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 1376563684284497086, guid: c76a30e792717ff4db7bcbf41c6825fc, type: 3}
 --- !u!1001 &48426799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1300,6 +1306,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 960993211687451897, guid: a9c784725a6f7ad44be5776692e388ee, type: 3}
+--- !u!114 &48449391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48449387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75fe6f6b701b5245bf2f1baba09c60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  isDestructible: 0
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -9.2513, y: 1.0827, z: -4}
+  backGizmos:
+  - {x: -9.2513, y: 1.0827, z: -4.5}
+  leftGizmos:
+  - {x: -9.5013, y: 1.0827, z: -4.25}
+  rightGizmos:
+  - {x: -9.0013, y: 1.0827, z: -4.25}
+  originOffset: {x: 0, y: 0, z: 0}
+  depthPoints: 1
+  widthPoints: 1
+  isFullCover: 1
 --- !u!1 &50628922 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 845e2a1ba2c06004ea6e7d24d295c212,
@@ -1769,15 +1802,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: 0.6300001, y: 1.0959, z: -60}
+  backGizmos:
+  - {x: 0.6300001, y: 1.0959, z: -61}
   leftGizmos:
   - {x: 0.21840608, y: 1.0959, z: -60.5}
   rightGizmos:
   - {x: 1.0415941, y: 1.0959, z: -60.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!114 &62535979
@@ -1794,15 +1829,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: 0.6300001, y: 1.0959, z: -60}
+  backGizmos:
+  - {x: 0.6300001, y: 1.0959, z: -61}
   leftGizmos:
   - {x: 0.21840608, y: 1.0959, z: -60.5}
   rightGizmos:
   - {x: 1.0415941, y: 1.0959, z: -60.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!64 &62535980
@@ -4519,18 +4556,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 00000000
+  isTakenList: 000000000000
   frontGizmos:
   - {x: -13.316968, y: 0.38737, z: -73.04627}
   - {x: -13.144421, y: 0.38737, z: -73.69022}
   backGizmos:
   - {x: -14.25558, y: 0.38737, z: -73.29777}
   - {x: -14.083033, y: 0.38737, z: -73.94172}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -13.958821, y: 0.38737, z: -72.52807}
+  rightGizmos:
+  - {x: -13.441178, y: 0.38737, z: -74.45992}
   originOffset: {x: 0, y: 0, z: 0}
   depthPoints: 2
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 0
 --- !u!64 &162930572
 MeshCollider:
@@ -5667,15 +5706,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -9.37, y: 1.0959, z: -70}
+  backGizmos:
+  - {x: -9.37, y: 1.0959, z: -71}
   leftGizmos:
   - {x: -9.781594, y: 1.0959, z: -70.5}
   rightGizmos:
   - {x: -8.9584055, y: 1.0959, z: -70.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!64 &209668839
@@ -7922,7 +7963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: -11.62, y: 0.74, z: -14.75}
   - {x: -10.82, y: 0.74, z: -14.75}
@@ -7933,11 +7974,13 @@ MonoBehaviour:
   - {x: -10.82, y: 0.74, z: -15.25}
   - {x: -10.02, y: 0.74, z: -15.25}
   - {x: -9.22, y: 0.74, z: -15.25}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -12.42, y: 0.74, z: -15}
+  rightGizmos:
+  - {x: -8.42, y: 0.74, z: -15}
   originOffset: {x: -1.42, y: 0.74, z: 0}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
 --- !u!1001 &285410634
 PrefabInstance:
@@ -10930,22 +10973,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 000000000000000000000000
   frontGizmos:
-  - {x: -14.069821, y: 0.0000034771515, z: -87.755394}
-  - {x: -14.006085, y: 0.0000033974648, z: -86.866394}
-  - {x: -13.9423485, y: 0.000003317778, z: -85.977394}
+  - {x: -14.082568, y: 0.000003493089, z: -87.9332}
+  - {x: -14.03158, y: 0.0000034293396, z: -87.22199}
+  - {x: -13.980591, y: 0.00000336559, z: -86.510796}
+  - {x: -13.929602, y: 0.0000033018405, z: -85.79959}
   backGizmos:
-  - {x: -14.069819, y: 1.3999968, z: -87.755394}
-  - {x: -14.0060835, y: 1.3999968, z: -86.866394}
-  - {x: -13.942347, y: 1.3999966, z: -85.977394}
+  - {x: -14.082566, y: 1.3999968, z: -87.9332}
+  - {x: -14.031578, y: 1.3999968, z: -87.22199}
+  - {x: -13.980589, y: 1.3999966, z: -86.510796}
+  - {x: -13.9296, y: 1.3999966, z: -85.79959}
   leftGizmos:
-  - {x: -14.133556, y: 0.7000002, z: -88.644394}
+  - {x: -14.133555, y: 0.93333244, z: -88.644394}
+  - {x: -14.133556, y: 0.466668, z: -88.644394}
   rightGizmos:
-  - {x: -13.8786125, y: 0.69999987, z: -85.088394}
+  - {x: -13.878612, y: 0.9333321, z: -85.088394}
+  - {x: -13.8786125, y: 0.46666765, z: -85.088394}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 3
-  widthPoints: 1
+  depthPoints: 4
+  widthPoints: 2
   isFullCover: 1
 --- !u!64 &405909548
 MeshCollider:
@@ -13113,20 +13160,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2047690179}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &485618722
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485618721}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 1376563684284497086, guid: c76a30e792717ff4db7bcbf41c6825fc, type: 3}
 --- !u!114 &485618725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13141,7 +13174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: -1.2799997, y: 0.6, z: -12.749999}
   - {x: -2.08, y: 0.6, z: -12.75}
@@ -13152,12 +13185,28 @@ MonoBehaviour:
   - {x: -2.0800004, y: 0.6, z: -12.25}
   - {x: -2.8800006, y: 0.6, z: -12.250001}
   - {x: -3.6800005, y: 0.6, z: -12.250002}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -0.48000002, y: 0.6, z: -12.499998}
+  rightGizmos:
+  - {x: -4.48, y: 0.6, z: -12.500002}
   originOffset: {x: 1.52, y: 0.6, z: 0}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
+--- !u!64 &485618726
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485618721}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 1376563684284497086, guid: c76a30e792717ff4db7bcbf41c6825fc, type: 3}
 --- !u!1001 &486658430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20301,22 +20350,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 000000000000000000000000
   frontGizmos:
-  - {x: -22.912842, y: 0.0000033709025, z: -94.677025}
-  - {x: -23, y: 0.0000033974648, z: -93.79001}
-  - {x: -23.087158, y: 0.000003424027, z: -92.903}
+  - {x: -22.89541, y: 0.0000033655901, z: -94.85442}
+  - {x: -22.965137, y: 0.0000033868398, z: -94.14481}
+  - {x: -23.034863, y: 0.0000034080897, z: -93.43521}
+  - {x: -23.10459, y: 0.0000034293396, z: -92.7256}
   backGizmos:
-  - {x: -22.912842, y: 1.3999968, z: -94.677025}
-  - {x: -23, y: 1.3999968, z: -93.79001}
-  - {x: -23.087158, y: 1.3999969, z: -92.903}
+  - {x: -22.89541, y: 1.3999968, z: -94.85442}
+  - {x: -22.965137, y: 1.3999968, z: -94.14481}
+  - {x: -23.034863, y: 1.3999969, z: -93.43521}
+  - {x: -23.10459, y: 1.3999969, z: -92.7256}
   leftGizmos:
-  - {x: -22.825684, y: 0.7, z: -95.56403}
+  - {x: -22.825684, y: 0.9333322, z: -95.56403}
+  - {x: -22.825686, y: 0.46666777, z: -95.56403}
   rightGizmos:
-  - {x: -23.174316, y: 0.7000001, z: -92.01598}
+  - {x: -23.174316, y: 0.9333323, z: -92.01598}
+  - {x: -23.174318, y: 0.4666679, z: -92.01598}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 3
-  widthPoints: 1
+  depthPoints: 4
+  widthPoints: 2
   isFullCover: 1
 --- !u!64 &730708651
 MeshCollider:
@@ -20602,15 +20655,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -19.37, y: 1.0959, z: -80}
+  backGizmos:
+  - {x: -19.37, y: 1.0959, z: -81}
   leftGizmos:
   - {x: -19.781595, y: 1.0959, z: -80.5}
   rightGizmos:
   - {x: -18.958406, y: 1.0959, z: -80.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!64 &749234090
@@ -21134,11 +21189,6 @@ PrefabInstance:
       propertyPath: UIGun
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 470641275903417815, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8666451816239931569, guid: 9b179534308030844a8fb283e4f93a1a,
         type: 3}
       propertyPath: m_UseGravity
@@ -21148,6 +21198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsKinematic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 470641275903417815, guid: 9b179534308030844a8fb283e4f93a1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 470641276633098812, guid: 9b179534308030844a8fb283e4f93a1a,
         type: 3}
@@ -21916,22 +21971,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 000000000000000000000000
   frontGizmos:
-  - {x: -14.000292, y: 0.0000035367561, z: -94.68129}
-  - {x: -14.000288, y: 0.0000034570694, z: -93.79001}
-  - {x: -14.000284, y: 0.0000033773827, z: -92.89873}
+  - {x: -14.000293, y: 0.0000035526937, z: -94.85954}
+  - {x: -14.000289, y: 0.0000034889442, z: -94.14652}
+  - {x: -14.000286, y: 0.0000034251946, z: -93.433495}
+  - {x: -14.000283, y: 0.0000033614451, z: -92.72047}
   backGizmos:
-  - {x: -14.00029, y: 1.3999966, z: -94.68129}
-  - {x: -14.000286, y: 1.3999966, z: -93.79001}
-  - {x: -14.000282, y: 1.3999965, z: -92.89873}
+  - {x: -14.000291, y: 1.3999966, z: -94.85954}
+  - {x: -14.000287, y: 1.3999966, z: -94.14652}
+  - {x: -14.000284, y: 1.3999965, z: -93.433495}
+  - {x: -14.000281, y: 1.3999965, z: -92.72047}
   leftGizmos:
-  - {x: -14.000295, y: 0.7000002, z: -95.57257}
+  - {x: -14.000294, y: 0.9333323, z: -95.57257}
+  - {x: -14.000295, y: 0.46666795, z: -95.57257}
   rightGizmos:
-  - {x: -14.000279, y: 0.69999987, z: -92.00745}
+  - {x: -14.000278, y: 0.9333321, z: -92.00745}
+  - {x: -14.000279, y: 0.4666677, z: -92.00745}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 3
-  widthPoints: 1
+  depthPoints: 4
+  widthPoints: 2
   isFullCover: 1
 --- !u!64 &783563910
 MeshCollider:
@@ -27629,18 +27688,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 00000000
+  isTakenList: 000000000000
   frontGizmos:
   - {x: -2.8728518, y: 0.42199993, z: -39.13426}
   - {x: -3.2061849, y: 0.42199993, z: -39.71161}
   backGizmos:
   - {x: -3.7143893, y: 0.42199993, z: -38.648396}
   - {x: -4.0477223, y: 0.42199993, z: -39.225746}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -2.9602878, y: 0.42199993, z: -38.313972}
+  rightGizmos:
+  - {x: -3.9602864, y: 0.42199993, z: -40.04603}
   originOffset: {x: 0, y: 0, z: 0}
   depthPoints: 2
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 0
 --- !u!64 &934895343
 MeshCollider:
@@ -29711,22 +29772,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 000000000000000000000000
   frontGizmos:
-  - {x: -18.945694, y: 0.0000037492546, z: -87.41495}
-  - {x: -18.95383, y: 0.0000034570694, z: -86.5237}
-  - {x: -18.961967, y: 0.0000031648842, z: -85.632454}
+  - {x: -18.944067, y: 0.0000038076917, z: -87.59319}
+  - {x: -18.950577, y: 0.0000035739436, z: -86.880196}
+  - {x: -18.957085, y: 0.0000033401952, z: -86.167206}
+  - {x: -18.963594, y: 0.0000031064474, z: -85.45421}
   backGizmos:
-  - {x: -18.945694, y: 1.399997, z: -87.41495}
-  - {x: -18.95383, y: 1.3999966, z: -86.5237}
-  - {x: -18.961967, y: 1.3999964, z: -85.632454}
+  - {x: -18.944067, y: 1.399997, z: -87.59319}
+  - {x: -18.950577, y: 1.3999968, z: -86.880196}
+  - {x: -18.957085, y: 1.3999965, z: -86.167206}
+  - {x: -18.963594, y: 1.3999963, z: -85.45421}
   leftGizmos:
-  - {x: -18.937557, y: 0.70000064, z: -88.30619}
+  - {x: -18.937557, y: 0.9333328, z: -88.30619}
+  - {x: -18.937557, y: 0.46666843, z: -88.30619}
   rightGizmos:
-  - {x: -18.970104, y: 0.69999945, z: -84.7412}
+  - {x: -18.970104, y: 0.9333316, z: -84.7412}
+  - {x: -18.970104, y: 0.46666723, z: -84.7412}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 3
-  widthPoints: 1
+  depthPoints: 4
+  widthPoints: 2
   isFullCover: 1
 --- !u!64 &1023477784
 MeshCollider:
@@ -29762,6 +29827,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 960993211687451897, guid: a9c784725a6f7ad44be5776692e388ee, type: 3}
+--- !u!114 &1023785915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023785911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75fe6f6b701b5245bf2f1baba09c60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  isDestructible: 0
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -3.25, y: 1.0827, z: -10.002}
+  backGizmos:
+  - {x: -3.25, y: 1.0827, z: -10.502}
+  leftGizmos:
+  - {x: -3.5, y: 1.0827, z: -10.252}
+  rightGizmos:
+  - {x: -3, y: 1.0827, z: -10.252}
+  originOffset: {x: 0, y: 0, z: 0}
+  depthPoints: 1
+  widthPoints: 1
+  isFullCover: 1
 --- !u!1001 &1026370047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32890,18 +32982,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 00000000
+  isTakenList: 000000000000
   frontGizmos:
   - {x: -13.005621, y: 0.42199993, z: -38.514565}
   - {x: -13.143741, y: 0.42199993, z: -39.166767}
   backGizmos:
   - {x: -13.956261, y: 0.42199993, z: -38.31324}
   - {x: -14.09438, y: 0.42199993, z: -38.965443}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -13.34282, y: 0.42199993, z: -37.7617}
+  rightGizmos:
+  - {x: -13.75718, y: 0.42199993, z: -39.718304}
   originOffset: {x: 0, y: 0, z: 0}
   depthPoints: 2
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 0
 --- !u!64 &1133294999
 MeshCollider:
@@ -35380,6 +35474,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 960993211687451897, guid: a9c784725a6f7ad44be5776692e388ee, type: 3}
+--- !u!114 &1215255608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215255604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75fe6f6b701b5245bf2f1baba09c60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  isDestructible: 0
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -19.25, y: 1.0827, z: -38.042}
+  backGizmos:
+  - {x: -19.25, y: 1.0827, z: -38.542}
+  leftGizmos:
+  - {x: -19.5, y: 1.0827, z: -38.292}
+  rightGizmos:
+  - {x: -19, y: 1.0827, z: -38.292}
+  originOffset: {x: 0, y: 0, z: 0}
+  depthPoints: 1
+  widthPoints: 1
+  isFullCover: 1
 --- !u!1001 &1219262652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36790,15 +36911,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -19.37, y: 1.0959, z: -90}
+  backGizmos:
+  - {x: -19.37, y: 1.0959, z: -91}
   leftGizmos:
   - {x: -19.781595, y: 1.0959, z: -90.5}
   rightGizmos:
   - {x: -18.958406, y: 1.0959, z: -90.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!64 &1284322734
@@ -42259,15 +42382,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -19.37, y: 1.0959, z: -60}
+  backGizmos:
+  - {x: -19.37, y: 1.0959, z: -61}
   leftGizmos:
   - {x: -19.781595, y: 1.0959, z: -60.5}
   rightGizmos:
   - {x: -18.958406, y: 1.0959, z: -60.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!64 &1441584096
@@ -42731,7 +42856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: -25.060003, y: 0, z: -37.25}
   - {x: -25.060001, y: 0, z: -36.45}
@@ -42742,11 +42867,13 @@ MonoBehaviour:
   - {x: -24.560001, y: 0, z: -36.45}
   - {x: -24.559998, y: 0, z: -35.649998}
   - {x: -24.559996, y: 0, z: -34.85}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -24.810005, y: 0, z: -38.05}
+  rightGizmos:
+  - {x: -24.809994, y: 0, z: -34.05}
   originOffset: {x: 0.19, y: 0, z: -2.05}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
 --- !u!64 &1475884080
 MeshCollider:
@@ -42782,22 +42909,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 000000000000000000000000
   frontGizmos:
-  - {x: -19.000004, y: 0.0000035367561, z: -94.68129}
-  - {x: -19, y: 0.0000034570694, z: -93.79001}
-  - {x: -18.999996, y: 0.0000033773827, z: -92.89873}
+  - {x: -19.000004, y: 0.0000035526937, z: -94.85954}
+  - {x: -19.000002, y: 0.0000034889442, z: -94.14652}
+  - {x: -18.999998, y: 0.0000034251946, z: -93.433495}
+  - {x: -18.999994, y: 0.0000033614451, z: -92.72047}
   backGizmos:
-  - {x: -19.000004, y: 1.3999966, z: -94.68129}
-  - {x: -19, y: 1.3999966, z: -93.79001}
-  - {x: -18.999996, y: 1.3999965, z: -92.89873}
+  - {x: -19.000004, y: 1.3999966, z: -94.85954}
+  - {x: -19.000002, y: 1.3999966, z: -94.14652}
+  - {x: -18.999998, y: 1.3999965, z: -93.433495}
+  - {x: -18.999994, y: 1.3999965, z: -92.72047}
   leftGizmos:
-  - {x: -19.000008, y: 0.7000002, z: -95.57257}
+  - {x: -19.000008, y: 0.9333323, z: -95.57257}
+  - {x: -19.000008, y: 0.46666795, z: -95.57257}
   rightGizmos:
-  - {x: -18.999992, y: 0.69999987, z: -92.00745}
+  - {x: -18.999992, y: 0.9333321, z: -92.00745}
+  - {x: -18.999992, y: 0.4666677, z: -92.00745}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 3
-  widthPoints: 1
+  depthPoints: 4
+  widthPoints: 2
   isFullCover: 1
 --- !u!64 &1476769597
 MeshCollider:
@@ -43613,20 +43744,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
-  - {x: -8.801221, y: 0.25672007, z: -6.3615413}
-  - {x: -8.801219, y: 0.25672007, z: -7.2184544}
+  - {x: -8.801222, y: 0.25672007, z: -6.147313}
+  - {x: -8.80122, y: 0.25672007, z: -6.789998}
+  - {x: -8.801218, y: 0.25672007, z: -7.4326825}
   backGizmos:
-  - {x: -10.38638, y: 0.25672007, z: -6.361546}
-  - {x: -10.386378, y: 0.25672007, z: -7.218459}
+  - {x: -10.386381, y: 0.25672007, z: -6.147318}
+  - {x: -10.386379, y: 0.25672007, z: -6.790003}
+  - {x: -10.386377, y: 0.25672007, z: -7.4326873}
   leftGizmos:
-  - {x: -9.593803, y: 0.25672007, z: -5.50463}
+  - {x: -9.857997, y: 0.25672007, z: -5.504631}
+  - {x: -9.329611, y: 0.25672007, z: -5.5046296}
   rightGizmos:
-  - {x: -9.593796, y: 0.25672007, z: -8.07537}
+  - {x: -9.857989, y: 0.25672007, z: -8.07537}
+  - {x: -9.329603, y: 0.25672007, z: -8.075369}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 2
-  widthPoints: 1
+  depthPoints: 3
+  widthPoints: 2
   isFullCover: 0
 --- !u!64 &1516503515
 MeshCollider:
@@ -43846,15 +43981,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -9.37, y: 1.0959, z: -60}
+  backGizmos:
+  - {x: -9.37, y: 1.0959, z: -61}
   leftGizmos:
   - {x: -9.781594, y: 1.0959, z: -60.5}
   rightGizmos:
   - {x: -8.9584055, y: 1.0959, z: -60.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!1001 &1523774682
@@ -44592,7 +44729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
   - {x: -26.970013, y: 0.07, z: -50.120007}
   - {x: -27.770014, y: 0.07, z: -50.120003}
@@ -44603,11 +44740,13 @@ MonoBehaviour:
   - {x: -27.77001, y: 0.07, z: -49.620003}
   - {x: -28.57001, y: 0.07, z: -49.619995}
   - {x: -29.37001, y: 0.07, z: -49.61999}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -26.170012, y: 0.07, z: -49.87001}
+  rightGizmos:
+  - {x: -30.170012, y: 0.07, z: -49.869987}
   originOffset: {x: 2.83, y: 0, z: 0.13}
   depthPoints: 4
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 1
 --- !u!64 &1532646232
 MeshCollider:
@@ -47080,18 +47219,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 00000000
+  isTakenList: 000000000000
   frontGizmos:
   - {x: -16.033335, y: 0.38737, z: -72.004135}
   - {x: -15.366668, y: 0.38737, z: -72.004135}
   backGizmos:
   - {x: -16.033335, y: 0.38737, z: -72.97586}
   - {x: -15.366668, y: 0.38737, z: -72.97586}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -16.7, y: 0.38737, z: -72.49}
+  rightGizmos:
+  - {x: -14.7, y: 0.38737, z: -72.49}
   originOffset: {x: 0, y: 0, z: 0}
   depthPoints: 2
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 0
 --- !u!64 &1614034493
 MeshCollider:
@@ -49467,22 +49608,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 000000000000000000000000
   frontGizmos:
-  - {x: -26.831154, y: 0.0000032180087, z: -87.75525}
-  - {x: -26.984823, y: 0.0000034570694, z: -86.87732}
-  - {x: -27.138494, y: 0.00000369613, z: -85.99938}
+  - {x: -26.800419, y: 0.0000031701968, z: -87.93084}
+  - {x: -26.923355, y: 0.0000033614451, z: -87.22849}
+  - {x: -27.046291, y: 0.0000035526937, z: -86.526146}
+  - {x: -27.169228, y: 0.0000037439422, z: -85.82379}
   backGizmos:
-  - {x: -26.83115, y: 1.3999964, z: -87.75525}
-  - {x: -26.98482, y: 1.3999966, z: -86.87732}
-  - {x: -27.13849, y: 1.3999969, z: -85.99938}
+  - {x: -26.800415, y: 1.3999964, z: -87.93084}
+  - {x: -26.923351, y: 1.3999965, z: -87.22849}
+  - {x: -27.046288, y: 1.3999968, z: -86.526146}
+  - {x: -27.169224, y: 1.3999969, z: -85.82379}
   leftGizmos:
-  - {x: -26.67748, y: 0.6999996, z: -88.63319}
+  - {x: -26.677479, y: 0.9333317, z: -88.63319}
+  - {x: -26.67748, y: 0.46666735, z: -88.63319}
   rightGizmos:
-  - {x: -27.292162, y: 0.7000005, z: -85.12145}
+  - {x: -27.29216, y: 0.9333327, z: -85.12145}
+  - {x: -27.292162, y: 0.4666683, z: -85.12145}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 3
-  widthPoints: 1
+  depthPoints: 4
+  widthPoints: 2
   isFullCover: 1
 --- !u!64 &1723503805
 MeshCollider:
@@ -51050,20 +51195,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 000000000000
+  isTakenList: 00000000000000000000
   frontGizmos:
-  - {x: -11.13155, y: 0.30900002, z: -63.987545}
-  - {x: -10.277863, y: 0.30900002, z: -63.91326}
+  - {x: -11.344972, y: 0.30900002, z: -64.00612}
+  - {x: -10.704706, y: 0.30900002, z: -63.950405}
+  - {x: -10.064441, y: 0.30900002, z: -63.89469}
   backGizmos:
-  - {x: -10.994137, y: 0.30900002, z: -65.56674}
-  - {x: -10.14045, y: 0.30900002, z: -65.492455}
+  - {x: -11.207559, y: 0.30900002, z: -65.58531}
+  - {x: -10.567293, y: 0.30900002, z: -65.529594}
+  - {x: -9.927028, y: 0.30900002, z: -65.473885}
   leftGizmos:
-  - {x: -11.916531, y: 0.30900002, z: -64.851425}
+  - {x: -11.893628, y: 0.30900002, z: -65.114624}
+  - {x: -11.939432, y: 0.30900002, z: -64.58823}
   rightGizmos:
-  - {x: -9.355469, y: 0.30900002, z: -64.62857}
+  - {x: -9.332566, y: 0.30900002, z: -64.89177}
+  - {x: -9.37837, y: 0.30900002, z: -64.36537}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 2
-  widthPoints: 1
+  depthPoints: 3
+  widthPoints: 2
   isFullCover: 0
 --- !u!64 &1764456659
 MeshCollider:
@@ -52601,18 +52750,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 00000000
+  isTakenList: 000000000000
   frontGizmos:
   - {x: -4.9432006, y: 0.42199993, z: -33.679455}
   - {x: -4.987193, y: 0.42199993, z: -34.34467}
   backGizmos:
   - {x: -5.912806, y: 0.42199993, z: -33.61533}
   - {x: -5.9567986, y: 0.42199993, z: -34.280544}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -5.384011, y: 0.42199993, z: -32.982178}
+  rightGizmos:
+  - {x: -5.515989, y: 0.42199993, z: -34.97782}
   originOffset: {x: 0, y: 0, z: 0}
   depthPoints: 2
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 0
 --- !u!64 &1839633198
 MeshCollider:
@@ -53749,18 +53900,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 00000000
+  isTakenList: 000000000000
   frontGizmos:
   - {x: -12.944139, y: 0.42199993, z: -33.43667}
   - {x: -12.944139, y: 0.42199993, z: -34.103333}
   backGizmos:
   - {x: -13.915862, y: 0.42199993, z: -33.43667}
   - {x: -13.915862, y: 0.42199993, z: -34.103333}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -13.43, y: 0.42199993, z: -32.77}
+  rightGizmos:
+  - {x: -13.43, y: 0.42199993, z: -34.77}
   originOffset: {x: 0, y: 0, z: 0}
   depthPoints: 2
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 0
 --- !u!64 &1885310372
 MeshCollider:
@@ -56159,15 +56312,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: 0.6300001, y: 1.0959, z: -70}
+  backGizmos:
+  - {x: 0.6300001, y: 1.0959, z: -71}
   leftGizmos:
   - {x: 0.21840608, y: 1.0959, z: -70.5}
   rightGizmos:
   - {x: 1.0415941, y: 1.0959, z: -70.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!114 &1952775812
@@ -56184,15 +56339,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: 0.6300001, y: 1.0959, z: -70}
+  backGizmos:
+  - {x: 0.6300001, y: 1.0959, z: -71}
   leftGizmos:
   - {x: 0.21840608, y: 1.0959, z: -70.5}
   rightGizmos:
   - {x: 1.0415941, y: 1.0959, z: -70.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!64 &1952775814
@@ -57216,15 +57373,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000
-  frontGizmos: []
-  backGizmos: []
+  isTakenList: 00000000
+  frontGizmos:
+  - {x: -19.37, y: 1.0959, z: -70}
+  backGizmos:
+  - {x: -19.37, y: 1.0959, z: -71}
   leftGizmos:
   - {x: -19.781595, y: 1.0959, z: -70.5}
   rightGizmos:
   - {x: -18.958406, y: 1.0959, z: -70.5}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 0
+  depthPoints: 1
   widthPoints: 1
   isFullCover: 1
 --- !u!64 &1993827859
@@ -57996,7 +58155,7 @@ PrefabInstance:
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.81
+      value: -5.29
       objectReference: {fileID: 0}
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
@@ -58006,7 +58165,7 @@ PrefabInstance:
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.71
+      value: -8.73
       objectReference: {fileID: 0}
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
@@ -58068,6 +58227,11 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 1899978894}
+    - target: {fileID: 4540970710352764057, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6c6fe2f3210814fad4979cf11ed57e, type: 3}
 --- !u!1 &2031879258 stripped
@@ -58290,22 +58454,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 0000000000000000
+  isTakenList: 000000000000000000000000
   frontGizmos:
-  - {x: -27.000004, y: 0.0000035367561, z: -94.68129}
-  - {x: -27, y: 0.0000034570694, z: -93.79001}
-  - {x: -26.999996, y: 0.0000033773827, z: -92.89873}
+  - {x: -27.000004, y: 0.0000035526937, z: -94.85954}
+  - {x: -27.000002, y: 0.0000034889442, z: -94.14652}
+  - {x: -26.999998, y: 0.0000034251946, z: -93.433495}
+  - {x: -26.999994, y: 0.0000033614451, z: -92.72047}
   backGizmos:
-  - {x: -27.000004, y: 1.3999966, z: -94.68129}
-  - {x: -27, y: 1.3999966, z: -93.79001}
-  - {x: -26.999996, y: 1.3999965, z: -92.89873}
+  - {x: -27.000004, y: 1.3999966, z: -94.85954}
+  - {x: -27.000002, y: 1.3999966, z: -94.14652}
+  - {x: -26.999998, y: 1.3999965, z: -93.433495}
+  - {x: -26.999994, y: 1.3999965, z: -92.72047}
   leftGizmos:
-  - {x: -27.000008, y: 0.7000002, z: -95.57257}
+  - {x: -27.000008, y: 0.9333323, z: -95.57257}
+  - {x: -27.000008, y: 0.46666795, z: -95.57257}
   rightGizmos:
-  - {x: -26.999992, y: 0.69999987, z: -92.00745}
+  - {x: -26.999992, y: 0.9333321, z: -92.00745}
+  - {x: -26.999992, y: 0.4666677, z: -92.00745}
   originOffset: {x: 0, y: 0, z: 0}
-  depthPoints: 3
-  widthPoints: 1
+  depthPoints: 4
+  widthPoints: 2
   isFullCover: 1
 --- !u!64 &2039934383
 MeshCollider:
@@ -59716,18 +59884,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   isDestructible: 0
-  isTakenList: 00000000
+  isTakenList: 000000000000
   frontGizmos:
   - {x: -8.968119, y: 0.42199993, z: -38.640934}
   - {x: -8.960225, y: 0.42199993, z: -39.307556}
   backGizmos:
   - {x: -9.939774, y: 0.42199993, z: -38.65244}
   - {x: -9.93188, y: 0.42199993, z: -39.31906}
-  leftGizmos: []
-  rightGizmos: []
+  leftGizmos:
+  - {x: -9.46184, y: 0.42199993, z: -37.98007}
+  rightGizmos:
+  - {x: -9.43816, y: 0.42199993, z: -39.97993}
   originOffset: {x: 0, y: 0, z: 0}
   depthPoints: 2
-  widthPoints: 0
+  widthPoints: 1
   isFullCover: 0
 --- !u!64 &2076029819
 MeshCollider:

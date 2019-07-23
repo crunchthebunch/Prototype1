@@ -106,13 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57344058bf37934488bd5465d691ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
-  KillTimer: 5
-  BulletHit:
-  - {fileID: 6162715395729367093, guid: 49843775923b5b9448a171fb3cde706f, type: 3}
-  - {fileID: 6162715395729367093, guid: 49843775923b5b9448a171fb3cde706f, type: 3}
-  - {fileID: 6162715395729367093, guid: 49843775923b5b9448a171fb3cde706f, type: 3}
-  BulletType: 1
+  speed: 20
+  damage: 030000000200000001000000
+  killTimer: 2
+  bulletHit: []
+  bulletType: 0
 --- !u!54 &8153651717574463940
 Rigidbody:
   m_ObjectHideFlags: 0
