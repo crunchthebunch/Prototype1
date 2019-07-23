@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 3c562eb5067c80247b64b21fd2ee6703
+guid: 5f1b1f6a5be4d2f4ebfd1073127a5027
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: EnemyStand_Idle
+    second: Take 001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: EnemyStand_Idle
+      name: Take 001
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0
@@ -46,7 +46,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

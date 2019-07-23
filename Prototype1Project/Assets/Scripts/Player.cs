@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Initializing LineRenderer and Raycasting
-        lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.0f, transform.position.z));
+        lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.1f, transform.position.z));
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         if (isCrouching)
@@ -313,5 +313,21 @@ public class Player : MonoBehaviour
             AP = AP - 1;
         }
        
+    }
+
+    void TakeDamage(Bullet bullet)
+    {
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Bullet tempBullet = collision.gameObject.GetComponent<Bullet>();
+            TakeDamage(tempBullet);
+        }
+
+        
     }
 }
