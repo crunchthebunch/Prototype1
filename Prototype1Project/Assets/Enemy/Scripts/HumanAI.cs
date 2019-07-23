@@ -10,6 +10,7 @@ public class HumanAI : MonoBehaviour
     public int speed;
     public int initiative;
 
+    int maxHp;
     int coverPointID; //id of the coverPoint taken on the current cover, -1 if not in cover
 
     bool isMyTurn;
@@ -62,6 +63,7 @@ public class HumanAI : MonoBehaviour
         endTimer = -1.0f;
         checkOrigin = transform.position;
         isShooting = false;
+        maxHp = hp;
         if (coverObjects == null)
         {
             coverObjects = FindObjectsOfType<CoverObject>();
@@ -87,6 +89,15 @@ public class HumanAI : MonoBehaviour
         }
     }
 
+    void TakeDamage(Bullet bullet)
+    {
+        hp -= bullet.damage[(int)bullet.bulletType];
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Update()
     {
         //Checking for if it is this AI's turn
@@ -97,9 +108,13 @@ public class HumanAI : MonoBehaviour
             endTimer = -1.0f;
             isShooting = false;
             gun.CanFire = false;
-            if (isAggro)
+            if (isAggro && hp > 0)
             {
                 CombatBehaviour();
+            }
+            else
+            {
+                isEndingTurn = true;
             }
         }
 
@@ -184,6 +199,17 @@ public class HumanAI : MonoBehaviour
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
         }
+
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if (collision.gameObject.tag == "Bullet")
+            {
+                Debug.DrawRay(contact.point, contact.normal, Color.white);
+                Debug.Log("Human AI has been hit!");
+                Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+                TakeDamage(bullet);
+            }
+        }
     }
 
     void Idle() //Idling
@@ -200,9 +226,24 @@ public class HumanAI : MonoBehaviour
 
     }
 
+    int AssessRisk()
+    {
+        if (hp < maxHp*0.5f && hp > maxHp*0.25f)
+        {
+            return 1;
+        }
+        else if(hp <= maxHp * 0.25f)
+        {
+            return 2;
+        }
+
+        return 0;
+    }
+
     void Engage() //Engaging with enemies
     {
         Vector3 cover = FindCoverAdvanced();
+
         if (cover != null)
         {
             Move(cover);
@@ -247,6 +288,30 @@ public class HumanAI : MonoBehaviour
         Debug.Log("Did Not Hit");
         isShooting = false;
         return false;
+    }
+
+    Vector3 FindNavigablePointInRadius(Vector3 pos, int radius) //Approaches the position without account to cover
+    {
+        Vector3 moveTo = transform.position;
+
+        for (int r = 0; r < radius; r++)
+        {
+            for (int d = 0; d <= r*4; d++)
+            {
+                Vector3 checkPos = pos + (Vector3.forward * r);
+
+                NavMeshPath path = new NavMeshPath();
+                agent.CalculatePath(pos, path);
+
+                //If the cover is within reachable distance
+                if (agent.pathStatus == NavMeshPathStatus.PathComplete)
+                {
+                    return moveTo;
+                }
+            }
+        }
+
+        return moveTo;
     }
 
     Vector3 FindCoverSimple() //Finding the nearest reachable cover object

@@ -203,7 +203,7 @@ public class Player : MonoBehaviour
                             }
                             break;
 
-                        case Guns.E_Guns.AssaltRifle:
+                        case Guns.E_Guns.AssaultRifle:
 
                             if (AP >= 2)
                             {
@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
                             }
                             break;
 
-                        case Guns.E_Guns.ShotGun:
+                        case Guns.E_Guns.Shotgun:
 
                             if (AP >= 1)
                             {

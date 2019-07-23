@@ -31,7 +31,7 @@ public class CoverObject : MonoBehaviour
     public bool isFullCover;
     MeshRenderer render;
 
-    private void Start()
+    private void Awake()
     {
         Quaternion initialRotation = transform.rotation;
         transform.rotation = Quaternion.identity;
@@ -42,8 +42,8 @@ public class CoverObject : MonoBehaviour
         transform.rotation = initialRotation;
 
         //Calculate number of cover points available
-        depthPoints = Mathf.FloorToInt(extent.x * 2.0f); //Front & Back
-        widthPoints = Mathf.FloorToInt(extent.z * 2.0f); //Left & Right
+        depthPoints = Mathf.CeilToInt(extent.x * 2.0f); //Front & Back
+        widthPoints = Mathf.CeilToInt(extent.z * 2.0f); //Left & Right
 
         //Calculate if this is full-cover or not (half-cover)
         if (Mathf.CeilToInt(extent.y * 2.0f) >= 2)
