@@ -21,6 +21,7 @@ public class HumanAI : MonoBehaviour
 
     float endTimer; //Timer for ending turn (used mostly for actions)
 
+    private Animator animator;
     private Vector3 moveDestination;
     private CoverObject currentCover;
     private CoverObject[] coverObjects;
@@ -56,6 +57,7 @@ public class HumanAI : MonoBehaviour
         state = AI.engage;
         isMyTurn = false;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         gameManager = FindObjectOfType<GameManager>();
         moveDestination = transform.position;
@@ -64,6 +66,7 @@ public class HumanAI : MonoBehaviour
         checkOrigin = transform.position;
         isShooting = false;
         maxHp = hp;
+        agent.angularSpeed = 360.0f;
         if (coverObjects == null)
         {
             coverObjects = FindObjectsOfType<CoverObject>();
@@ -92,9 +95,15 @@ public class HumanAI : MonoBehaviour
     void TakeDamage(Bullet bullet)
     {
         hp -= bullet.damage[(int)bullet.bulletType];
+
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            animator.SetBool("isDead",true);
+        }
+        else
+        {
+            animator.SetBool("isHit", true);
+            Invoke("ResetHit", 0.4f);
         }
     }
 
@@ -121,7 +130,6 @@ public class HumanAI : MonoBehaviour
         //This AI's turn
         if (isMyTurn)
         {
-            gun.CanFire = true;
             //Ending turn if not moving and isEndingTurn is true
             if (!agent.pathPending)
             {
@@ -134,12 +142,23 @@ public class HumanAI : MonoBehaviour
                         {
                             if (endTimer > 0.0f)
                             {
+                                animator.SetBool("isMoving", false);
                                 endTimer -= Time.deltaTime;
 
                                 CheckLineOfSight(transform.position);
+
                                 if (isShooting)
                                 {
-                                    Shoot();
+                                    if (endTimer < 0.8f)
+                                    {
+                                        animator.SetBool("isShooting", true);
+                                        Vector3 offset = new Vector3(0.0f, 0.0f, 0.0f);
+                                        transform.LookAt(player.transform.position + offset, Vector3.up);
+                                    }
+                                    if (endTimer < 0.4f)
+                                    {
+                                        Shoot();
+                                    }
                                 }
                             }
                             else if (endTimer <= 0.0f)
@@ -148,6 +167,7 @@ public class HumanAI : MonoBehaviour
                                 gun.CanFire = false;
                                 gun.Fire = false;
                                 isEndingTurn = true;
+                                animator.SetBool("isShooting", false);
                             }
                         }
 
@@ -248,7 +268,7 @@ public class HumanAI : MonoBehaviour
         {
             Move(cover);
         }
-        endTimer = 0.5f;
+        endTimer = 0.8f;
     }
 
     void Move(Vector3 destination)
@@ -257,13 +277,14 @@ public class HumanAI : MonoBehaviour
         {
             moveDestination = destination;
             agent.destination = destination;
+            animator.SetBool("isMoving", true);
         }
     }
 
     void Shoot()
     {
-        Vector3 offset = new Vector3(0.0f, 0.0f, 0.0f);
-        gun.transform.LookAt(player.transform.position + offset, Vector3.up);
+
+        gun.CanFire = true;
         gun.Fire = true;
         isShooting = false;
     }
@@ -437,4 +458,8 @@ public class HumanAI : MonoBehaviour
         Gizmos.DrawRay(checkOrigin, playerDirection.normalized * hit.distance);
     }
 
+    void ResetHit()
+    {
+        animator.SetBool("isHit", false);
+    }
 }
