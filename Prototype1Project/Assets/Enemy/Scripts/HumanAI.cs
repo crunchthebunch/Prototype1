@@ -286,7 +286,7 @@ public class HumanAI : MonoBehaviour
 
                 if (dist > 2.0f)
                 {
-                    charge = player.transform.position - (charge.normalized * AP);
+                    charge = player.transform.position - (charge.normalized * AP * 1.5f);
                 }
                 else
                 {
