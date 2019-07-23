@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Guns : MonoBehaviour
 {
     public GameObject Bullet;
-    public Text AmmoText;
+
+    public bool UIGun;
+    public TextMeshProUGUI AmmoText;
+    public Image GunImage;
+    public Sprite[] GunSprites;
     public Transform SnapPoint;
 
     public bool Fire;
@@ -37,8 +42,8 @@ public class Guns : MonoBehaviour
     public enum E_Guns
     {
         Sniper = 0,
-        AssaltRifle = 1,
-        ShotGun = 2,
+        AssaultRifle = 1,
+        Shotgun = 2,
     }
 
     public E_Guns SelectedGun;
@@ -68,17 +73,17 @@ public class Guns : MonoBehaviour
             }
             else
             {
-                if ((Input.GetMouseButton(0) || Fire) && CurrentMag > 0)
+                if (Fire && CurrentMag > 0)
                 {
                     Vector3 shootDirection;
-                    if (SelectedGun == E_Guns.ShotGun)
+                    if (SelectedGun == E_Guns.Shotgun)
                     {
                         for (int i = 20; i > 0; i--)
                         {
                             shootDirection = transform.rotation.eulerAngles;
                             shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                             shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
-                            Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection)).GetComponent<Bullet>().BulletType = SelectedGun;
+                            Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection)).GetComponent<Bullet>().bulletType = SelectedGun;
                         }
                     }
                     else
@@ -86,13 +91,16 @@ public class Guns : MonoBehaviour
                         shootDirection = transform.rotation.eulerAngles;
                         shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                         shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
-                        Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection)).GetComponent<Bullet>().BulletType = SelectedGun;
+                        Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection)).GetComponent<Bullet>().bulletType = SelectedGun;
                     }
                     Instantiate(MuzzleFlash[(int)SelectedGun], FirePoint[(int)SelectedGun].position, transform.rotation);
                     CurrentMag--;
                     Fire = false;
                     FireRateTimer = FireRate[(int)SelectedGun];
-                    //AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+                    if (UIGun)
+                    {
+                        AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+                    }
                 }
             }
         }
@@ -115,6 +123,10 @@ public class Guns : MonoBehaviour
         GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
         GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
         CurrentMag = MaxMagSize[(int)SelectedGun];
-        //AmmoText.text = "Ammo: " + CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+        if (UIGun)
+        {
+            GunImage.sprite = GunSprites[(int)SelectedGun];
+            AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+        }
     }
 }

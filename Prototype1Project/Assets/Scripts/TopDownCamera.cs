@@ -27,7 +27,7 @@ public class TopDownCamera : MonoBehaviour
         playerFocused = true;
 
         // Camera offset with respect to target
-        offset = new Vector3(target.position.x + lateral, target.position.y + height, target.position.z + distance);
+        offset = new Vector3(lateral, height, distance);
         transform.position = target.position + offset;
         transform.LookAt(target.position);
     }
