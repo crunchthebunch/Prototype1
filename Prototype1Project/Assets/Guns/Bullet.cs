@@ -7,7 +7,13 @@ public class Bullet : MonoBehaviour
     public float Speed;
     public float KillTimer;
     public GameObject[] BulletHit;
+    public GameObject[] bulletTrail;
     public Guns.E_Guns BulletType;
+
+    private void Awake()
+    {
+        Instantiate(bulletTrail[(int)BulletType], transform);
+    }
 
     // Update is called once per frame
     void Update()
