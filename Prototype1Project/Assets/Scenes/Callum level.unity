@@ -548,7 +548,7 @@ Transform:
   - {fileID: 1744926279}
   - {fileID: 1415094270}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &27536423 stripped
 GameObject:
@@ -1161,7 +1161,7 @@ PrefabInstance:
     - target: {fileID: 5240786738339347444, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5240786738339347444, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
@@ -1600,7 +1600,7 @@ PrefabInstance:
     - target: {fileID: 5240786738339347444, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5240786738339347444, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
@@ -5538,7 +5538,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 6cc86a94ec275964a902b43434714776,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6cc86a94ec275964a902b43434714776,
         type: 3}
@@ -10047,7 +10047,7 @@ PrefabInstance:
     - target: {fileID: 5240786738339347444, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5240786738339347444, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
@@ -11496,7 +11496,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 49.577003, y: -180.69598, z: -225.72}
 --- !u!1 &489997984 stripped
 GameObject:
@@ -13502,7 +13502,7 @@ Transform:
   - {fileID: 1492080749}
   - {fileID: 1663337722}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &543736781
 PrefabInstance:
@@ -17955,155 +17955,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -732599202707360921, guid: 2300fb84098d9a04894576d411665f25, type: 3}
---- !u!1001 &755964483
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 470641276392592230, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_Name
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: SelectedGun
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: AmmoText
-      value: 
-      objectReference: {fileID: 1321003781}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: GunImage
-      value: 
-      objectReference: {fileID: 1828404510}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: UIGun
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.079
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.048
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.152
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.039616246
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.999215
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 4.5410004
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: SelectedGun
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: AmmoText
-      value: 
-      objectReference: {fileID: 1321003781}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: GunImage
-      value: 
-      objectReference: {fileID: 1828404510}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: UIGun
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641275903417815, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666451816239931569, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666451816239931569, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276633098812, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641277135533017, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9b179534308030844a8fb283e4f93a1a, type: 3}
 --- !u!1 &761200195 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a778d348055babc46a244aa57eba13d9,
@@ -21329,7 +21180,7 @@ Transform:
   - {fileID: 1472793470}
   - {fileID: 721032715}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &861591539 stripped
 GameObject:
@@ -26571,7 +26422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 49.577003, y: -39.532, z: -225.72}
 --- !u!1001 &1064961184
 PrefabInstance:
@@ -28459,7 +28310,7 @@ PrefabInstance:
     - target: {fileID: 6442713139316905716, guid: df98879a1a1ce774a99b5ddda81029dd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6442713139316905716, guid: df98879a1a1ce774a99b5ddda81029dd,
         type: 3}
@@ -30148,7 +29999,7 @@ PrefabInstance:
     - target: {fileID: 8027014447159660439, guid: 940afa3025e760f4d9fdf492598c4b4e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8027014447159660439, guid: 940afa3025e760f4d9fdf492598c4b4e,
         type: 3}
@@ -33666,7 +33517,7 @@ PrefabInstance:
     - target: {fileID: 3219611610317919264, guid: b670f29aaf5215e4ab9340b3017c31bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3219611610317919264, guid: b670f29aaf5215e4ab9340b3017c31bd,
         type: 3}
@@ -45200,7 +45051,7 @@ Transform:
   - {fileID: 28734792}
   - {fileID: 1038954070}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1843525129
 PrefabInstance:
@@ -49733,6 +49584,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1899978893}
+    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1992139123}
+    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: attachedGun
+      value: 
+      objectReference: {fileID: 1471997935}
+    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: lengthOfLineRenderer
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: TDUI
+      value: 
+      objectReference: {fileID: 687091539}
+    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: FPSUI
+      value: 
+      objectReference: {fileID: 1051459496}
+    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: UIGun
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: AmmoText
+      value: 
+      objectReference: {fileID: 1321003781}
+    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: GunImage
+      value: 
+      objectReference: {fileID: 1828404510}
+    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: SelectedGun
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49771,7 +49672,7 @@ PrefabInstance:
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
@@ -49788,36 +49689,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 1899978893}
-    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: playerCam
-      value: 
-      objectReference: {fileID: 1992139123}
-    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: attachedGun
-      value: 
-      objectReference: {fileID: 1471997935}
-    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: lengthOfLineRenderer
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: TDUI
-      value: 
-      objectReference: {fileID: 687091539}
-    - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: FPSUI
-      value: 
-      objectReference: {fileID: 1051459496}
     - target: {fileID: 8841994453171466076, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -49833,21 +49704,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: UIGun
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: AmmoText
-      value: 
-      objectReference: {fileID: 1321003781}
-    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
-        type: 3}
-      propertyPath: GunImage
-      value: 
-      objectReference: {fileID: 1828404510}
     - target: {fileID: 1235153638999867437, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: Camera
