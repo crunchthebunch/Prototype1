@@ -7851,39 +7851,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 280393897}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &280393900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 280393899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75fe6f6b701b5245bf2f1baba09c60f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  isDestructible: 0
-  isTakenList: 00000000000000000000
-  frontGizmos:
-  - {x: -13.22, y: 3.7395997, z: -14.75}
-  - {x: -14.02, y: 3.7396, z: -14.75}
-  - {x: -14.82, y: 3.7396002, z: -14.75}
-  - {x: -15.62, y: 3.7396004, z: -14.75}
-  backGizmos:
-  - {x: -13.22, y: 3.7395997, z: -15.25}
-  - {x: -14.02, y: 3.7396, z: -15.25}
-  - {x: -14.82, y: 3.7396002, z: -15.25}
-  - {x: -15.62, y: 3.7396004, z: -15.25}
-  leftGizmos:
-  - {x: -12.42, y: 3.7395995, z: -15}
-  rightGizmos:
-  - {x: -16.42, y: 3.7396004, z: -15}
-  originOffset: {x: -1.42, y: 0.74, z: 0}
-  depthPoints: 4
-  widthPoints: 1
-  isFullCover: 1
 --- !u!64 &280393901
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8120,39 +8087,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 288781068}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &288781072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288781070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75fe6f6b701b5245bf2f1baba09c60f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  isDestructible: 0
-  isTakenList: 00000000000000000000
-  frontGizmos:
-  - {x: -25.370014, y: 2.9639, z: -50.11999}
-  - {x: -24.570013, y: 2.9639, z: -50.119995}
-  - {x: -23.770014, y: 2.9638999, z: -50.120003}
-  - {x: -22.970013, y: 2.9638999, z: -50.120007}
-  backGizmos:
-  - {x: -25.37001, y: 2.9639, z: -49.61999}
-  - {x: -24.57001, y: 2.9639, z: -49.619995}
-  - {x: -23.77001, y: 2.9638999, z: -49.620003}
-  - {x: -22.970009, y: 2.9638999, z: -49.620007}
-  leftGizmos:
-  - {x: -26.170012, y: 2.9639, z: -49.869987}
-  rightGizmos:
-  - {x: -22.170012, y: 2.9639, z: -49.87001}
-  originOffset: {x: 2.83, y: 0, z: 0.13}
-  depthPoints: 4
-  widthPoints: 1
-  isFullCover: 1
 --- !u!64 &288781073
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27130,7 +27064,7 @@ Transform:
   - {fileID: 1063316428}
   - {fileID: 1368678412}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &913731831 stripped
 GameObject:
@@ -31308,7 +31242,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 57.891003, y: -80.692, z: -257.674}
 --- !u!1001 &1063316427
 PrefabInstance:
@@ -38935,39 +38869,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1348364571}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1348364574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348364573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75fe6f6b701b5245bf2f1baba09c60f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  isDestructible: 0
-  isTakenList: 00000000000000000000
-  frontGizmos:
-  - {x: 0.32000023, y: 3.599599, z: -12.750001}
-  - {x: 1.1200002, y: 3.5995996, z: -12.75}
-  - {x: 1.9200003, y: 3.5996, z: -12.749999}
-  - {x: 2.7200003, y: 3.5996008, z: -12.749998}
-  backGizmos:
-  - {x: 0.31999975, y: 3.599599, z: -12.250001}
-  - {x: 1.1199998, y: 3.5995996, z: -12.25}
-  - {x: 1.9199998, y: 3.5996, z: -12.249999}
-  - {x: 2.7199998, y: 3.5996008, z: -12.249998}
-  leftGizmos:
-  - {x: -0.48000002, y: 3.5995984, z: -12.500002}
-  rightGizmos:
-  - {x: 3.52, y: 3.5996013, z: -12.499998}
-  originOffset: {x: 1.52, y: 0.6, z: 0}
-  depthPoints: 4
-  widthPoints: 1
-  isFullCover: 1
 --- !u!64 &1348364575
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39954,39 +39855,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1368678411}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1368678414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368678413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75fe6f6b701b5245bf2f1baba09c60f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  isDestructible: 0
-  isTakenList: 00000000000000000000
-  frontGizmos:
-  - {x: 0.3500002, y: 3.5896, z: -6.620002}
-  - {x: 1.1500002, y: 3.5896, z: -6.620001}
-  - {x: 1.9500003, y: 3.5895998, z: -6.62}
-  - {x: 2.7500002, y: 3.5895996, z: -6.619999}
-  backGizmos:
-  - {x: 0.34999973, y: 3.5896, z: -6.120001}
-  - {x: 1.1499997, y: 3.5896, z: -6.12}
-  - {x: 1.9499998, y: 3.5895998, z: -6.119999}
-  - {x: 2.7499998, y: 3.5895996, z: -6.119998}
-  leftGizmos:
-  - {x: -0.45000005, y: 3.5896003, z: -6.3700023}
-  rightGizmos:
-  - {x: 3.55, y: 3.5895994, z: -6.3699975}
-  originOffset: {x: 1.55, y: 0.59, z: 0.13}
-  depthPoints: 4
-  widthPoints: 1
-  isFullCover: 1
 --- !u!64 &1368678415
 MeshCollider:
   m_ObjectHideFlags: 0
