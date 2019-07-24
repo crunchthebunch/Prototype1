@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float Speed;
-    public float KillTimer;
-    public GameObject[] BulletHit;
+    public float speed;
+    public float killTimer;
+    public GameObject[] bulletHit;
     public GameObject[] bulletTrail;
-    public Guns.E_Guns BulletType;
+    public Guns.E_Guns bulletType;
     private bool Trail = true;
     public int[] damage;
 
@@ -18,10 +18,10 @@ public class Bullet : MonoBehaviour
     {
         if (Trail)
         {
-            Instantiate(bulletTrail[(int)BulletType], transform);
+            Instantiate(bulletTrail[(int)bulletType], transform);
             Trail = false;
         }
-        if (KillTimer <= 0)
+        if (killTimer <= 0)
         {
             Destroy(gameObject);
         }
