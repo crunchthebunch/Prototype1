@@ -6,7 +6,32 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: EnemyStand_Idle
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BottomMetalMat
+    second: {fileID: 2100000, guid: 582767d2a9cb7a64a8270fa3a8a09cd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FabricMat
+    second: {fileID: 2100000, guid: 8bc6300c7437f7f43aafc218329c10aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GlassMat
+    second: {fileID: 2100000, guid: da463df4d77d53b4b84350f79fd2856a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LegMetalMat
+    second: {fileID: 2100000, guid: a1749dfe1fa166942bab34d73c0221fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopMatelMat
+    second: {fileID: 2100000, guid: 883611846b2e7544291440e30ef22633, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

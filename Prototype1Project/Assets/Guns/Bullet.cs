@@ -5,15 +5,22 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed;
-    public int[] damage;
     public float killTimer;
     public GameObject[] bulletHit;
+    public GameObject[] bulletTrail;
     public Guns.E_Guns bulletType;
+    private bool Trail = true;
+    public int[] damage;
 
 
     // Update is called once per frame
     void Update()
     {
+        if (Trail)
+        {
+            Instantiate(bulletTrail[(int)bulletType], transform);
+            Trail = false;
+        }
         if (killTimer <= 0)
         {
             Destroy(gameObject);

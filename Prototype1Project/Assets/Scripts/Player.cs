@@ -177,6 +177,9 @@ public class Player : MonoBehaviour
                     transform.Rotate(0, X, 0);
                     transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
 
+                    //attachedGun.transform.Rotate(0, transform.localEulerAngles.x, 0);
+
+                    //attachedGun.transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
 
 
                     // Rotate camera with mouse
