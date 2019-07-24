@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New Post-Processing Profile
   m_EditorClassIdentifier: 
   debugViews:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       mode: 0
       depth:
@@ -43,7 +43,7 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 0
     m_Settings:
-      intensity: 1
+      intensity: 0
       radius: 0.3
       sampleCount: 10
       downsampling: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       focusDistance: 10
-      aperture: 5.6
+      aperture: 8.7
       focalLength: 50
       useCameraFov: 0
       kernelSize: 1
@@ -95,16 +95,16 @@ MonoBehaviour:
       adaptationType: 0
       speedUp: 2
       speedDown: 1
-      logMin: -8
-      logMax: 4
+      logMin: -13
+      logMax: 1
   bloom:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.5
+        intensity: 0.02
         threshold: 1.1
         softKnee: 0.5
-        radius: 4
+        radius: 2.13
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}

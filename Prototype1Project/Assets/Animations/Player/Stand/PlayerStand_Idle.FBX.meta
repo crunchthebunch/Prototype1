@@ -6,7 +6,47 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: PlayerStand_Idle
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkPurpleLatex
+    second: {fileID: 2100000, guid: b92a432f491173049b77bc2ce2b8b6c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face1
+    second: {fileID: 2100000, guid: 7369878c573ae364ca86cd003c1a0da2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: ee37cb30f1816504eb86f0f6af327975, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Jacket
+    second: {fileID: 2100000, guid: d1c09670f3baf1d4cb044fa9726478d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightPurple_Cloth
+    second: {fileID: 2100000, guid: f81cbd7ab37f1b64c97f1ce484aac217, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 105caf88e2e780a4bb92b930ba3bc620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal2
+    second: {fileID: 2100000, guid: a0f40be4c196c074b89f3a1491341dbe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Utily
+    second: {fileID: 2100000, guid: 6d1b5497f699015498e6dc752e5ee44f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
