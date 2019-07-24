@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     float X, Y;
 
     public bool startedMoving;
+    bool isDead;
     bool updatingAP;
     bool isCrouching;
 
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        isDead = false;
         gameManager = FindObjectOfType<GameManager>();
         agent = GetComponent<NavMeshAgent>();
         agent.angularSpeed = 360.0f;
@@ -61,203 +63,209 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // Initializing LineRenderer and Raycasting
-        lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.0f, transform.position.z));
-        ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (!isDead)
+        {
+            // Initializing LineRenderer and Raycasting
+            lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.1f, transform.position.z));
+            ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (isCrouching)
-        {
-            playerCam.transform.position = crouchCam.transform.position;
-        }
-        else
-        {
-            playerCam.transform.position = defaultCam.transform.position;
-        }
-
-        if (gameManager.initiativeCount == 0)
-        {
-            if (gameManager.playerState == GameManager.PlayerState.MOVING)
+            if (isCrouching)
             {
-                animator.SetBool("isAiming", false);
-                FPS(false);
-                attachedGun.CanFire = false;
+                playerCam.transform.position = crouchCam.transform.position;
+            }
+            else
+            {
+                playerCam.transform.position = defaultCam.transform.position;
+            }
 
-                // Unlock cursor
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-
-                // Path drawing
-                lineRenderer.enabled = true;
-                DrawPath(agent.path);
-
-                // Update AP with movement
-                
-
-                // Raycasting from camera to ground
-                if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
+            if (gameManager.initiativeCount == 0)
+            {
+                if (gameManager.playerState == GameManager.PlayerState.MOVING)
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    animator.SetBool("isAiming", false);
+                    FPS(false);
+                    attachedGun.CanFire = false;
+
+                    // Unlock cursor
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+
+                    // Path drawing
+                    lineRenderer.enabled = true;
+                    DrawPath(agent.path);
+
+                    // Update AP with movement
+
+
+                    // Raycasting from camera to ground
+                    if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
                     {
-                        agent.isStopped = false;
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            agent.isStopped = false;
 
-                        animator.SetBool("isMoving", true);
+                            animator.SetBool("isMoving", true);
 
-                        startedMoving = true;
+                            startedMoving = true;
 
-                        updatingAP = true;
+                            updatingAP = true;
+                        }
+                        else
+                        {
+                            getPath();
+                        }
                     }
-                    else
+
+                    if (startedMoving)
                     {
-                        getPath();
+                        elapsed += Time.deltaTime;
+                        if (elapsed >= 0.5f)
+                        {
+                            elapsed = elapsed % 0.5f;
+                            APDrain();
+                        }
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.C))
+                    {
+                        if (!isCrouching)
+                        {
+                            animator.SetBool("isCrouching", true);
+                            isCrouching = true;
+                            AP -= 1;
+                        }
+                        else
+                        {
+                            animator.SetBool("isCrouching", false);
+                            isCrouching = false;
+                            AP -= 1;
+                        }
+
+                    }
+
+                    // Player has reached target position, stops
+                    if (agent.remainingDistance <= agent.stoppingDistance && startedMoving == true)
+                    {
+                        startedMoving = false;
+                        animator.SetBool("isMoving", false);
                     }
                 }
 
-                if (startedMoving)
+                else if (gameManager.playerState == GameManager.PlayerState.SHOOTING)
                 {
+                    animator.SetBool("isAiming", true);
+                    FPS(true);
+                    attachedGun.CanFire = true;
+
+                    // Constant shooting mode AP drain
                     elapsed += Time.deltaTime;
-                    if (elapsed >= 0.5f)
+                    if (elapsed >= 3f)
                     {
-                        elapsed = elapsed % 0.5f;
+                        elapsed = elapsed % 3f;
                         APDrain();
                     }
-                }
 
-                if (Input.GetKeyDown(KeyCode.C))
-                {
-                    if (!isCrouching)
+                    // Lock Cursor
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+
+                    // Rotate gun with mouse
+                    X = Input.GetAxis("Mouse X") * mouseSpeed;
+                    Y += Input.GetAxis("Mouse Y") * mouseSpeed;
+                    Y = Mathf.Clamp(Y, -45.0f, 45.0f);
+
+                    transform.Rotate(0, X, 0);
+                    transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
+
+                    //attachedGun.transform.Rotate(0, transform.localEulerAngles.x, 0);
+
+                    //attachedGun.transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
+
+
+                    // Rotate camera with mouse
+                    //if (playerCam.transform.eulerAngles.x + (Y) > 80 && playerCam.transform.eulerAngles.x + (Y) < 280)
+                    //{
+
+                    //}
+                    //else
+                    //{
+                    //playerCam.transform.RotateAround(transform.position, playerCam.transform.right, -Y);
+                    //}
+
+
+
+                    // Firing gun
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        animator.SetBool("isCrouching", true);
-                        isCrouching = true;
-                        AP -= 1;
+                        // Checks for AP and type of gun used, fires and updates AP depending on gun used
+                        switch (attachedGun.SelectedGun)
+                        {
+                            case Guns.E_Guns.Sniper:
+
+                                if (AP >= 3)
+                                {
+                                    attachedGun.Fire = true;
+                                    animator.SetBool("isShooting", true);
+                                    AP -= 3;
+                                }
+                                break;
+
+                            case Guns.E_Guns.AssaultRifle:
+
+                                if (AP >= 2)
+                                {
+                                    attachedGun.Fire = true;
+                                    animator.SetBool("isShooting", true);
+                                    AP -= 2;
+                                    print(AP);
+                                }
+                                break;
+
+                            case Guns.E_Guns.Shotgun:
+
+                                if (AP >= 1)
+                                {
+                                    attachedGun.Fire = true;
+                                    animator.SetBool("isShooting", true);
+                                    AP -= 1;
+                                }
+                                break;
+
+                            default:
+
+                                break;
+                        }
                     }
                     else
                     {
-                        animator.SetBool("isCrouching", false);
-                        isCrouching = false;
-                        AP -= 1;
+                        animator.SetBool("isShooting", false);
+                        attachedGun.Fire = false;
                     }
-                    
-                }
 
-                // Player has reached target position, stops
-                if (agent.remainingDistance <= agent.stoppingDistance && startedMoving == true)
-                {
-                    startedMoving = false;
-                    animator.SetBool("isMoving", false);
+                    if (Input.GetKeyDown(KeyCode.C))
+                    {
+                        if (!isCrouching)
+                        {
+                            animator.SetBool("isCrouching", true);
+                            isCrouching = true;
+                            AP -= 1;
+                        }
+                        else
+                        {
+                            animator.SetBool("isCrouching", false);
+                            isCrouching = false;
+                            AP -= 1;
+                        }
+
+                    }
                 }
             }
 
-            else if (gameManager.playerState == GameManager.PlayerState.SHOOTING)
+            // Disable showing of path if moving, shooting mode, etc.
+            else
             {
-                animator.SetBool("isAiming", true);
-                FPS(true);
-                attachedGun.CanFire = true;
-
-                // Constant shooting mode AP drain
-                elapsed += Time.deltaTime;
-                if (elapsed >= 3f)
-                {
-                    elapsed = elapsed % 3f;
-                    APDrain();
-                }
-
-                // Lock Cursor
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-
-                // Rotate gun with mouse
-                X = Input.GetAxis("Mouse X") * mouseSpeed;
-                Y += Input.GetAxis("Mouse Y") * mouseSpeed;
-                Y = Mathf.Clamp(Y, -45.0f, 45.0f);
-
-                transform.Rotate(0, X, 0);
-                transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
-
-                
-
-                // Rotate camera with mouse
-                //if (playerCam.transform.eulerAngles.x + (Y) > 80 && playerCam.transform.eulerAngles.x + (Y) < 280)
-                //{
-
-                //}
-                //else
-                //{
-                //playerCam.transform.RotateAround(transform.position, playerCam.transform.right, -Y);
-                //}
-
-
-
-                // Firing gun
-                if (Input.GetMouseButtonDown(0))
-                {
-                    // Checks for AP and type of gun used, fires and updates AP depending on gun used
-                    switch(attachedGun.SelectedGun)
-                    {
-                        case Guns.E_Guns.Sniper:
-
-                            if (AP >= 3)
-                            {
-                                attachedGun.Fire = true;
-                                animator.SetBool("isShooting", true);
-                                AP -= 3;
-                            }
-                            break;
-
-                        case Guns.E_Guns.AssaltRifle:
-
-                            if (AP >= 2)
-                            {
-                                attachedGun.Fire = true;
-                                animator.SetBool("isShooting", true);
-                                AP -= 2;
-                                print(AP);
-                            }
-                            break;
-
-                        case Guns.E_Guns.ShotGun:
-
-                            if (AP >= 1)
-                            {
-                                attachedGun.Fire = true;
-                                animator.SetBool("isShooting", true);
-                                AP -= 1;
-                            }
-                            break;
-
-                        default:
-                            
-                            break;
-                    }
-                }
-                else
-                {
-                    animator.SetBool("isShooting", false);
-                    attachedGun.Fire = false;
-                }
-
-                if (Input.GetKeyDown(KeyCode.C))
-                {
-                    if (!isCrouching)
-                    {
-                        animator.SetBool("isCrouching", true);
-                        isCrouching = true;
-                        AP -= 1;
-                    }
-                    else
-                    {
-                        animator.SetBool("isCrouching", false);
-                        isCrouching = false;
-                        AP -= 1;
-                    }
-
-                }
+                lineRenderer.enabled = false;
             }
-        }
-
-        // Disable showing of path if moving, shooting mode, etc.
-        else
-        {
-            lineRenderer.enabled = false;
         }
     }
 
@@ -313,5 +321,35 @@ public class Player : MonoBehaviour
             AP = AP - 1;
         }
        
+    }
+
+    void TakeDamage(Bullet bullet)
+    {
+        HP -= bullet.damage[(int)bullet.bulletType];
+
+        if ( HP <= 0)
+        {
+            isDead = true;
+            animator.SetBool("isDead", true);
+        }
+        else
+        {
+            animator.SetBool("isHit", true);
+            Invoke("ResetHit", 0.4f);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Bullet tempBullet = collision.gameObject.GetComponent<Bullet>();
+            TakeDamage(tempBullet);
+        }
+    }
+
+    void ResetHit()
+    {
+        animator.SetBool("isHit", false);
     }
 }

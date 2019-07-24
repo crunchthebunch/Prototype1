@@ -22,6 +22,7 @@ public class CoverObject : MonoBehaviour
 
     Vector3 extent;
     Vector3 dimensions;
+    public bool[] isTakenList;
     public CoverPoint[] frontPoints, backPoints, leftPoints, rightPoints;
     public Vector3[] frontGizmos, backGizmos, leftGizmos, rightGizmos;
     public Vector3 originOffset;
@@ -30,7 +31,7 @@ public class CoverObject : MonoBehaviour
     public bool isFullCover;
     MeshRenderer render;
 
-    private void Start()
+    private void Awake()
     {
         Quaternion initialRotation = transform.rotation;
         transform.rotation = Quaternion.identity;
@@ -41,8 +42,8 @@ public class CoverObject : MonoBehaviour
         transform.rotation = initialRotation;
 
         //Calculate number of cover points available
-        depthPoints = Mathf.FloorToInt(extent.x * 2.0f); //Front & Back
-        widthPoints = Mathf.FloorToInt(extent.z * 2.0f); //Left & Right
+        depthPoints = Mathf.CeilToInt(extent.x * 2.0f); //Front & Back
+        widthPoints = Mathf.CeilToInt(extent.z * 2.0f); //Left & Right
 
         //Calculate if this is full-cover or not (half-cover)
         if (Mathf.CeilToInt(extent.y * 2.0f) >= 2)
@@ -66,6 +67,7 @@ public class CoverObject : MonoBehaviour
 
 
         coverPoints = new CoverPoint[(depthPoints * 2) + (widthPoints * 2)];
+        isTakenList = new bool[(depthPoints * 2) + (widthPoints * 2)];
 
         //Set all coverpoint IDs, and also parent to this
         for (int c = 0; c < coverPoints.Length; c++)
