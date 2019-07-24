@@ -94,7 +94,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 5561349426305759274, guid: bc7bb47bc14fa8240a1737c082922eeb, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   - 0.1
   - 0.5
   FireRateTimer: 0
-  SelectedGun: 0
+  SelectedGun: 2
 --- !u!135 &6549576445098708720
 SphereCollider:
   m_ObjectHideFlags: 0
