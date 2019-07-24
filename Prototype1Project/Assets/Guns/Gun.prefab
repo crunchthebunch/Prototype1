@@ -147,13 +147,13 @@ MonoBehaviour:
   - {fileID: 470641275903417812}
   - {fileID: 470641277135533014}
   MuzzleFlash:
+  - {fileID: 6300012631925887479, guid: 8464b88c853b2a84f9f8ed7ba9d2ad94, type: 3}
   - {fileID: 1402815846596174610, guid: 664dddeb63b78504a9b83c9b5c95585e, type: 3}
-  - {fileID: 1402815846596174610, guid: 664dddeb63b78504a9b83c9b5c95585e, type: 3}
-  - {fileID: 1402815846596174610, guid: 664dddeb63b78504a9b83c9b5c95585e, type: 3}
+  - {fileID: 1082375177043661082, guid: e798fa874c67d1f439d15db4020e8c80, type: 3}
   spreadFactor:
   - 0
   - 0.1
-  - 1
+  - 5
   Damage:
   - 0
   - 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   Reload: []
   ReloadTimer: 0
   FireRate:
-  - 3
+  - 1
   - 0.1
   - 0.5
   FireRateTimer: 0

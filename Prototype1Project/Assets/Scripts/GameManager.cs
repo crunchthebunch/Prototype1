@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemy;
     public TopDownCamera mainCamera;
     public Camera playerCam;
-    GameObject[] enemies;
+    [HideInInspector] public GameObject[] enemies;
     public int initiativeCount = 0;
     public bool camSwitch;
     public bool isShooting;

@@ -21,6 +21,7 @@ TagManager:
   - Ground
   - Floor
   - Player
+  - Bullet
   - 
   - 
   - 

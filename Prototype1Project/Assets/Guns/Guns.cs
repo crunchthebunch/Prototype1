@@ -95,7 +95,6 @@ public class Guns : MonoBehaviour
                     }
                     Instantiate(MuzzleFlash[(int)SelectedGun], FirePoint[(int)SelectedGun].position, transform.rotation);
                     CurrentMag--;
-                    Fire = false;
                     FireRateTimer = FireRate[(int)SelectedGun];
                     if (UIGun)
                     {
@@ -103,6 +102,7 @@ public class Guns : MonoBehaviour
                     }
                 }
             }
+            Fire = false;
         }
     }
 
