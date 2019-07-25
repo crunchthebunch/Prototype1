@@ -100,6 +100,10 @@ public class HumanAI : MonoBehaviour
         if (HP <= 0)
         {
             animator.SetBool("isDead",true);
+            gun.transform.parent = null;
+            gun.GetComponent<Rigidbody>().isKinematic = false;
+            gun.GetComponent<Rigidbody>().useGravity = true;
+            gun.GetComponent<Rigidbody>().detectCollisions = true;
         }
         else
         {
@@ -281,17 +285,11 @@ public class HumanAI : MonoBehaviour
             else
             {
                 Vector3 charge = player.transform.position - transform.position;
-                Vector3 offset = Random.insideUnitSphere;
-                charge += offset;
+                Vector3 offset = Random.insideUnitSphere * 0.1f;
 
-                if (dist > 2.0f)
-                {
-                    charge = player.transform.position - (charge.normalized * AP * 1.5f);
-                }
-                else
-                {
-                    charge = player.transform.position;
-                }
+                charge = transform.position + (charge.normalized * AP * 1.5f);
+                charge += offset;
+              
 
                 Move(charge);
                 endTimer = 0.8f;
