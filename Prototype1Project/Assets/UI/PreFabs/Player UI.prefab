@@ -75,12 +75,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6442713139316905713}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2a3d5288432ec841bdd76d1b2919aa5, type: 3}
   m_Name: 
@@ -117,8 +117,8 @@ MonoBehaviour:
   SelectTile: {fileID: 0}
   InitiativeTile: {fileID: 3250926193488758294, guid: 14bfeb710227a1e46bd72fa8f037182d,
     type: 3}
-  StartLocation: {x: -300, y: 220, z: 0}
-  Offset: 100
+  StartLocation: {x: 0, y: 220, z: 0}
+  Offset: 60
 --- !u!1 &6442713139506502759
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,10 +151,10 @@ RectTransform:
   m_Father: {fileID: 6442713139316905716}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 291, y: -252}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -284.6, y: 19.5}
+  m_SizeDelta: {x: 200, y: 49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6442713139506502776
 CanvasRenderer:
@@ -308,10 +308,10 @@ RectTransform:
   m_Father: {fileID: 6442713139316905716}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 483, y: -247}
-  m_SizeDelta: {x: 900, y: 200}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -93, y: 23}
+  m_SizeDelta: {x: 894, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6442713139614209072
 CanvasRenderer:

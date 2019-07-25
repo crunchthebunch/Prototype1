@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
     {
         if (Trail)
         {
+            transform.parent = null;
             GetComponent<MeshFilter>().mesh = M_Bullet[(int)bulletType];
             GetComponent<MeshCollider>().sharedMesh = M_Bullet[(int)bulletType];
             Instantiate(bulletTrail[(int)bulletType], transform);

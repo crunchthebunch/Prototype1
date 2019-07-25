@@ -86,20 +86,20 @@ public class Guns : MonoBehaviour
                     {
                         for (int i = 20; i > 0; i--)
                         {
-                            shootDirection = transform.rotation.eulerAngles;
+                            shootDirection = transform.localRotation.eulerAngles;
                             shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                             shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
-                            Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection)).GetComponent<Bullet>().bulletType = SelectedGun;
+                            Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection), FirePoint[(int)SelectedGun]).GetComponent<Bullet>().bulletType = SelectedGun;
                         }
                     }
                     else
                     {
-                        shootDirection = transform.rotation.eulerAngles;
+                        shootDirection = FirePoint[(int)SelectedGun].rotation.eulerAngles;
                         shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                         shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
-                        Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection)).GetComponent<Bullet>().bulletType = SelectedGun;
+                        Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection), FirePoint[(int)SelectedGun]).GetComponent<Bullet>().bulletType = SelectedGun;
                     }
-                    Instantiate(MuzzleFlash[(int)SelectedGun], FirePoint[(int)SelectedGun].position, transform.rotation);
+                    Instantiate(MuzzleFlash[(int)SelectedGun], FirePoint[(int)SelectedGun].position, transform.rotation, FirePoint[(int)SelectedGun]);
                     CurrentMag--;
                     FireRateTimer = FireRate[(int)SelectedGun];
                     if (UIGun)
@@ -131,7 +131,7 @@ public class Guns : MonoBehaviour
             CurrentMag = swapGun.CurrentMag;
             SelectedGun = swapGun.SelectedGun;
         }
-
+        Lazor.transform.position = FirePoint[(int)SelectedGun].position;
         GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
         GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
         GetComponent<MeshRenderer>().material = T_guns[(int)SelectedGun];
