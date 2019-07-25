@@ -13,7 +13,6 @@ public class Bullet : MonoBehaviour
     private bool Trail = true;
     public int[] damage;
 
-
     // Update is called once per frame
     void Update()
     {
@@ -39,6 +38,7 @@ public class Bullet : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Gun") && !collision.gameObject.CompareTag("Bullet"))
         {
+            Debug.Log("Bullet:" + collision.gameObject);
             Instantiate(bulletHit[(int)bulletType], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
