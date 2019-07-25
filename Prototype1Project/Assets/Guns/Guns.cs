@@ -37,6 +37,8 @@ public class Guns : MonoBehaviour
     public float[] FireRate;
     public float FireRateTimer;
 
+    public LineRenderer laserSight;
+
     GameManager gameManager;
 
     public enum E_Guns
@@ -52,7 +54,8 @@ public class Guns : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-
+        laserSight = GetComponentInChildren<LineRenderer>();
+        laserSight.enabled = true;
         GunSwap();
         AttachGun(SnapPoint);
     }

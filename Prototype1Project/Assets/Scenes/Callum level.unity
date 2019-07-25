@@ -58147,6 +58147,21 @@ PrefabInstance:
       propertyPath: m_ObstacleAvoidanceType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6375358157098243926, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: laserMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375358157098243926, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1992139123}
+    - target: {fileID: 6375358157098243926, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 133409694}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6c6fe2f3210814fad4979cf11ed57e, type: 3}
 --- !u!1 &2031879258 stripped
