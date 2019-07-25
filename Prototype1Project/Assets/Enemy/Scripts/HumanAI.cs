@@ -105,6 +105,7 @@ public class HumanAI : MonoBehaviour
             gun.GetComponent<Rigidbody>().isKinematic = false;
             gun.GetComponent<Rigidbody>().useGravity = true;
             gun.GetComponent<Rigidbody>().detectCollisions = true;
+            GetComponent<CapsuleCollider>().enabled = false;
         }
         else
         {
