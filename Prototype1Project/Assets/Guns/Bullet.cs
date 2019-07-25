@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed;
     public float killTimer;
+    public Mesh[] M_Bullet;
     public GameObject[] bulletHit;
     public GameObject[] bulletTrail;
     public Guns.E_Guns bulletType;
@@ -18,6 +19,8 @@ public class Bullet : MonoBehaviour
     {
         if (Trail)
         {
+            GetComponent<MeshFilter>().mesh = M_Bullet[(int)bulletType];
+            GetComponent<MeshCollider>().sharedMesh = M_Bullet[(int)bulletType];
             Instantiate(bulletTrail[(int)bulletType], transform);
             Trail = false;
         }
