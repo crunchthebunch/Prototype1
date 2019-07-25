@@ -5,7 +5,6 @@ using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
-    public TextMeshProUGUI AP;
     public Player player;
     public Transform Camera;
     public Transform Piviot;
@@ -57,7 +56,6 @@ public class PlayerUI : MonoBehaviour
         if (player.HP != oldHP)
         {
             oldHP = player.HP;
-            AP.text = "HP: " + player.HP;
             float tempWidth = 80;
             Vector3 temp = HPTileStart;
             foreach (GameObject G in HPTileSet)
