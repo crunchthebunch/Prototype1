@@ -225,21 +225,26 @@ public class Player : MonoBehaviour
                         attachedGun.Fire = false;
                     }
 
+                    // Crouching
                     if (Input.GetKeyDown(KeyCode.C))
                     {
                         if (!isCrouching)
                         {
                             animator.SetBool("isCrouching", true);
                             isCrouching = true;
-                            AP -= 1;
                         }
                         else
                         {
                             animator.SetBool("isCrouching", false);
                             isCrouching = false;
-                            AP -= 1;
                         }
 
+                    }
+
+                    // Switch aiming sides
+                    if (Input.GetKeyDown(KeyCode.X))
+                    {
+                        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
                     }
                 }
             }
