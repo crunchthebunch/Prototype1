@@ -107,7 +107,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   killTimer: 3
-  bulletHit: []
+  bulletHit:
+  - {fileID: 8434376284634343040, guid: 2a0bb5d5c07c9594c989d2c565330a18, type: 3}
+  - {fileID: 6162715395729367093, guid: 49843775923b5b9448a171fb3cde706f, type: 3}
+  - {fileID: 4438670448759436375, guid: a23bebac6763e3c42a4ad8dbcd6931a7, type: 3}
   bulletTrail:
   - {fileID: 6383262117696534908, guid: c0f65ed2df4010c48bbfcbdd8acdcb27, type: 3}
   - {fileID: 3181320228003296214, guid: 68e30db7669a6a54f9cbdf0c56bbe9d1, type: 3}

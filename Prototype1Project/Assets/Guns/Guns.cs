@@ -7,6 +7,7 @@ using TMPro;
 public class Guns : MonoBehaviour
 {
     public GameObject Bullet;
+    public GameObject Lazor;
 
     public bool UIGun;
     public TextMeshProUGUI AmmoText;
@@ -19,6 +20,7 @@ public class Guns : MonoBehaviour
     public bool Attached;
 
     public Mesh[] M_guns;
+    public Material[] T_guns;
     public Transform[] FirePoint;
     public GameObject[] MuzzleFlash;
 
@@ -53,13 +55,14 @@ public class Guns : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
 
-        GunSwap();
+        GunSwap(this);
         AttachGun(SnapPoint);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         GunFire(CanFire);
     }
 
@@ -118,10 +121,17 @@ public class Guns : MonoBehaviour
         }
     }
 
-    void GunSwap()
+    public void GunSwap(Guns swapGun)
     {
+        if (swapGun)
+        {
+            CurrentMag = swapGun.CurrentMag;
+            SelectedGun = swapGun.SelectedGun;
+        }
+
         GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
         GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshRenderer>().material = T_guns[(int)SelectedGun];
         CurrentMag = MaxMagSize[(int)SelectedGun];
         if (UIGun)
         {
