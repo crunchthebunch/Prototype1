@@ -142,4 +142,18 @@ public class Guns : MonoBehaviour
             AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
         }
     }
+
+    public void GunSwap(E_Guns Gun)
+    {
+        SelectedGun = Gun;
+        GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshRenderer>().material = T_guns[(int)SelectedGun];
+        CurrentMag = MaxMagSize[(int)SelectedGun];
+        if (UIGun)
+        {
+            GunImage.sprite = GunSprites[(int)SelectedGun];
+            AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+        }
+    }
 }

@@ -50,8 +50,16 @@ public class HumanAI : MonoBehaviour
         engage
     };
 
+    public enum EnemyType
+    {
+        soldier,
+        assault,
+        sniper
+    };
+
     AI state;
     NavMeshAgent agent;
+    public EnemyType enemyType;
 
     void Start()
     {
@@ -67,6 +75,26 @@ public class HumanAI : MonoBehaviour
         endTimer = -1.0f;
         checkOrigin = transform.position;
         isShooting = false;
+
+        switch (enemyType)
+        {
+            case EnemyType.soldier:
+                HP = 8;
+                AP = 8;
+                gun.GunSwap(Guns.E_Guns.AssaultRifle);
+                break;
+            case EnemyType.assault:
+                HP = 10;
+                AP = 5;
+                gun.GunSwap(Guns.E_Guns.Shotgun);
+                break;
+            case EnemyType.sniper:
+                HP = 5;
+                AP = 10;
+                gun.GunSwap(Guns.E_Guns.Sniper);
+                break;
+        }
+
         maxHP = HP;
         agent.angularSpeed = 360.0f;
         if (coverObjects == null)
@@ -105,6 +133,7 @@ public class HumanAI : MonoBehaviour
             gun.GetComponent<Rigidbody>().isKinematic = false;
             gun.GetComponent<Rigidbody>().useGravity = true;
             gun.GetComponent<Rigidbody>().detectCollisions = true;
+            GetComponent<CapsuleCollider>().enabled = false;
         }
         else
         {
@@ -165,8 +194,8 @@ public class HumanAI : MonoBehaviour
                                     if (endTimer < 0.8f && endTimer > 0.4f)
                                     {
                                         animator.SetBool("isShooting", true);
-                                        Vector3 offset = new Vector3(0.0f, 1.5f, 0.0f);
-                                        transform.LookAt(player.transform.position + offset, Vector3.up);
+                                        Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+                                        transform.LookAt(target, Vector3.up);
                                     }
                                     if (endTimer < 0.4f)
                                     {
@@ -466,8 +495,8 @@ public class HumanAI : MonoBehaviour
         Gizmos.DrawSphere(gunObject.transform.position, 0.2f);
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(checkOrigin, playerDirection.normalized * hit.distance);
-        Handles.color = Color.blue;
-        Handles.DrawWireDisc(transform.position, transform.up, AP * 3);
+        //Handles.color = Color.blue;
+        //Handles.DrawWireDisc(transform.position, transform.up, AP * 3);
     }
 
     void ResetHit()
