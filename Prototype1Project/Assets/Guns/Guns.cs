@@ -7,6 +7,7 @@ using TMPro;
 public class Guns : MonoBehaviour
 {
     public GameObject Bullet;
+    public GameObject Lazor;
 
     public bool UIGun;
     public TextMeshProUGUI AmmoText;
@@ -19,6 +20,7 @@ public class Guns : MonoBehaviour
     public bool Attached;
 
     public Mesh[] M_guns;
+    public Material[] T_guns;
     public Transform[] FirePoint;
     public GameObject[] MuzzleFlash;
 
@@ -37,6 +39,8 @@ public class Guns : MonoBehaviour
     public float[] FireRate;
     public float FireRateTimer;
 
+    public LineRenderer laserSight;
+
     GameManager gameManager;
 
     public enum E_Guns
@@ -52,14 +56,16 @@ public class Guns : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-
-        GunSwap();
+        laserSight = GetComponentInChildren<LineRenderer>();
+        laserSight.enabled = true;
+        GunSwap(this);
         AttachGun(SnapPoint);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         GunFire(CanFire);
     }
 
@@ -95,7 +101,6 @@ public class Guns : MonoBehaviour
                     }
                     Instantiate(MuzzleFlash[(int)SelectedGun], FirePoint[(int)SelectedGun].position, transform.rotation);
                     CurrentMag--;
-                    Fire = false;
                     FireRateTimer = FireRate[(int)SelectedGun];
                     if (UIGun)
                     {
@@ -103,6 +108,7 @@ public class Guns : MonoBehaviour
                     }
                 }
             }
+            Fire = false;
         }
     }
 
@@ -118,10 +124,17 @@ public class Guns : MonoBehaviour
         }
     }
 
-    void GunSwap()
+    public void GunSwap(Guns swapGun)
     {
+        if (swapGun)
+        {
+            CurrentMag = swapGun.CurrentMag;
+            SelectedGun = swapGun.SelectedGun;
+        }
+
         GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
         GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshRenderer>().material = T_guns[(int)SelectedGun];
         CurrentMag = MaxMagSize[(int)SelectedGun];
         if (UIGun)
         {

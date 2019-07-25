@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.AI;
 
 public class HumanAI : MonoBehaviour
 {
-    public int hp;
-    public int ap;
+    public int HP;
+    public int AP;
     public int speed;
     public int initiative;
 
-    int maxHp;
+    int maxHP;
     int coverPointID; //id of the coverPoint taken on the current cover, -1 if not in cover
 
     bool isMyTurn;
@@ -18,6 +19,7 @@ public class HumanAI : MonoBehaviour
     bool isWandering;
     bool isEndingTurn;
     bool isShooting;
+    bool isTakingCover;
 
     float endTimer; //Timer for ending turn (used mostly for actions)
 
@@ -53,7 +55,7 @@ public class HumanAI : MonoBehaviour
 
     void Start()
     {
-        isAggro = true;
+        isAggro = false;
         state = AI.engage;
         isMyTurn = false;
         agent = GetComponent<NavMeshAgent>();
@@ -65,7 +67,7 @@ public class HumanAI : MonoBehaviour
         endTimer = -1.0f;
         checkOrigin = transform.position;
         isShooting = false;
-        maxHp = hp;
+        maxHP = HP;
         agent.angularSpeed = 360.0f;
         if (coverObjects == null)
         {
@@ -94,11 +96,16 @@ public class HumanAI : MonoBehaviour
 
     void TakeDamage(Bullet bullet)
     {
-        hp -= bullet.damage[(int)bullet.bulletType];
+        HP -= bullet.damage[(int)bullet.bulletType];
 
-        if (hp <= 0)
+        if (HP <= 0)
         {
             animator.SetBool("isDead",true);
+            gun.transform.parent = null;
+            gun.GetComponent<Rigidbody>().isKinematic = false;
+            gun.GetComponent<Rigidbody>().useGravity = true;
+            gun.GetComponent<Rigidbody>().detectCollisions = true;
+            GetComponent<CapsuleCollider>().enabled = false;
         }
         else
         {
@@ -117,7 +124,14 @@ public class HumanAI : MonoBehaviour
             endTimer = -1.0f;
             isShooting = false;
             gun.CanFire = false;
-            if (isAggro && hp > 0)
+            float playerDist = Vector3.Distance(transform.position, player.transform.position);
+
+            if (playerDist < AP * 3.0f)
+            {
+                isAggro = true;
+            }
+
+            if (isAggro && HP > 0)
             {
                 CombatBehaviour();
             }
@@ -149,10 +163,10 @@ public class HumanAI : MonoBehaviour
 
                                 if (isShooting)
                                 {
-                                    if (endTimer < 0.8f)
+                                    if (endTimer < 0.8f && endTimer > 0.4f)
                                     {
                                         animator.SetBool("isShooting", true);
-                                        Vector3 offset = new Vector3(0.0f, 0.0f, 0.0f);
+                                        Vector3 offset = new Vector3(0.0f, 1.5f, 0.0f);
                                         transform.LookAt(player.transform.position + offset, Vector3.up);
                                     }
                                     if (endTimer < 0.4f)
@@ -248,11 +262,11 @@ public class HumanAI : MonoBehaviour
 
     int AssessRisk()
     {
-        if (hp < maxHp*0.5f && hp > maxHp*0.25f)
+        if (HP < maxHP*0.5f && HP > maxHP*0.25f)
         {
             return 1;
         }
-        else if(hp <= maxHp * 0.25f)
+        else if(HP <= maxHP * 0.25f)
         {
             return 2;
         }
@@ -262,28 +276,49 @@ public class HumanAI : MonoBehaviour
 
     void Engage() //Engaging with enemies
     {
-        Vector3 cover = FindCoverAdvanced();
+        CheckLineOfSight(transform.position);
 
-        if (cover != null)
+        if (!isShooting)
         {
-            Move(cover);
+            float dist = Vector3.Distance(transform.position, player.transform.position);
+            if ( dist < AP * 2)
+            {
+                Vector3 cover = FindCoverAdvanced();
+
+                if (cover != null)
+                {
+                    Move(cover);
+                }
+                endTimer = 0.8f;
+            }
+            else
+            {
+                Vector3 charge = player.transform.position - transform.position;
+                Vector3 offset = Random.insideUnitSphere * 0.1f;
+
+                charge = transform.position + (charge.normalized * AP * 1.5f);
+                charge += offset;
+              
+
+                Move(charge);
+                endTimer = 0.8f;
+            }
         }
-        endTimer = 0.8f;
+        else
+        {
+            endTimer = 0.8f;
+        }
     }
 
     void Move(Vector3 destination)
     {
-        if (agent.remainingDistance <= ap)
-        {
-            moveDestination = destination;
-            agent.destination = destination;
-            animator.SetBool("isMoving", true);
-        }
+        moveDestination = destination;
+        agent.destination = destination;
+        animator.SetBool("isMoving", true);
     }
 
     void Shoot()
     {
-
         gun.CanFire = true;
         gun.Fire = true;
         isShooting = false;
@@ -309,30 +344,6 @@ public class HumanAI : MonoBehaviour
         Debug.Log("Did Not Hit");
         isShooting = false;
         return false;
-    }
-
-    Vector3 FindNavigablePointInRadius(Vector3 pos, int radius) //Approaches the position without account to cover
-    {
-        Vector3 moveTo = transform.position;
-
-        for (int r = 0; r < radius; r++)
-        {
-            for (int d = 0; d <= r*4; d++)
-            {
-                Vector3 checkPos = pos + (Vector3.forward * r);
-
-                NavMeshPath path = new NavMeshPath();
-                agent.CalculatePath(pos, path);
-
-                //If the cover is within reachable distance
-                if (agent.pathStatus == NavMeshPathStatus.PathComplete)
-                {
-                    return moveTo;
-                }
-            }
-        }
-
-        return moveTo;
     }
 
     Vector3 FindCoverSimple() //Finding the nearest reachable cover object
@@ -407,7 +418,7 @@ public class HumanAI : MonoBehaviour
             if (agent.pathStatus == NavMeshPathStatus.PathComplete)
             {
                 //If within range
-                if (Vector3.Distance(transform.position, cover.transform.position) < ap*2.0f)
+                if (Vector3.Distance(transform.position, cover.transform.position) < AP*2.0f)
                 {
                     //Find and add all furthest points
                     int furthest = cover.FurthestSide(player.transform.position);
@@ -456,6 +467,8 @@ public class HumanAI : MonoBehaviour
         Gizmos.DrawSphere(gunObject.transform.position, 0.2f);
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(checkOrigin, playerDirection.normalized * hit.distance);
+        //Handles.color = Color.blue;
+        //Handles.DrawWireDisc(transform.position, transform.up, AP * 3);
     }
 
     void ResetHit()
