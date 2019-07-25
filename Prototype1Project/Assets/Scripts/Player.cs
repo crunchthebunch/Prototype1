@@ -158,12 +158,12 @@ public class Player : MonoBehaviour
                     attachedGun.CanFire = true;
 
                     // Constant shooting mode AP drain
-                    elapsed += Time.deltaTime;
-                    if (elapsed >= 3f)
-                    {
-                        elapsed = elapsed % 3f;
-                        APDrain();
-                    }
+                    //elapsed += Time.deltaTime;
+                    //if (elapsed >= 3f)
+                    //{
+                    //    elapsed = elapsed % 3f;
+                    //    APDrain();
+                    //}
 
                     // Lock Cursor
                     Cursor.lockState = CursorLockMode.Locked;
@@ -176,23 +176,6 @@ public class Player : MonoBehaviour
 
                     transform.Rotate(0, X, 0);
                     transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
-
-                    //attachedGun.transform.Rotate(0, transform.localEulerAngles.x, 0);
-
-                    //attachedGun.transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
-
-
-                    // Rotate camera with mouse
-                    //if (playerCam.transform.eulerAngles.x + (Y) > 80 && playerCam.transform.eulerAngles.x + (Y) < 280)
-                    //{
-
-                    //}
-                    //else
-                    //{
-                    //playerCam.transform.RotateAround(transform.position, playerCam.transform.right, -Y);
-                    //}
-
-
 
                     // Firing gun
                     if (Input.GetMouseButtonDown(0))
@@ -325,7 +308,10 @@ public class Player : MonoBehaviour
 
     void TakeDamage(Bullet bullet)
     {
-        HP -= bullet.damage[(int)bullet.bulletType];
+        if ( HP > 0)
+        {
+            HP -= bullet.damage[(int)bullet.bulletType];
+        }
 
         if ( HP <= 0)
         {
