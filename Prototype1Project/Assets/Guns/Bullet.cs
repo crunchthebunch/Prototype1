@@ -6,18 +6,20 @@ public class Bullet : MonoBehaviour
 {
     public float speed;
     public float killTimer;
+    public Mesh[] M_Bullet;
     public GameObject[] bulletHit;
     public GameObject[] bulletTrail;
     public Guns.E_Guns bulletType;
     private bool Trail = true;
     public int[] damage;
 
-
     // Update is called once per frame
     void Update()
     {
         if (Trail)
         {
+            GetComponent<MeshFilter>().mesh = M_Bullet[(int)bulletType];
+            GetComponent<MeshCollider>().sharedMesh = M_Bullet[(int)bulletType];
             Instantiate(bulletTrail[(int)bulletType], transform);
             Trail = false;
         }
@@ -34,8 +36,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Gun") && collision.gameObject.CompareTag("Bullet"))
+        if (!collision.gameObject.CompareTag("Gun") && !collision.gameObject.CompareTag("Bullet"))
         {
+            Debug.Log("Bullet:" + collision.gameObject);
             Instantiate(bulletHit[(int)bulletType], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

@@ -334,14 +334,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Gun"))
         {
             Guns tempGun = other.GetComponent<Guns>();
             if (Input.GetKeyDown(KeyCode.E))
             {
-                attachedGun = tempGun;
+                attachedGun.GunSwap(tempGun);
+                Destroy(tempGun.gameObject);
             }
         }
     }
