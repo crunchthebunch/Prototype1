@@ -467,8 +467,8 @@ public class HumanAI : MonoBehaviour
         Gizmos.DrawSphere(gunObject.transform.position, 0.2f);
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(checkOrigin, playerDirection.normalized * hit.distance);
-        Handles.color = Color.blue;
-        Handles.DrawWireDisc(transform.position, transform.up, AP * 3);
+        //Handles.color = Color.blue;
+        //Handles.DrawWireDisc(transform.position, transform.up, AP * 3);
     }
 
     void ResetHit()
