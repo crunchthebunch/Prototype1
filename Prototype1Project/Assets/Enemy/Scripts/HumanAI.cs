@@ -19,6 +19,7 @@ public class HumanAI : MonoBehaviour
     bool isWandering;
     bool isEndingTurn;
     bool isShooting;
+    bool isTakingCover;
 
     float endTimer; //Timer for ending turn (used mostly for actions)
 
@@ -54,7 +55,7 @@ public class HumanAI : MonoBehaviour
 
     void Start()
     {
-        isAggro = true;
+        isAggro = false;
         state = AI.engage;
         isMyTurn = false;
         agent = GetComponent<NavMeshAgent>();
@@ -122,6 +123,13 @@ public class HumanAI : MonoBehaviour
             endTimer = -1.0f;
             isShooting = false;
             gun.CanFire = false;
+            float playerDist = Vector3.Distance(transform.position, player.transform.position);
+
+            if (playerDist < AP * 3.0f)
+            {
+                isAggro = true;
+            }
+
             if (isAggro && HP > 0)
             {
                 CombatBehaviour();
@@ -157,7 +165,7 @@ public class HumanAI : MonoBehaviour
                                     if (endTimer < 0.8f && endTimer > 0.4f)
                                     {
                                         animator.SetBool("isShooting", true);
-                                        Vector3 offset = new Vector3(0.0f, 0.5f, 0.0f);
+                                        Vector3 offset = new Vector3(0.0f, 1.5f, 0.0f);
                                         transform.LookAt(player.transform.position + offset, Vector3.up);
                                     }
                                     if (endTimer < 0.4f)
@@ -459,7 +467,7 @@ public class HumanAI : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(checkOrigin, playerDirection.normalized * hit.distance);
         Handles.color = Color.blue;
-        Handles.DrawWireDisc(transform.position, transform.up, AP);
+        Handles.DrawWireDisc(transform.position, transform.up, AP * 3);
     }
 
     void ResetHit()
