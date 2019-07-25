@@ -325,7 +325,10 @@ public class Player : MonoBehaviour
 
     void TakeDamage(Bullet bullet)
     {
-        HP -= bullet.damage[(int)bullet.bulletType];
+        if ( HP > 0)
+        {
+            HP -= bullet.damage[(int)bullet.bulletType];
+        }
 
         if ( HP <= 0)
         {
