@@ -348,6 +348,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Gun"))
+        {
+            Guns tempGun = other.GetComponent<Guns>();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                attachedGun = tempGun;
+            }
+        }
+    }
+
     void ResetHit()
     {
         animator.SetBool("isHit", false);
