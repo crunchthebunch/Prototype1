@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemy;
     public TopDownCamera mainCamera;
     public Camera playerCam;
-    GameObject[] enemies;
+    [HideInInspector] public GameObject[] enemies;
     public int initiativeCount = 0;
     public bool camSwitch;
     public bool isShooting;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     { 
-        if (Input.GetMouseButtonDown(1) && initiativeCount == 0 && !player.startedMoving)
+        if (Input.GetMouseButtonDown(1) && initiativeCount == 0 && !player.startedMoving && playerState != PlayerState.SHOOTING)
         {
             EndTurn();
         }

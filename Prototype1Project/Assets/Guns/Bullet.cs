@@ -4,20 +4,45 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float Speed;
-    public float KillTimer;
+    public float speed;
+    public float killTimer;
+    public Mesh[] M_Bullet;
+    public GameObject[] bulletHit;
+    public GameObject[] bulletTrail;
+    public Guns.E_Guns bulletType;
+    private bool Trail = true;
+    public int[] damage;
 
     // Update is called once per frame
     void Update()
     {
-        if (KillTimer <= 0)
+        if (Trail)
+        {
+            GetComponent<MeshFilter>().mesh = M_Bullet[(int)bulletType];
+            GetComponent<MeshCollider>().sharedMesh = M_Bullet[(int)bulletType];
+            Instantiate(bulletTrail[(int)bulletType], transform);
+            Trail = false;
+        }
+        if (killTimer <= 0)
         {
             Destroy(gameObject);
         }
         else
         {
-            KillTimer -= Time.deltaTime;
-            transform.position += transform.forward * Speed * Time.deltaTime;
+            killTimer -= Time.deltaTime;
+            transform.position += transform.forward * speed * Time.deltaTime;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Gun") && !collision.gameObject.CompareTag("Bullet"))
+        {
+            Debug.Log("Bullet:" + collision.gameObject);
+            Instantiate(bulletHit[(int)bulletType], transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+
 }
+

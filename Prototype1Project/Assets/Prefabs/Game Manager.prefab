@@ -45,5 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemy: {fileID: 0}
-  entities: []
   mainCamera: {fileID: 0}
+  playerCam: {fileID: 0}
+  initiativeCount: 0
+  camSwitch: 0
+  isShooting: 0
+  playerState: 0

@@ -1,34 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.AI;
 
 public class HumanAI : MonoBehaviour
 {
-    public int hp;
-    public int ap;
+    public int HP;
+    public int AP;
     public int speed;
     public int initiative;
 
-    int currentPointID; //id of the coverPoint taken on the current cover, -1 if not in cover
+    int maxHP;
+    int coverPointID; //id of the coverPoint taken on the current cover, -1 if not in cover
 
     bool isMyTurn;
     bool isAggro;
     bool isWandering;
     bool isEndingTurn;
+    bool isShooting;
+    bool isTakingCover;
 
     float endTimer; //Timer for ending turn (used mostly for actions)
 
+    private Animator animator;
     private Vector3 moveDestination;
     private CoverObject currentCover;
     private CoverObject[] coverObjects;
     public GameObject gunObject;
-    public GameObject player;
+    public GameObject gunSlot;
+    GameObject player;
+
+    public List<CoverPoint> viablePoints = new List<CoverPoint>(); //List of viable cover points this turn
 
     Guns gun;
     GameManager gameManager;
 
     Vector3 moveTo;
+    Vector3 checkOrigin;
+    Vector3 playerDirection;
+
+    RaycastHit hit;
 
     private enum AI
     {
@@ -43,14 +55,20 @@ public class HumanAI : MonoBehaviour
 
     void Start()
     {
-        isAggro = true;
+        isAggro = false;
         state = AI.engage;
         isMyTurn = false;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
         gameManager = FindObjectOfType<GameManager>();
         moveDestination = transform.position;
         gun = gunObject.GetComponent<Guns>();
         endTimer = -1.0f;
+        checkOrigin = transform.position;
+        isShooting = false;
+        maxHP = HP;
+        agent.angularSpeed = 360.0f;
         if (coverObjects == null)
         {
             coverObjects = FindObjectsOfType<CoverObject>();
@@ -76,6 +94,26 @@ public class HumanAI : MonoBehaviour
         }
     }
 
+    void TakeDamage(Bullet bullet)
+    {
+        HP -= bullet.damage[(int)bullet.bulletType];
+
+        if (HP <= 0)
+        {
+            animator.SetBool("isDead",true);
+            gun.transform.parent = null;
+            gun.GetComponent<Rigidbody>().isKinematic = false;
+            gun.GetComponent<Rigidbody>().useGravity = true;
+            gun.GetComponent<Rigidbody>().detectCollisions = true;
+            GetComponent<CapsuleCollider>().enabled = false;
+        }
+        else
+        {
+            animator.SetBool("isHit", true);
+            Invoke("ResetHit", 0.4f);
+        }
+    }
+
     void Update()
     {
         //Checking for if it is this AI's turn
@@ -84,16 +122,28 @@ public class HumanAI : MonoBehaviour
             isMyTurn = true;
             isEndingTurn = false;
             endTimer = -1.0f;
-            if (isAggro)
+            isShooting = false;
+            gun.CanFire = false;
+            float playerDist = Vector3.Distance(transform.position, player.transform.position);
+
+            if (playerDist < AP * 3.0f)
+            {
+                isAggro = true;
+            }
+
+            if (isAggro && HP > 0)
             {
                 CombatBehaviour();
+            }
+            else
+            {
+                isEndingTurn = true;
             }
         }
 
         //This AI's turn
         if (isMyTurn)
         {
-            gun.CanFire = true;
             //Ending turn if not moving and isEndingTurn is true
             if (!agent.pathPending)
             {
@@ -106,18 +156,37 @@ public class HumanAI : MonoBehaviour
                         {
                             if (endTimer > 0.0f)
                             {
+                                animator.SetBool("isMoving", false);
                                 endTimer -= Time.deltaTime;
+
+                                CheckLineOfSight(transform.position);
+
+                                if (isShooting)
+                                {
+                                    if (endTimer < 0.8f && endTimer > 0.4f)
+                                    {
+                                        animator.SetBool("isShooting", true);
+                                        Vector3 offset = new Vector3(0.0f, 1.5f, 0.0f);
+                                        transform.LookAt(player.transform.position + offset, Vector3.up);
+                                    }
+                                    if (endTimer < 0.4f)
+                                    {
+                                        Shoot();
+                                    }
+                                }
                             }
                             else if (endTimer <= 0.0f)
                             {
                                 endTimer = -1.0f;
+                                gun.CanFire = false;
+                                gun.Fire = false;
                                 isEndingTurn = true;
+                                animator.SetBool("isShooting", false);
                             }
                         }
 
                         if (isEndingTurn)
                         {
-                            Shoot();
                             EndTurn();
                         }
                     }
@@ -164,6 +233,17 @@ public class HumanAI : MonoBehaviour
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
         }
+
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if (collision.gameObject.tag == "Bullet")
+            {
+                Debug.DrawRay(contact.point, contact.normal, Color.white);
+                Debug.Log("Human AI has been hit!");
+                Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+                TakeDamage(bullet);
+            }
+        }
     }
 
     void Idle() //Idling
@@ -180,32 +260,93 @@ public class HumanAI : MonoBehaviour
 
     }
 
+    int AssessRisk()
+    {
+        if (HP < maxHP*0.5f && HP > maxHP*0.25f)
+        {
+            return 1;
+        }
+        else if(HP <= maxHP * 0.25f)
+        {
+            return 2;
+        }
+
+        return 0;
+    }
+
     void Engage() //Engaging with enemies
     {
-        Vector3 cover = FindCover();
-        if (cover != null)
+        CheckLineOfSight(transform.position);
+
+        if (!isShooting)
         {
-            Move(cover);
-           
+            float dist = Vector3.Distance(transform.position, player.transform.position);
+            if ( dist < AP * 2)
+            {
+                Vector3 cover = FindCoverAdvanced();
+
+                if (cover != null)
+                {
+                    Move(cover);
+                }
+                endTimer = 0.8f;
+            }
+            else
+            {
+                Vector3 charge = player.transform.position - transform.position;
+                Vector3 offset = Random.insideUnitSphere * 0.1f;
+
+                charge = transform.position + (charge.normalized * AP * 1.5f);
+                charge += offset;
+              
+
+                Move(charge);
+                endTimer = 0.8f;
+            }
         }
-        endTimer = 0.1f;
+        else
+        {
+            endTimer = 0.8f;
+        }
     }
 
     void Move(Vector3 destination)
     {
-        if (agent.remainingDistance <= ap)
-        {
-            moveDestination = destination;
-            agent.destination = destination;
-        }
+        moveDestination = destination;
+        agent.destination = destination;
+        animator.SetBool("isMoving", true);
     }
 
     void Shoot()
     {
-       gun.Fire = true;
+        gun.CanFire = true;
+        gun.Fire = true;
+        isShooting = false;
     }
 
-    Vector3 FindCover() //Finding the nearest reachable cover object
+    bool CheckLineOfSight(Vector3 checkPosition)
+    {
+        LayerMask layerMask = LayerMask.GetMask("Default");
+        checkOrigin = checkPosition;
+        checkOrigin.y += 1.0f;
+        playerDirection = player.transform.position - checkOrigin;
+
+        if (Physics.Raycast(checkOrigin, playerDirection, out hit, Mathf.Infinity))
+        {
+            if (hit.collider.tag == "Player")
+            {
+                Debug.Log("Did Hit");
+                isShooting = true;
+                return true;
+            }
+        }
+
+        Debug.Log("Did Not Hit");
+        isShooting = false;
+        return false;
+    }
+
+    Vector3 FindCoverSimple() //Finding the nearest reachable cover object
     {
         Vector3 bestPoint = transform.position;
         CoverObject bestCover = null;
@@ -223,16 +364,12 @@ public class HumanAI : MonoBehaviour
             //If the cover is within reachable distance
             if (agent.pathStatus == NavMeshPathStatus.PathComplete)
             {
-                if (agent.remainingDistance <= ap) //If the cover object is reachable with current AP
-                {
-                    float dist = Vector3.Distance(transform.position, cover.transform.position);
+                float dist = Vector3.Distance(transform.position, cover.transform.position);
 
-                    if (dist < bestCoverDist) //If the distance is the best distance
-                    {
-                        bestCoverDist = dist;
-                        bestCover = cover;
-                        currentCover = bestCover;
-                    }
+                if (dist < bestCoverDist) //If the distance is the best distance
+                {
+                    bestCoverDist = dist;
+                    bestCover = cover;
                 }
             }
         }
@@ -240,35 +377,102 @@ public class HumanAI : MonoBehaviour
         //------------- Then find the furthest cover point on the cover object from the enemy ---------
         if (bestCover != null)
         {
-            //Setting the current cover point to be free
-            currentCover.pointTakenList[currentPointID] = false;
-            currentPointID = -1;
-
             int bestPointID = -1;
             for (int id = 0; id < bestCover.coverPoints.Length; id++)
             {
-                Vector3 coverPoint = bestCover.coverPoints[id];
+                CoverPoint coverPoint = bestCover.coverPoints[id];
 
-                float dist = Vector3.Distance(coverPoint, player.transform.position);
+                float dist = Vector3.Distance(coverPoint.pos, player.transform.position);
 
-                if (dist > bestPointDist && bestCover.pointTakenList[id] == false)
+                if (dist > bestPointDist && bestCover.coverPoints[id].isTaken == false)
                 {
-                    bestPointID = id;
+                    currentCover = bestCover;
+                    bestPointID = coverPoint.id;
+                    coverPointID = coverPoint.id;
+                    bestCover.coverPoints[id].isTaken = true;
+                    currentCover.coverPoints[coverPointID].isTaken = true;
                     bestPointDist = dist;
-                    bestPoint = coverPoint;
+                    bestPoint = coverPoint.pos;
                 }
             }
-            currentPointID = bestPointID;       
-            currentCover.pointTakenList[bestPointID] = true;
         }
 
         return bestPoint;
+    }
+
+    Vector3 FindCoverAdvanced() //Finding the nearest reachable cover object
+    {
+        Vector3 initialPoint = transform.position;
+
+        viablePoints = new List<CoverPoint>();
+
+        //------------ Find all cover objects within range
+        for (int i = 0; i < coverObjects.Length; i++)
+        {
+            CoverObject cover = coverObjects[i];
+
+            NavMeshPath path = new NavMeshPath();
+            agent.CalculatePath(cover.transform.position, path);
+
+            //If the cover is reachable
+            if (agent.pathStatus == NavMeshPathStatus.PathComplete)
+            {
+                //If within range
+                if (Vector3.Distance(transform.position, cover.transform.position) < AP*2.0f)
+                {
+                    //Find and add all furthest points
+                    int furthest = cover.FurthestSide(player.transform.position);
+
+                    for (int id = 0; id < cover.coverPoints.Length; id++)
+                    {
+                        CoverPoint point = cover.coverPoints[id];
+                        if (cover.isTakenList[id] == false)
+                        {
+                            if (point.side == furthest)
+                            {
+                                if (CheckLineOfSight(cover.coverPoints[id].pos))
+                                {
+                                    viablePoints.Add(point);
+                                }
+                            }
+                        }
+                    }
+              
+                }
+            }
+        }
+
+        if (viablePoints.Count > 0)
+        {
+            if (currentCover != null)
+            {
+               currentCover.isTakenList[coverPointID] = false;
+            }
+
+            int randomPoint = Random.Range(0, viablePoints.Count);
+            coverPointID = viablePoints[randomPoint].id;
+            currentCover = viablePoints[randomPoint].parent;
+            currentCover.isTakenList[coverPointID] = true;
+            return viablePoints[randomPoint].pos;
+        }
+        else
+        {
+            return FindCoverSimple();
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(gunObject.transform.position, 0.2f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(checkOrigin, playerDirection.normalized * hit.distance);
+        //Handles.color = Color.blue;
+        //Handles.DrawWireDisc(transform.position, transform.up, AP * 3);
     }
 
+    void ResetHit()
+    {
+        animator.SetBool("isHit", false);
+    }
 }
