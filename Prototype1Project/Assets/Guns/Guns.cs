@@ -17,10 +17,10 @@ public class Guns : MonoBehaviour
 
     public bool Fire;
     public bool CanFire;
-    public bool Attached;
 
     public Mesh[] M_guns;
     public Material[] T_guns;
+    public GameObject PickUpIndicator;
     public Transform[] FirePoint;
     public GameObject[] MuzzleFlash;
 
@@ -122,6 +122,15 @@ public class Guns : MonoBehaviour
             transform.position = Attachment.position;
             transform.parent = Attachment;
         }
+    }
+
+    public void DetachGun()
+    {
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().detectCollisions = true;
+        GetComponent<Rigidbody>().useGravity = true;
+        transform.parent = null;
+        PickUpIndicator.SetActive(true);
     }
 
     public void GunSwap(Guns swapGun)

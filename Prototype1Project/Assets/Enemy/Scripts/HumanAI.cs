@@ -129,10 +129,7 @@ public class HumanAI : MonoBehaviour
         if (HP <= 0)
         {
             animator.SetBool("isDead",true);
-            gun.transform.parent = null;
-            gun.GetComponent<Rigidbody>().isKinematic = false;
-            gun.GetComponent<Rigidbody>().useGravity = true;
-            gun.GetComponent<Rigidbody>().detectCollisions = true;
+            gun.DetachGun();
             GetComponent<CapsuleCollider>().enabled = false;
         }
         else
