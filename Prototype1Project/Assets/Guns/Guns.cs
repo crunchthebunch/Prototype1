@@ -86,7 +86,7 @@ public class Guns : MonoBehaviour
                     {
                         for (int i = 20; i > 0; i--)
                         {
-                            shootDirection = transform.localRotation.eulerAngles;
+                            shootDirection = FirePoint[(int)SelectedGun].rotation.eulerAngles;
                             shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                             shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                             Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection), FirePoint[(int)SelectedGun]).GetComponent<Bullet>().bulletType = SelectedGun;
@@ -116,7 +116,7 @@ public class Guns : MonoBehaviour
     {
         if (Attachment)
         {
-            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<Rigidbody>().detectCollisions = false;
             GetComponent<Rigidbody>().useGravity = false;
             transform.position = Attachment.position;

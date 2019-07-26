@@ -37,12 +37,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Gun") && !collision.gameObject.CompareTag("Bullet"))
-        {
-            Debug.Log("Bullet:" + collision.gameObject);
-            Instantiate(bulletHit[(int)bulletType], transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
+        Debug.Log("Bullet:" + collision.gameObject);
+        Instantiate(bulletHit[(int)bulletType], transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
 }

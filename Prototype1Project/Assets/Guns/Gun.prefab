@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470641275903417812}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AssaultRifleFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,10 +42,9 @@ GameObject:
   - component: {fileID: 470641276392592226}
   - component: {fileID: 470641276392592229}
   - component: {fileID: 470641276392592231}
-  - component: {fileID: 6549576445098708720}
   - component: {fileID: 7366573499973520381}
   - component: {fileID: 8666451816239931569}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun
   m_TagString: Gun
   m_Icon: {fileID: 0}
@@ -175,19 +174,6 @@ MonoBehaviour:
   FireRateTimer: 0
   laserSight: {fileID: 0}
   SelectedGun: 2
---- !u!135 &6549576445098708720
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470641276392592230}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &7366573499973520381
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -227,7 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470641276633098813}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SniperFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470641277135533014}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShotGunFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3700675712611304246}
   - component: {fileID: 8526466661415914204}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LaserSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

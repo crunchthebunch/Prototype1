@@ -6,15 +6,17 @@ using TMPro;
 public class PlayerUI : MonoBehaviour
 {
     public Player player;
-    public Transform Camera;
-    public Transform Piviot;
+    public bool HP = false;
+    public bool AP = false;
 
-    public Vector3 HPTileStart;
+    public Vector3 HPStartDisplacement;
+    public float HPDisplacement = 0;
     public GameObject HPTile;
     private GameObject[] HPTileSet;
     private float oldHP;
 
-    public Vector3 APTileStart;
+    public Vector3 APStartDisplacement;
+    public float APDisplacement = 10;
     public GameObject APTile;
     private GameObject[] APTileSet;
     private int oldAP;
@@ -22,61 +24,67 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        APTileSet = new GameObject[player.AP];
-        HPTileSet = new GameObject[(int)player.HP];
+        if (!player)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+        if (AP)
+        {
+            APTileSet = new GameObject[player.AP];
+        }
+        if (HP)
+        {
+            HPTileSet = new GameObject[(int)player.HP];
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Camera && Piviot)
+        if (AP)
         {
-            Piviot.rotation = Camera.rotation;
-        }
-        if (player.AP != oldAP)
-        {
-            oldAP = player.AP;
-
-            Vector3 temp = APTileStart;
-            float tempWidth = 80;
-
-            foreach (GameObject G in APTileSet)
+            if (player.AP != oldAP)
             {
-                Destroy(G);
-            }
-            APTileSet = new GameObject[player.AP];
-
-            for (int i = 0; i < oldAP; i++)
-            {
-                APTileSet[i] = Instantiate(APTile, transform);
-                APTileSet[i].transform.localPosition = temp;
-                temp.x += tempWidth;
-            }
-        }
-        if (player.HP != oldHP)
-        {
-            oldHP = player.HP;
-            float tempWidth = 80;
-            Vector3 temp = HPTileStart;
-            foreach (GameObject G in HPTileSet)
-            {
-                Destroy(G);
-            }
-            HPTileSet = new GameObject[(int)player.HP];
-
-            for (int y = 0; (y * 10) < oldHP; y++)
-            {
-                temp.x = HPTileStart.x;
-                temp.y = (30 * y) + HPTileStart.y;
-                for (int x = 0; x < 10; x++)
+                oldAP = player.AP;
+                Vector3 temp = transform.position + APStartDisplacement;
+                foreach (GameObject G in APTileSet)
                 {
-                    if ((y * 10) + x == oldHP)
+                    Destroy(G);
+                }
+                APTileSet = new GameObject[player.AP];
+
+                for (int i = 0; i < oldAP; i++)
+                {
+                    temp.x += APDisplacement;
+                    APTileSet[i] = Instantiate(APTile, temp, Quaternion.identity, transform);
+                }
+            }
+        }
+        if (HP)
+        {
+            if (player.HP != oldHP)
+            {
+                oldHP = player.HP;
+                Vector3 temp = transform.position + HPStartDisplacement;
+                foreach (GameObject G in HPTileSet)
+                {
+                    Destroy(G);
+                }
+                HPTileSet = new GameObject[(int)player.HP];
+
+                for (int y = 0; y < oldHP / 2; y++)
+                {
+                    temp.y += HPDisplacement;
+                    for (int i = 0; i < 2; i++)
                     {
-                        break;
+                        temp.x += HPDisplacement * i;
+                        HPTileSet[(y * 2) + i] = Instantiate(HPTile, temp, Quaternion.identity, transform);
+                        if ((y * 2) + i == oldHP)
+                        {
+                            break;
+                        }
                     }
-                    HPTileSet[(y * 10) + x] = Instantiate(HPTile, transform);
-                    HPTileSet[(y * 10) + x].transform.localPosition = temp;
-                    temp.x += tempWidth;
+                    temp.x = transform.position.x + HPStartDisplacement.x;
                 }
             }
         }
