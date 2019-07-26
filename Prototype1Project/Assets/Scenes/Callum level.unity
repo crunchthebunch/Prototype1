@@ -38174,18 +38174,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1320718707}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1321003781 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6442713139506502777, guid: df98879a1a1ce774a99b5ddda81029dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1151773312}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1321536173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54284,6 +54272,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4404871017674688869, guid: 03a024c84d845a348ab6cc074586665a, type: 3}
+--- !u!114 &1893106189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8617858880196662513, guid: df98879a1a1ce774a99b5ddda81029dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1151773312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1893995115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 2300fb84098d9a04894576d411665f25,
@@ -58425,7 +58425,7 @@ PrefabInstance:
         type: 3}
       propertyPath: AmmoText
       value: 
-      objectReference: {fileID: 1321003781}
+      objectReference: {fileID: 0}
     - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: GunImage
@@ -58436,6 +58436,11 @@ PrefabInstance:
       propertyPath: SelectedGun
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: GunFillImage
+      value: 
+      objectReference: {fileID: 1893106189}
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: m_LocalPosition.x

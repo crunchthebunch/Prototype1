@@ -10,9 +10,10 @@ public class Guns : MonoBehaviour
     public GameObject Lazor;
 
     public bool UIGun;
-    public TextMeshProUGUI AmmoText;
+    public Image GunFillImage;
     public Image GunImage;
     public Sprite[] GunSprites;
+    public Sprite[] GunFillSprites;
     public Transform SnapPoint;
 
     public bool Fire;
@@ -41,8 +42,6 @@ public class Guns : MonoBehaviour
 
     public LineRenderer laserSight;
 
-    GameManager gameManager;
-
     public enum E_Guns
     {
         Sniper = 0,
@@ -55,7 +54,6 @@ public class Guns : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         laserSight = GetComponentInChildren<LineRenderer>();
         laserSight.enabled = true;
         GunSwap(this);
@@ -104,11 +102,11 @@ public class Guns : MonoBehaviour
                     FireRateTimer = FireRate[(int)SelectedGun];
                     if (UIGun)
                     {
-                        AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+                        GunFillImage.fillAmount = (float)CurrentMag / MaxMagSize[(int)SelectedGun];
                     }
                 }
+                Fire = false;
             }
-            Fire = false;
         }
     }
 
@@ -148,7 +146,8 @@ public class Guns : MonoBehaviour
         if (UIGun)
         {
             GunImage.sprite = GunSprites[(int)SelectedGun];
-            AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+            GunFillImage.sprite = GunFillSprites[(int)SelectedGun];
+            GunFillImage.fillAmount = (float)CurrentMag / MaxMagSize[(int)SelectedGun];
         }
     }
 
@@ -162,7 +161,8 @@ public class Guns : MonoBehaviour
         if (UIGun)
         {
             GunImage.sprite = GunSprites[(int)SelectedGun];
-            AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+            GunFillImage.sprite = GunFillSprites[(int)SelectedGun];
+            GunFillImage.fillAmount = (float)CurrentMag / MaxMagSize[(int)SelectedGun];
         }
     }
 }

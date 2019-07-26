@@ -131,12 +131,16 @@ MonoBehaviour:
   Bullet: {fileID: 7031919656593937678, guid: 2fa801c09ff77604d87c11c79b895413, type: 3}
   Lazor: {fileID: 3524342595359117951}
   UIGun: 0
-  AmmoText: {fileID: 0}
+  GunFillImage: {fileID: 0}
   GunImage: {fileID: 0}
   GunSprites:
   - {fileID: 21300000, guid: 2fa8c1b91ac7a1646895e7ff1b7a0c45, type: 3}
   - {fileID: 21300000, guid: 131bf737bb830a94bba67812309b7fc7, type: 3}
   - {fileID: 21300000, guid: 830acc947b3c9374493bfd81318db8f2, type: 3}
+  GunFillSprites:
+  - {fileID: 21300000, guid: 22b85085e0fd82d4881ff51a0959fb71, type: 3}
+  - {fileID: 21300000, guid: 87942323192dee043ad252dcf947f832, type: 3}
+  - {fileID: 21300000, guid: a1af10f65f6fd004f8484c4961ef6269, type: 3}
   SnapPoint: {fileID: 0}
   Fire: 0
   CanFire: 0
@@ -165,7 +169,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  MaxMagSize: 0a0000002800000005000000
+  MaxMagSize: 050000001400000003000000
   CurrentMag: 0
   Reload: []
   ReloadTimer: 0

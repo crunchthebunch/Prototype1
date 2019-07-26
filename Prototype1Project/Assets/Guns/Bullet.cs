@@ -37,7 +37,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Bullet:" + collision.gameObject);
         Instantiate(bulletHit[(int)bulletType], transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
