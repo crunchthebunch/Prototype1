@@ -15596,6 +15596,7 @@ Transform:
   - {fileID: 1989369361}
   - {fileID: 1262880600}
   - {fileID: 540945320}
+  - {fileID: 2096661598}
   - {fileID: 507097078}
   - {fileID: 1602643727}
   - {fileID: 1308953777}
@@ -15632,7 +15633,6 @@ Transform:
   - {fileID: 2061255883}
   - {fileID: 1435010797}
   - {fileID: 1524458913}
-  - {fileID: 2096661598}
   - {fileID: 1331230906}
   - {fileID: 1074000491}
   - {fileID: 1524323059}
@@ -19735,12 +19735,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -3752323199444608005, guid: 613f87257681a924ab756a70b7b317c6, type: 3}
---- !u!1 &687091539 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3030387829107646366, guid: de6c6fe2f3210814fad4979cf11ed57e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2031244819}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &693802990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a778d348055babc46a244aa57eba13d9,
@@ -30966,12 +30960,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1051432372}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1051459496 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6857647117744919281, guid: de6c6fe2f3210814fad4979cf11ed57e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2031244819}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1052501652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33577,6 +33565,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191305034132510679, guid: df98879a1a1ce774a99b5ddda81029dd,
+        type: 3}
+      propertyPath: APStartDisplacement.x
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df98879a1a1ce774a99b5ddda81029dd, type: 3}
@@ -38181,18 +38174,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1320718707}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1321003781 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6442713139506502777, guid: df98879a1a1ce774a99b5ddda81029dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1151773312}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1321536173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44071,14 +44052,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1446060068898650437, guid: 911ea3b3d4c434c49bbb727910f5e27e,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5240786738339347440, guid: 911ea3b3d4c434c49bbb727910f5e27e,
         type: 3}
       propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446060068898650437, guid: 911ea3b3d4c434c49bbb727910f5e27e,
+        type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -54291,6 +54272,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4404871017674688869, guid: 03a024c84d845a348ab6cc074586665a, type: 3}
+--- !u!114 &1893106189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8617858880196662513, guid: df98879a1a1ce774a99b5ddda81029dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1151773312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1893995115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 2300fb84098d9a04894576d411665f25,
@@ -58417,12 +58410,12 @@ PrefabInstance:
         type: 3}
       propertyPath: TDUI
       value: 
-      objectReference: {fileID: 687091539}
+      objectReference: {fileID: 0}
     - target: {fileID: 2728586567429800867, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: FPSUI
       value: 
-      objectReference: {fileID: 1051459496}
+      objectReference: {fileID: 0}
     - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: UIGun
@@ -58432,7 +58425,7 @@ PrefabInstance:
         type: 3}
       propertyPath: AmmoText
       value: 
-      objectReference: {fileID: 1321003781}
+      objectReference: {fileID: 0}
     - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: GunImage
@@ -58443,6 +58436,11 @@ PrefabInstance:
       propertyPath: SelectedGun
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: GunFillImage
+      value: 
+      objectReference: {fileID: 1893106189}
     - target: {fileID: 1140218915060193179, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -58538,6 +58536,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 133409694}
+    - target: {fileID: 273408867230239437, guid: de6c6fe2f3210814fad4979cf11ed57e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6c6fe2f3210814fad4979cf11ed57e, type: 3}
 --- !u!1 &2031879258 stripped
@@ -60951,7 +60954,7 @@ Transform:
   - {fileID: 2145982076}
   - {fileID: 315063061}
   m_Father: {fileID: 542362389}
-  m_RootOrder: 49
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2099030619 stripped
 GameObject:
