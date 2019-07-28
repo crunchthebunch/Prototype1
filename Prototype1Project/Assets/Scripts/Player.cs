@@ -39,10 +39,6 @@ public class Player : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
-    //UI stuff
-    public GameObject TDUI;
-    public GameObject FPSUI;
-
     void Start()
     {
         isDead = false;
@@ -83,7 +79,6 @@ public class Player : MonoBehaviour
                 if (gameManager.playerState == GameManager.PlayerState.MOVING)
                 {
                     animator.SetBool("isAiming", false);
-                    FPS(false);
                     attachedGun.CanFire = false;
 
                     // Unlock cursor
@@ -154,7 +149,6 @@ public class Player : MonoBehaviour
                 else if (gameManager.playerState == GameManager.PlayerState.SHOOTING)
                 {
                     animator.SetBool("isAiming", true);
-                    FPS(true);
                     attachedGun.CanFire = true;
 
                     // Constant shooting mode AP drain
@@ -225,21 +219,26 @@ public class Player : MonoBehaviour
                         attachedGun.Fire = false;
                     }
 
+                    // Crouching
                     if (Input.GetKeyDown(KeyCode.C))
                     {
                         if (!isCrouching)
                         {
                             animator.SetBool("isCrouching", true);
                             isCrouching = true;
-                            AP -= 1;
                         }
                         else
                         {
                             animator.SetBool("isCrouching", false);
                             isCrouching = false;
-                            AP -= 1;
                         }
 
+                    }
+
+                    // Switch aiming sides
+                    if (Input.GetKeyDown(KeyCode.X))
+                    {
+                        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
                     }
                 }
             }
@@ -288,12 +287,6 @@ public class Player : MonoBehaviour
                 lineRenderer.SetPosition(i, path.corners[i]);
             }
         }
-    }
-
-    void FPS(bool value)
-    {
-        FPSUI.SetActive(value);
-        TDUI.SetActive(!value);
     }
 
     // Drains AP by 1

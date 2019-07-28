@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
     {
         if (Trail)
         {
+            transform.parent = null;
             GetComponent<MeshFilter>().mesh = M_Bullet[(int)bulletType];
             GetComponent<MeshCollider>().sharedMesh = M_Bullet[(int)bulletType];
             Instantiate(bulletTrail[(int)bulletType], transform);
@@ -36,12 +37,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Gun") && !collision.gameObject.CompareTag("Bullet"))
-        {
-            Debug.Log("Bullet:" + collision.gameObject);
-            Instantiate(bulletHit[(int)bulletType], transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
+        Instantiate(bulletHit[(int)bulletType], transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
 }

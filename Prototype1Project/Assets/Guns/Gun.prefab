@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470641275903417812}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AssaultRifleFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470641275903417815}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.12, z: 0.764}
+  m_LocalPosition: {x: -0, y: 0.12, z: 0.696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 470641276392592227}
@@ -42,10 +42,10 @@ GameObject:
   - component: {fileID: 470641276392592226}
   - component: {fileID: 470641276392592229}
   - component: {fileID: 470641276392592231}
-  - component: {fileID: 6549576445098708720}
   - component: {fileID: 7366573499973520381}
   - component: {fileID: 8666451816239931569}
-  m_Layer: 0
+  - component: {fileID: 273408868639180445}
+  m_Layer: 12
   m_Name: Gun
   m_TagString: Gun
   m_Icon: {fileID: 0}
@@ -67,6 +67,7 @@ Transform:
   - {fileID: 470641275903417812}
   - {fileID: 470641277135533014}
   - {fileID: 3700675712611304246}
+  - {fileID: 9202477197233208924}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,7 +96,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: bc7bb47bc14fa8240a1737c082922eeb, type: 3}
+  - {fileID: 2100000, guid: d3ce72c831301c743ac776111683d23e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,18 +129,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 7031919656593937678, guid: 2fa801c09ff77604d87c11c79b895413, type: 3}
-  Lazor: {fileID: 0}
+  Lazor: {fileID: 3524342595359117951}
   UIGun: 0
-  AmmoText: {fileID: 0}
+  GunFillImage: {fileID: 0}
   GunImage: {fileID: 0}
   GunSprites:
   - {fileID: 21300000, guid: 2fa8c1b91ac7a1646895e7ff1b7a0c45, type: 3}
   - {fileID: 21300000, guid: 131bf737bb830a94bba67812309b7fc7, type: 3}
   - {fileID: 21300000, guid: 830acc947b3c9374493bfd81318db8f2, type: 3}
+  GunFillSprites:
+  - {fileID: 21300000, guid: 22b85085e0fd82d4881ff51a0959fb71, type: 3}
+  - {fileID: 21300000, guid: 87942323192dee043ad252dcf947f832, type: 3}
+  - {fileID: 21300000, guid: a1af10f65f6fd004f8484c4961ef6269, type: 3}
   SnapPoint: {fileID: 0}
   Fire: 0
   CanFire: 0
-  Attached: 0
   M_guns:
   - {fileID: -8310518740751045040, guid: 098f335cf3ff8694ca42d4c449b2883b, type: 3}
   - {fileID: 624270676327525987, guid: 2f02d211b71327d48850d8ec8aae8c8e, type: 3}
@@ -148,6 +152,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 421c125a3708b3a4397f750681020f35, type: 2}
   - {fileID: 2100000, guid: d3ce72c831301c743ac776111683d23e, type: 2}
   - {fileID: 2100000, guid: 96df0344002403b41ae5090a371e366a, type: 2}
+  PickUpIndicator: {fileID: 2321902170314616628}
   FirePoint:
   - {fileID: 470641276633098813}
   - {fileID: 470641275903417812}
@@ -164,7 +169,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  MaxMagSize: 0a0000002800000005000000
+  MaxMagSize: 050000001400000003000000
   CurrentMag: 0
   Reload: []
   ReloadTimer: 0
@@ -175,19 +180,6 @@ MonoBehaviour:
   FireRateTimer: 0
   laserSight: {fileID: 0}
   SelectedGun: 2
---- !u!135 &6549576445098708720
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470641276392592230}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &7366573499973520381
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -201,7 +193,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
-  m_Mesh: {fileID: 3814378201483603881, guid: bca9cea00640d2d449c315120bda1361, type: 3}
+  m_Mesh: {fileID: 624270676327525987, guid: 2f02d211b71327d48850d8ec8aae8c8e, type: 3}
 --- !u!54 &8666451816239931569
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -218,6 +210,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &273408868639180445
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470641276392592230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.52306145
+  m_Center: {x: -0.000000009313226, y: 0.06174709, z: 0.20823707}
 --- !u!1 &470641276633098812
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470641276633098813}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SniperFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470641276633098812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.113, z: 1.126}
+  m_LocalPosition: {x: 0, y: 0.113, z: 1.021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 470641276392592227}
@@ -257,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470641277135533014}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShotGunFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,12 +277,105 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470641277135533017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.181, z: 0.778}
+  m_LocalPosition: {x: -0, y: 0.181, z: 0.665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 470641276392592227}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2321902170314616628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9202477197233208924}
+  - component: {fileID: 7100811567864779541}
+  - component: {fileID: 2222193722188417458}
+  - component: {fileID: 8181991814405401071}
+  m_Layer: 12
+  m_Name: PickUpIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &9202477197233208924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2321902170314616628}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.232}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 470641276392592227}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7100811567864779541
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2321902170314616628}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2222193722188417458
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2321902170314616628}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b98cf8d8e173b8646886ffda90957b92, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &8181991814405401071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2321902170314616628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1698f9ed639d9554fb12cbee9ecad762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canPickUp: {fileID: 2100000, guid: b98cf8d8e173b8646886ffda90957b92, type: 2}
+  cantPickUp: {fileID: 2100000, guid: e1471a57589ccb74c907b7797095c3f5, type: 2}
+  rotationSpeed: 100
 --- !u!1 &3524342595359117951
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3700675712611304246}
   - component: {fileID: 8526466661415914204}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LaserSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +402,7 @@ Transform:
   m_GameObject: {fileID: 3524342595359117951}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.082, z: 0.704}
-  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
+  m_LocalScale: {x: 1, y: 1.0000002, z: 1}
   m_Children: []
   m_Father: {fileID: 470641276392592227}
   m_RootOrder: 3
@@ -318,7 +416,7 @@ LineRenderer:
   m_GameObject: {fileID: 3524342595359117951}
   m_Enabled: 1
   m_CastShadows: 0
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 0
   m_LightProbeUsage: 0
@@ -326,7 +424,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 3c40c8fdc50a841579d7cb15882ac9d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -348,7 +446,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 200}
+  - {x: 0, y: 0, z: 10}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.01
@@ -399,8 +497,8 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 0
-  m_Loop: 0
+  m_Loop: 1

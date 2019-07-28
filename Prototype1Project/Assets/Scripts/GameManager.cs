@@ -40,24 +40,22 @@ public class GameManager : MonoBehaviour
 
     void Update()
     { 
-        if (Input.GetMouseButtonDown(1) && initiativeCount == 0 && !player.startedMoving && playerState != PlayerState.SHOOTING)
+        if (Input.GetKeyDown(KeyCode.Space) && initiativeCount == 0 && !player.startedMoving && playerState != PlayerState.SHOOTING)
         {
             EndTurn();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !player.startedMoving)
+        if (Input.GetMouseButton(1) && !player.startedMoving)
         {
-            if (!camSwitch)
-            {
-                playerState = PlayerState.SHOOTING;
-            }
-            else
-            {
-                playerState = PlayerState.MOVING;
-            }
-            camSwitch = !camSwitch;
-            playerCam.gameObject.SetActive(camSwitch);
-            mainCamera.gameObject.SetActive(!camSwitch);
+            playerState = PlayerState.SHOOTING;
+            playerCam.gameObject.SetActive(true);
+            mainCamera.gameObject.SetActive(false);
+        }
+        else
+        {
+            playerState = PlayerState.MOVING;
+            playerCam.gameObject.SetActive(false);
+            mainCamera.gameObject.SetActive(true);
         }
     }
 
