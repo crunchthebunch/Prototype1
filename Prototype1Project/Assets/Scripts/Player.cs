@@ -127,13 +127,11 @@ public class Player : MonoBehaviour
                         {
                             animator.SetBool("isCrouching", true);
                             isCrouching = true;
-                            AP -= 1;
                         }
                         else
                         {
                             animator.SetBool("isCrouching", false);
                             isCrouching = false;
-                            AP -= 1;
                         }
 
                     }
@@ -331,11 +329,12 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Gun"))
         {
-            Guns tempGun = other.GetComponent<Guns>();
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Guns tempGun = other.GetComponent<Guns>();
                 attachedGun.GunSwap(tempGun);
-                Destroy(tempGun.gameObject);
+                
             }
         }
     }

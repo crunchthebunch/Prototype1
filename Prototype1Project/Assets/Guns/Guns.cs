@@ -149,6 +149,8 @@ public class Guns : MonoBehaviour
             GunFillImage.sprite = GunFillSprites[(int)SelectedGun];
             GunFillImage.fillAmount = (float)CurrentMag / MaxMagSize[(int)SelectedGun];
         }
+
+
     }
 
     public void GunSwap(E_Guns Gun)
