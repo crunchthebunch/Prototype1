@@ -14,8 +14,8 @@ public class HumanAI : MonoBehaviour
     int maxHP;
     int coverPointID; //id of the coverPoint taken on the current cover, -1 if not in cover
 
-    bool isMyTurn;
-    bool isAggro;
+    public bool isMyTurn;
+    public bool isAggro;
     bool isWandering;
     bool isEndingTurn;
     bool isShooting;
@@ -79,18 +79,18 @@ public class HumanAI : MonoBehaviour
         switch (enemyType)
         {
             case EnemyType.soldier:
-                HP = 8;
-                AP = 8;
+                HP = 10;
+                AP = 6;
                 gun.GunSwap(Guns.E_Guns.AssaultRifle);
                 break;
             case EnemyType.assault:
-                HP = 10;
-                AP = 5;
+                HP = 15;
+                AP = 3;
                 gun.GunSwap(Guns.E_Guns.Shotgun);
                 break;
             case EnemyType.sniper:
-                HP = 5;
-                AP = 10;
+                HP = 8;
+                AP = 4;
                 gun.GunSwap(Guns.E_Guns.Sniper);
                 break;
         }
@@ -137,10 +137,24 @@ public class HumanAI : MonoBehaviour
             animator.SetBool("isHit", true);
             Invoke("ResetHit", 0.4f);
         }
+
+        if (!isAggro)
+        {
+            isAggro = true;
+            CallBackup();
+        }
     }
 
     void Update()
     {
+        float playerDist = Vector3.Distance(transform.position, player.transform.position);
+
+        if (!isAggro && playerDist < AP * 3.0f && CheckLineOfSight(transform.position))
+        {
+            CallBackup();
+            isAggro = true;
+        }
+
         //Checking for if it is this AI's turn
         if (!isMyTurn && CheckTurn() == true)
         {
@@ -149,12 +163,6 @@ public class HumanAI : MonoBehaviour
             endTimer = -1.0f;
             isShooting = false;
             gun.CanFire = false;
-            float playerDist = Vector3.Distance(transform.position, player.transform.position);
-
-            if (playerDist < AP * 3.0f)
-            {
-                isAggro = true;
-            }
 
             if (isAggro && HP > 0)
             {
@@ -184,7 +192,10 @@ public class HumanAI : MonoBehaviour
                                 animator.SetBool("isMoving", false);
                                 endTimer -= Time.deltaTime;
 
-                                CheckLineOfSight(transform.position);
+                                if (CheckLineOfSight(transform.position))
+                                {
+                                    isShooting = true;
+                                }                              
 
                                 if (isShooting)
                                 {
@@ -252,6 +263,7 @@ public class HumanAI : MonoBehaviour
                 break;
         }
     }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -285,7 +297,7 @@ public class HumanAI : MonoBehaviour
 
     }
 
-    int AssessRisk()
+    int AssessRisk() //Assessing risk
     {
         if (HP < maxHP*0.5f && HP > maxHP*0.25f)
         {
@@ -301,7 +313,10 @@ public class HumanAI : MonoBehaviour
 
     void Engage() //Engaging with enemies
     {
-        CheckLineOfSight(transform.position);
+        if (CheckLineOfSight(transform.position))
+        {
+            isShooting = true;
+        }
 
         if (!isShooting)
         {
@@ -335,6 +350,21 @@ public class HumanAI : MonoBehaviour
         }
     }
 
+    void CallBackup()
+    {
+       for (int i = 0; i < gameManager.enemies.Length; i++)
+       {
+            HumanAI ally = gameManager.enemies[i].GetComponent<HumanAI>();
+
+            float allyDist = Vector3.Distance(transform.position, ally.transform.position);
+
+            if (!ally.isAggro && allyDist < AP * 2.0f)
+            {
+                ally.isAggro = true;
+            }
+        }
+    }
+
     void Move(Vector3 destination)
     {
         moveDestination = destination;
@@ -361,13 +391,13 @@ public class HumanAI : MonoBehaviour
             if (hit.collider.tag == "Player")
             {
                 Debug.Log("Did Hit");
-                isShooting = true;
+                //isShooting = true;
                 return true;
             }
         }
 
         Debug.Log("Did Not Hit");
-        isShooting = false;
+        //isShooting = false;
         return false;
     }
 
@@ -458,6 +488,7 @@ public class HumanAI : MonoBehaviour
                                 if (CheckLineOfSight(cover.coverPoints[id].pos))
                                 {
                                     viablePoints.Add(point);
+                                    isShooting = true;
                                 }
                             }
                         }
