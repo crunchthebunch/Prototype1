@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     LayerMask groundLayerMask;
     [SerializeField] LineRenderer lineRenderer;
     public Animator animator;
+    public Material lineRendererMaterial;
 
     public int AP = 10;
     public int lengthOfLineRenderer = 20;
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
         groundLayerMask = LayerMask.GetMask("Ground");
         mainCamera = Camera.main;
         lineRenderer = gameObject.AddComponent<LineRenderer>();
+        
         lineRenderer.widthMultiplier = 0.2f;
         playerCam = GetComponentInChildren<Camera>();
         playerCam.gameObject.SetActive(false);
