@@ -85,12 +85,12 @@ public class HumanAI : MonoBehaviour
                 break;
             case EnemyType.assault:
                 HP = 15;
-                AP = 3;
+                AP = 5;
                 gun.GunSwap(Guns.E_Guns.Shotgun);
                 break;
             case EnemyType.sniper:
                 HP = 8;
-                AP = 4;
+                AP = 5;
                 gun.GunSwap(Guns.E_Guns.Sniper);
                 break;
         }
