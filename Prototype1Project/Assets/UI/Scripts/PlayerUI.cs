@@ -10,20 +10,23 @@ public class PlayerUI : MonoBehaviour
     public bool AP = false;
 
     public Vector3 HPStartDisplacement;
-    public float HPDisplacement = 0;
+    public float HPDisplacementDivision;
     public GameObject HPTile;
     private GameObject[] HPTileSet;
     private float oldHP;
 
     public Vector3 APStartDisplacement;
-    public float APDisplacement = 10;
+    public float APDisplacementDivision;
     public GameObject APTile;
     private GameObject[] APTileSet;
     private int oldAP;
 
+    private RectTransform Canvas;
+
     // Start is called before the first frame update
     void Start()
     {
+        Canvas = transform.root.GetComponent<RectTransform>();
         if (!player)
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -46,7 +49,8 @@ public class PlayerUI : MonoBehaviour
             if (player.AP != oldAP)
             {
                 oldAP = player.AP;
-                Vector3 temp = transform.position + APStartDisplacement;
+                Vector3 temp = transform.position;
+                temp.x += Canvas.rect.size.x / APStartDisplacement.x;
                 foreach (GameObject G in APTileSet)
                 {
                     Destroy(G);
@@ -55,7 +59,7 @@ public class PlayerUI : MonoBehaviour
 
                 for (int i = 0; i < oldAP; i++)
                 {
-                    temp.x += APDisplacement;
+                    temp.x += Canvas.rect.size.x / APDisplacementDivision;
                     APTileSet[i] = Instantiate(APTile, temp, Quaternion.identity, transform);
                 }
             }
@@ -74,10 +78,10 @@ public class PlayerUI : MonoBehaviour
 
                 for (int y = 0; y < oldHP / 2; y++)
                 {
-                    temp.y += HPDisplacement;
+                    temp.y += HPDisplacementDivision;
                     for (int i = 0; i < 2; i++)
                     {
-                        temp.x += HPDisplacement * i;
+                        temp.x += HPDisplacementDivision * i;
                         HPTileSet[(y * 2) + i] = Instantiate(HPTile, temp, Quaternion.identity, transform);
                         if ((y * 2) + i == oldHP)
                         {

@@ -33569,7 +33569,12 @@ PrefabInstance:
     - target: {fileID: 8191305034132510679, guid: df98879a1a1ce774a99b5ddda81029dd,
         type: 3}
       propertyPath: APStartDisplacement.x
-      value: 40
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191305034132510679, guid: df98879a1a1ce774a99b5ddda81029dd,
+        type: 3}
+      propertyPath: APDisplacementDivision
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df98879a1a1ce774a99b5ddda81029dd, type: 3}
