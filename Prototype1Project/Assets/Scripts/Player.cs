@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         updatingAP = false;
         isCrouching = false;
         animator.speed = 0.75f;
-        
+        attachedGun.GunSetUp();
     }
 
     void Update()
@@ -335,7 +335,6 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 attachedGun.GunSwap(tempGun);
-                Destroy(tempGun.gameObject);
             }
         }
     }
