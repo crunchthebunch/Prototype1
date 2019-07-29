@@ -27,7 +27,7 @@ public class Guns : MonoBehaviour
 
     [Header("Gun Propertys")]
     public float[] spreadFactor;
-    public float[] Damage;
+    //public float[] Damage;
 
     public int[] MaxMagSize;
     public int CurrentMag;
@@ -81,7 +81,7 @@ public class Guns : MonoBehaviour
                     Vector3 shootDirection;
                     if (SelectedGun == E_Guns.Shotgun)
                     {
-                        for (int i = 20; i > 0; i--)
+                        for (int i = 10; i > 0; i--)
                         {
                             shootDirection = FirePoint[(int)SelectedGun].rotation.eulerAngles;
                             shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
