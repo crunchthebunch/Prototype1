@@ -14,8 +14,8 @@ public class HumanAI : MonoBehaviour
     int maxHP;
     int coverPointID; //id of the coverPoint taken on the current cover, -1 if not in cover
 
-    bool isMyTurn;
-    bool isAggro;
+    public bool isMyTurn;
+    public bool isAggro;
     bool isWandering;
     bool isEndingTurn;
     bool isShooting;
@@ -50,8 +50,16 @@ public class HumanAI : MonoBehaviour
         engage
     };
 
+    public enum EnemyType
+    {
+        soldier,
+        assault,
+        sniper
+    };
+
     AI state;
     NavMeshAgent agent;
+    public EnemyType enemyType;
 
     void Start()
     {
@@ -67,6 +75,26 @@ public class HumanAI : MonoBehaviour
         endTimer = -1.0f;
         checkOrigin = transform.position;
         isShooting = false;
+
+        switch (enemyType)
+        {
+            case EnemyType.soldier:
+                HP = 10;
+                AP = 6;
+                gun.GunSwap(Guns.E_Guns.AssaultRifle);
+                break;
+            case EnemyType.assault:
+                HP = 15;
+                AP = 3;
+                gun.GunSwap(Guns.E_Guns.Shotgun);
+                break;
+            case EnemyType.sniper:
+                HP = 8;
+                AP = 4;
+                gun.GunSwap(Guns.E_Guns.Sniper);
+                break;
+        }
+
         maxHP = HP;
         agent.angularSpeed = 360.0f;
         if (coverObjects == null)
@@ -101,10 +129,7 @@ public class HumanAI : MonoBehaviour
         if (HP <= 0)
         {
             animator.SetBool("isDead",true);
-            gun.transform.parent = null;
-            gun.GetComponent<Rigidbody>().isKinematic = false;
-            gun.GetComponent<Rigidbody>().useGravity = true;
-            gun.GetComponent<Rigidbody>().detectCollisions = true;
+            gun.DetachGun();
             GetComponent<CapsuleCollider>().enabled = false;
         }
         else
@@ -112,10 +137,24 @@ public class HumanAI : MonoBehaviour
             animator.SetBool("isHit", true);
             Invoke("ResetHit", 0.4f);
         }
+
+        if (!isAggro)
+        {
+            isAggro = true;
+            CallBackup();
+        }
     }
 
     void Update()
     {
+        float playerDist = Vector3.Distance(transform.position, player.transform.position);
+
+        if (!isAggro && playerDist < AP * 3.0f && CheckLineOfSight(transform.position))
+        {
+            CallBackup();
+            isAggro = true;
+        }
+
         //Checking for if it is this AI's turn
         if (!isMyTurn && CheckTurn() == true)
         {
@@ -124,12 +163,6 @@ public class HumanAI : MonoBehaviour
             endTimer = -1.0f;
             isShooting = false;
             gun.CanFire = false;
-            float playerDist = Vector3.Distance(transform.position, player.transform.position);
-
-            if (playerDist < AP * 3.0f)
-            {
-                isAggro = true;
-            }
 
             if (isAggro && HP > 0)
             {
@@ -159,15 +192,18 @@ public class HumanAI : MonoBehaviour
                                 animator.SetBool("isMoving", false);
                                 endTimer -= Time.deltaTime;
 
-                                CheckLineOfSight(transform.position);
+                                if (CheckLineOfSight(transform.position))
+                                {
+                                    isShooting = true;
+                                }                              
 
                                 if (isShooting)
                                 {
                                     if (endTimer < 0.8f && endTimer > 0.4f)
                                     {
                                         animator.SetBool("isShooting", true);
-                                        Vector3 offset = new Vector3(0.0f, 1.5f, 0.0f);
-                                        transform.LookAt(player.transform.position + offset, Vector3.up);
+                                        Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+                                        transform.LookAt(target, Vector3.up);
                                     }
                                     if (endTimer < 0.4f)
                                     {
@@ -227,6 +263,7 @@ public class HumanAI : MonoBehaviour
                 break;
         }
     }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -260,7 +297,7 @@ public class HumanAI : MonoBehaviour
 
     }
 
-    int AssessRisk()
+    int AssessRisk() //Assessing risk
     {
         if (HP < maxHP*0.5f && HP > maxHP*0.25f)
         {
@@ -276,7 +313,10 @@ public class HumanAI : MonoBehaviour
 
     void Engage() //Engaging with enemies
     {
-        CheckLineOfSight(transform.position);
+        if (CheckLineOfSight(transform.position))
+        {
+            isShooting = true;
+        }
 
         if (!isShooting)
         {
@@ -310,6 +350,21 @@ public class HumanAI : MonoBehaviour
         }
     }
 
+    void CallBackup()
+    {
+       for (int i = 0; i < gameManager.enemies.Length; i++)
+       {
+            HumanAI ally = gameManager.enemies[i].GetComponent<HumanAI>();
+
+            float allyDist = Vector3.Distance(transform.position, ally.transform.position);
+
+            if (allyDist < 10)
+            {
+                ally.isAggro = true;
+            }
+        }
+    }
+
     void Move(Vector3 destination)
     {
         moveDestination = destination;
@@ -336,13 +391,13 @@ public class HumanAI : MonoBehaviour
             if (hit.collider.tag == "Player")
             {
                 Debug.Log("Did Hit");
-                isShooting = true;
+                //isShooting = true;
                 return true;
             }
         }
 
         Debug.Log("Did Not Hit");
-        isShooting = false;
+        //isShooting = false;
         return false;
     }
 
@@ -433,6 +488,7 @@ public class HumanAI : MonoBehaviour
                                 if (CheckLineOfSight(cover.coverPoints[id].pos))
                                 {
                                     viablePoints.Add(point);
+                                    isShooting = true;
                                 }
                             }
                         }

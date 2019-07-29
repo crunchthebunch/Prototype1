@@ -39,10 +39,6 @@ public class Player : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
-    //UI stuff
-    public GameObject TDUI;
-    public GameObject FPSUI;
-
     void Start()
     {
         isDead = false;
@@ -58,7 +54,8 @@ public class Player : MonoBehaviour
         updatingAP = false;
         isCrouching = false;
         animator.speed = 0.75f;
-        
+        attachedGun.GunSetUp();
+        attachedGun.GetComponentInChildren<LineRenderer>().enabled = true;
     }
 
     void Update()
@@ -83,7 +80,6 @@ public class Player : MonoBehaviour
                 if (gameManager.playerState == GameManager.PlayerState.MOVING)
                 {
                     animator.SetBool("isAiming", false);
-                    FPS(false);
                     attachedGun.CanFire = false;
 
                     // Unlock cursor
@@ -132,13 +128,11 @@ public class Player : MonoBehaviour
                         {
                             animator.SetBool("isCrouching", true);
                             isCrouching = true;
-                            AP -= 1;
                         }
                         else
                         {
                             animator.SetBool("isCrouching", false);
                             isCrouching = false;
-                            AP -= 1;
                         }
 
                     }
@@ -154,7 +148,6 @@ public class Player : MonoBehaviour
                 else if (gameManager.playerState == GameManager.PlayerState.SHOOTING)
                 {
                     animator.SetBool("isAiming", true);
-                    FPS(true);
                     attachedGun.CanFire = true;
 
                     // Constant shooting mode AP drain
@@ -178,39 +171,39 @@ public class Player : MonoBehaviour
                     transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
 
                     // Firing gun
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButton(0))
                     {
                         // Checks for AP and type of gun used, fires and updates AP depending on gun used
                         switch (attachedGun.SelectedGun)
                         {
                             case Guns.E_Guns.Sniper:
 
-                                if (AP >= 3)
+                                if (AP >= 5)
                                 {
                                     attachedGun.Fire = true;
                                     animator.SetBool("isShooting", true);
-                                    AP -= 3;
+                                    AP -= 5;
                                 }
                                 break;
 
                             case Guns.E_Guns.AssaultRifle:
 
-                                if (AP >= 2)
+                                if (AP >= 1)
                                 {
                                     attachedGun.Fire = true;
-                                    animator.SetBool("isShooting", true);
-                                    AP -= 2;
+                                    animator.SetBool("isShootingAR", true);
+                                    AP -= 1;
                                     print(AP);
                                 }
                                 break;
 
                             case Guns.E_Guns.Shotgun:
 
-                                if (AP >= 1)
+                                if (AP >= 3)
                                 {
                                     attachedGun.Fire = true;
                                     animator.SetBool("isShooting", true);
-                                    AP -= 1;
+                                    AP -= 3;
                                 }
                                 break;
 
@@ -222,24 +215,30 @@ public class Player : MonoBehaviour
                     else
                     {
                         animator.SetBool("isShooting", false);
+                        animator.SetBool("isShootingAR", false);
                         attachedGun.Fire = false;
                     }
 
+                    // Crouching
                     if (Input.GetKeyDown(KeyCode.C))
                     {
                         if (!isCrouching)
                         {
                             animator.SetBool("isCrouching", true);
                             isCrouching = true;
-                            AP -= 1;
                         }
                         else
                         {
                             animator.SetBool("isCrouching", false);
                             isCrouching = false;
-                            AP -= 1;
                         }
 
+                    }
+
+                    // Switch aiming sides
+                    if (Input.GetKeyDown(KeyCode.X))
+                    {
+                        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
                     }
                 }
             }
@@ -290,12 +289,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void FPS(bool value)
-    {
-        FPSUI.SetActive(value);
-        TDUI.SetActive(!value);
-    }
-
     // Drains AP by 1
     void APDrain()
     {
@@ -338,11 +331,14 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Gun"))
         {
-            Guns tempGun = other.GetComponent<Guns>();
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
+                animator.SetBool("isPickingUp", true);
+                Invoke("ResetPickUp", 0.7f);
+                Guns tempGun = other.GetComponent<Guns>();
                 attachedGun.GunSwap(tempGun);
-                Destroy(tempGun.gameObject);
+                
             }
         }
     }
@@ -350,5 +346,10 @@ public class Player : MonoBehaviour
     void ResetHit()
     {
         animator.SetBool("isHit", false);
+    }
+
+    void ResetPickUp()
+    {
+        animator.SetBool("isPickingUp", false);
     }
 }

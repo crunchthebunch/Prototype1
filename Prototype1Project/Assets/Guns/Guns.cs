@@ -10,17 +10,18 @@ public class Guns : MonoBehaviour
     public GameObject Lazor;
 
     public bool UIGun;
-    public TextMeshProUGUI AmmoText;
+    public Image GunFillImage;
     public Image GunImage;
     public Sprite[] GunSprites;
+    public Sprite[] GunFillSprites;
     public Transform SnapPoint;
 
     public bool Fire;
     public bool CanFire;
-    public bool Attached;
 
     public Mesh[] M_guns;
     public Material[] T_guns;
+    public GameObject PickUpIndicator;
     public Transform[] FirePoint;
     public GameObject[] MuzzleFlash;
 
@@ -41,8 +42,6 @@ public class Guns : MonoBehaviour
 
     public LineRenderer laserSight;
 
-    GameManager gameManager;
-
     public enum E_Guns
     {
         Sniper = 0,
@@ -55,10 +54,8 @@ public class Guns : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         laserSight = GetComponentInChildren<LineRenderer>();
-        laserSight.enabled = true;
-        GunSwap(this);
+        //laserSight.enabled = true;
         AttachGun(SnapPoint);
     }
 
@@ -86,29 +83,29 @@ public class Guns : MonoBehaviour
                     {
                         for (int i = 20; i > 0; i--)
                         {
-                            shootDirection = transform.rotation.eulerAngles;
+                            shootDirection = FirePoint[(int)SelectedGun].rotation.eulerAngles;
                             shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                             shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
-                            Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection)).GetComponent<Bullet>().bulletType = SelectedGun;
+                            Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection), FirePoint[(int)SelectedGun]).GetComponent<Bullet>().bulletType = SelectedGun;
                         }
                     }
                     else
                     {
-                        shootDirection = transform.rotation.eulerAngles;
+                        shootDirection = FirePoint[(int)SelectedGun].rotation.eulerAngles;
                         shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                         shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
-                        Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection)).GetComponent<Bullet>().bulletType = SelectedGun;
+                        Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection), FirePoint[(int)SelectedGun]).GetComponent<Bullet>().bulletType = SelectedGun;
                     }
-                    Instantiate(MuzzleFlash[(int)SelectedGun], FirePoint[(int)SelectedGun].position, transform.rotation);
+                    Instantiate(MuzzleFlash[(int)SelectedGun], FirePoint[(int)SelectedGun].position, transform.rotation, FirePoint[(int)SelectedGun]);
                     CurrentMag--;
                     FireRateTimer = FireRate[(int)SelectedGun];
                     if (UIGun)
                     {
-                        AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+                        GunFillImage.fillAmount = (float)CurrentMag / MaxMagSize[(int)SelectedGun];
                     }
                 }
+                Fire = false;
             }
-            Fire = false;
         }
     }
 
@@ -116,7 +113,7 @@ public class Guns : MonoBehaviour
     {
         if (Attachment)
         {
-            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<Rigidbody>().detectCollisions = false;
             GetComponent<Rigidbody>().useGravity = false;
             transform.position = Attachment.position;
@@ -124,14 +121,19 @@ public class Guns : MonoBehaviour
         }
     }
 
-    public void GunSwap(Guns swapGun)
+    public void DetachGun()
     {
-        if (swapGun)
-        {
-            CurrentMag = swapGun.CurrentMag;
-            SelectedGun = swapGun.SelectedGun;
-        }
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().detectCollisions = true;
+        GetComponent<Rigidbody>().useGravity = true;
+        transform.parent = null;
+        PickUpIndicator.SetActive(true);
+    }
 
+    public void GunSetUp()
+    {
+        CurrentMag = MaxMagSize[(int)SelectedGun];
+        Lazor.transform.position = FirePoint[(int)SelectedGun].position;
         GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
         GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
         GetComponent<MeshRenderer>().material = T_guns[(int)SelectedGun];
@@ -139,7 +141,40 @@ public class Guns : MonoBehaviour
         if (UIGun)
         {
             GunImage.sprite = GunSprites[(int)SelectedGun];
-            AmmoText.text = CurrentMag + "/" + MaxMagSize[(int)SelectedGun];
+            GunFillImage.sprite = GunFillSprites[(int)SelectedGun];
+            GunFillImage.fillAmount = (float)CurrentMag / MaxMagSize[(int)SelectedGun];
+        }
+    }
+
+    public void GunSwap(Guns swapGun)
+    {
+        CurrentMag = swapGun.CurrentMag;
+        SelectedGun = swapGun.SelectedGun;
+        Lazor.transform.position = FirePoint[(int)SelectedGun].position;
+        GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshRenderer>().material = T_guns[(int)SelectedGun];
+        if (UIGun)
+        {
+            GunImage.sprite = GunSprites[(int)SelectedGun];
+            GunFillImage.sprite = GunFillSprites[(int)SelectedGun];
+            GunFillImage.fillAmount = (float)CurrentMag / MaxMagSize[(int)SelectedGun];
+        }
+        Destroy(swapGun.gameObject);
+    }
+
+    public void GunSwap(E_Guns Gun)
+    {
+        SelectedGun = Gun;
+        GetComponent<MeshFilter>().mesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshCollider>().sharedMesh = M_guns[(int)SelectedGun];
+        GetComponent<MeshRenderer>().material = T_guns[(int)SelectedGun];
+        CurrentMag = MaxMagSize[(int)SelectedGun];
+        if (UIGun)
+        {
+            GunImage.sprite = GunSprites[(int)SelectedGun];
+            GunFillImage.sprite = GunFillSprites[(int)SelectedGun];
+            GunFillImage.fillAmount = (float)CurrentMag / MaxMagSize[(int)SelectedGun];
         }
     }
 }
