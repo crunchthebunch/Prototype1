@@ -171,39 +171,39 @@ public class Player : MonoBehaviour
                     transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
 
                     // Firing gun
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButton(0))
                     {
                         // Checks for AP and type of gun used, fires and updates AP depending on gun used
                         switch (attachedGun.SelectedGun)
                         {
                             case Guns.E_Guns.Sniper:
 
-                                if (AP >= 3)
+                                if (AP >= 5)
                                 {
                                     attachedGun.Fire = true;
                                     animator.SetBool("isShooting", true);
-                                    AP -= 3;
+                                    AP -= 5;
                                 }
                                 break;
 
                             case Guns.E_Guns.AssaultRifle:
 
-                                if (AP >= 2)
+                                if (AP >= 1)
                                 {
                                     attachedGun.Fire = true;
-                                    animator.SetBool("isShooting", true);
-                                    AP -= 2;
+                                    animator.SetBool("isShootingAR", true);
+                                    AP -= 1;
                                     print(AP);
                                 }
                                 break;
 
                             case Guns.E_Guns.Shotgun:
 
-                                if (AP >= 1)
+                                if (AP >= 3)
                                 {
                                     attachedGun.Fire = true;
                                     animator.SetBool("isShooting", true);
-                                    AP -= 1;
+                                    AP -= 3;
                                 }
                                 break;
 
@@ -215,6 +215,7 @@ public class Player : MonoBehaviour
                     else
                     {
                         animator.SetBool("isShooting", false);
+                        animator.SetBool("isShootingAR", false);
                         attachedGun.Fire = false;
                     }
 
@@ -333,6 +334,8 @@ public class Player : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.E))
             {
+                animator.SetBool("isPickingUp", true);
+                Invoke("ResetPickUp", 0.7f);
                 Guns tempGun = other.GetComponent<Guns>();
                 attachedGun.GunSwap(tempGun);
                 
@@ -343,5 +346,10 @@ public class Player : MonoBehaviour
     void ResetHit()
     {
         animator.SetBool("isHit", false);
+    }
+
+    void ResetPickUp()
+    {
+        animator.SetBool("isPickingUp", false);
     }
 }
