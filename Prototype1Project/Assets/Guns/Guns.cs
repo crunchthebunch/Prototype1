@@ -55,7 +55,7 @@ public class Guns : MonoBehaviour
     void Start()
     {
         laserSight = GetComponentInChildren<LineRenderer>();
-        laserSight.enabled = true;
+        //laserSight.enabled = true;
         GunSwap(this);
         AttachGun(SnapPoint);
     }

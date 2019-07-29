@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         updatingAP = false;
         isCrouching = false;
         animator.speed = 0.75f;
-        
+        attachedGun.GetComponentInChildren<LineRenderer>().enabled = true;
     }
 
     void Update()
