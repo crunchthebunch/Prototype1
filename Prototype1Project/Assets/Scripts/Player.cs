@@ -308,6 +308,7 @@ public class Player : MonoBehaviour
 
         if ( HP <= 0)
         {
+            HP = 0;
             isDead = true;
             animator.SetBool("isDead", true);
         }
