@@ -358,7 +358,7 @@ public class HumanAI : MonoBehaviour
 
             float allyDist = Vector3.Distance(transform.position, ally.transform.position);
 
-            if (!ally.isAggro && allyDist < AP * 2.0f)
+            if (allyDist < 10)
             {
                 ally.isAggro = true;
             }
