@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     LayerMask groundLayerMask;
     [SerializeField] LineRenderer lineRenderer;
     public Animator animator;
-    public Material lineRendererMaterial;
+    public Texture lineRendererTexture;
 
     public int AP = 10;
     public int lengthOfLineRenderer = 20;
@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         groundLayerMask = LayerMask.GetMask("Ground");
         mainCamera = Camera.main;
         lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer.receiveShadows = false;
         shootTimer = 0.0f;
         lineRenderer.widthMultiplier = 0.2f;
         playerCam = GetComponentInChildren<Camera>();
@@ -69,6 +70,8 @@ public class Player : MonoBehaviour
             // Initializing LineRenderer and Raycasting
             lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.1f, transform.position.z));
             ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            lineRenderer.material.mainTexture = lineRendererTexture;
+
 
             if (isCrouching)
             {
@@ -199,7 +202,7 @@ public class Player : MonoBehaviour
                                 {
                                     attachedGun.Fire = true;
                                     attachedGun.CanFire = true;
-                                    shootTimer = 0.6f;
+                                    shootTimer = 0.5f;
                                     animator.SetBool("isShooting", true);
                                     AP -= 3;
                                 }
@@ -296,6 +299,7 @@ public class Player : MonoBehaviour
             for (var i = 1; i < path.corners.Length; i++)
             {
                 lineRenderer.SetPosition(i, path.corners[i]);
+                //lineRenderer.materials[i].mainTexture = lineRendererTexture;
             }
         }
     }
