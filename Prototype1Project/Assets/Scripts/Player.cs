@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     LayerMask groundLayerMask;
     [SerializeField] LineRenderer lineRenderer;
     public Animator animator;
+    public Material lineRendererMaterial;
 
     public int AP = 10;
     public int lengthOfLineRenderer = 20;
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
     private float viewRange = 60.0f;
     float rotVertical;
     float X, Y;
+
+    float shootTimer = 0.8f;
 
     public bool startedMoving;
     bool isDead;
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
         groundLayerMask = LayerMask.GetMask("Ground");
         mainCamera = Camera.main;
         lineRenderer = gameObject.AddComponent<LineRenderer>();
+        shootTimer = 0.0f;
         lineRenderer.widthMultiplier = 0.2f;
         playerCam = GetComponentInChildren<Camera>();
         playerCam.gameObject.SetActive(false);
@@ -89,9 +93,6 @@ public class Player : MonoBehaviour
                     // Path drawing
                     lineRenderer.enabled = true;
                     DrawPath(agent.path);
-
-                    // Update AP with movement
-
 
                     // Raycasting from camera to ground
                     if (Physics.Raycast(ray, out hit, 100.0f, groundLayerMask))
@@ -150,14 +151,6 @@ public class Player : MonoBehaviour
                     animator.SetBool("isAiming", true);
                     attachedGun.CanFire = true;
 
-                    // Constant shooting mode AP drain
-                    //elapsed += Time.deltaTime;
-                    //if (elapsed >= 3f)
-                    //{
-                    //    elapsed = elapsed % 3f;
-                    //    APDrain();
-                    //}
-
                     // Lock Cursor
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
@@ -171,16 +164,18 @@ public class Player : MonoBehaviour
                     transform.localEulerAngles = new Vector3(-Y, transform.localEulerAngles.y, 0);
 
                     // Firing gun
-                    if (Input.GetMouseButton(0))
+                    if (Input.GetMouseButtonDown(0))
                     {
                         // Checks for AP and type of gun used, fires and updates AP depending on gun used
                         switch (attachedGun.SelectedGun)
                         {
                             case Guns.E_Guns.Sniper:
 
-                                if (AP >= 5)
+                                if (AP >= 5 && attachedGun.CurrentMag > 0)
                                 {
                                     attachedGun.Fire = true;
+                                    attachedGun.CanFire = true;
+                                    shootTimer = 1.0f;
                                     animator.SetBool("isShooting", true);
                                     AP -= 5;
                                 }
@@ -188,27 +183,29 @@ public class Player : MonoBehaviour
 
                             case Guns.E_Guns.AssaultRifle:
 
-                                if (AP >= 1)
+                                if (AP >= 2 && attachedGun.CurrentMag > 0)
                                 {
                                     attachedGun.Fire = true;
+                                    attachedGun.CanFire = true;
+                                    shootTimer = 0.4f;
                                     animator.SetBool("isShootingAR", true);
-                                    AP -= 1;
-                                    print(AP);
+                                    AP -= 2;
                                 }
                                 break;
 
                             case Guns.E_Guns.Shotgun:
 
-                                if (AP >= 3)
+                                if (AP >= 3 && attachedGun.CurrentMag > 0)
                                 {
                                     attachedGun.Fire = true;
+                                    attachedGun.CanFire = true;
+                                    shootTimer = 0.6f;
                                     animator.SetBool("isShooting", true);
                                     AP -= 3;
                                 }
                                 break;
 
                             default:
-
                                 break;
                         }
                     }
@@ -216,7 +213,7 @@ public class Player : MonoBehaviour
                     {
                         animator.SetBool("isShooting", false);
                         animator.SetBool("isShootingAR", false);
-                        attachedGun.Fire = false;
+                        
                     }
 
                     // Crouching
@@ -240,6 +237,8 @@ public class Player : MonoBehaviour
                     {
                         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
                     }
+
+                    
                 }
             }
 
@@ -247,6 +246,18 @@ public class Player : MonoBehaviour
             else
             {
                 lineRenderer.enabled = false;
+            }
+
+            if (shootTimer > 0.0f)
+            {
+                shootTimer -= Time.deltaTime;
+                attachedGun.Fire = true;
+                attachedGun.CanFire = true;
+            }
+            else
+            {
+                attachedGun.Fire = false;
+                attachedGun.CanFire = false;
             }
         }
     }
