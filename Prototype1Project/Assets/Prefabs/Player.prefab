@@ -183,6 +183,7 @@ MonoBehaviour:
   attachedGun: {fileID: 470641275118886711}
   lineRenderer: {fileID: 0}
   animator: {fileID: 1696232765263478657}
+  lineRendererTexture: {fileID: 2800000, guid: 9ff0d5ab78d52844ca1a4fd153d552bf, type: 3}
   AP: 10
   lengthOfLineRenderer: 20
   HP: 20
