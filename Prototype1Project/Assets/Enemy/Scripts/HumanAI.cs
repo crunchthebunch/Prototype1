@@ -84,13 +84,13 @@ public class HumanAI : MonoBehaviour
                 gun.GunSwap(Guns.E_Guns.AssaultRifle);
                 break;
             case EnemyType.assault:
-                HP = 15;
-                AP = 3;
+                HP = 12;
+                AP = 5;
                 gun.GunSwap(Guns.E_Guns.Shotgun);
                 break;
             case EnemyType.sniper:
                 HP = 8;
-                AP = 4;
+                AP = 5;
                 gun.GunSwap(Guns.E_Guns.Sniper);
                 break;
         }
@@ -131,6 +131,7 @@ public class HumanAI : MonoBehaviour
             animator.SetBool("isDead",true);
             gun.DetachGun();
             GetComponent<CapsuleCollider>().enabled = false;
+            //GetComponent<NavMeshAgent>().enabled = false;
         }
         else
         {
@@ -163,6 +164,8 @@ public class HumanAI : MonoBehaviour
             endTimer = -1.0f;
             isShooting = false;
             gun.CanFire = false;
+            animator.SetBool("isCrouching", false);
+
 
             if (isAggro && HP > 0)
             {
@@ -202,10 +205,12 @@ public class HumanAI : MonoBehaviour
                                     if (endTimer < 0.8f && endTimer > 0.4f)
                                     {
                                         animator.SetBool("isShooting", true);
-                                        Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+                                        Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+                                        Vector3 offset = new Vector3(0.0f, 0.25f, 0.0f);
                                         transform.LookAt(target, Vector3.up);
+                                        gun.transform.LookAt(target + offset, Vector3.up);
                                     }
-                                    if (endTimer < 0.4f)
+                                    if (endTimer <= 0.4f)
                                     {
                                         Shoot();
                                     }
@@ -218,6 +223,7 @@ public class HumanAI : MonoBehaviour
                                 gun.Fire = false;
                                 isEndingTurn = true;
                                 animator.SetBool("isShooting", false);
+                                animator.SetBool("isCrouching", isTakingCover);
                             }
                         }
 
@@ -276,7 +282,6 @@ public class HumanAI : MonoBehaviour
             if (collision.gameObject.tag == "Bullet")
             {
                 Debug.DrawRay(contact.point, contact.normal, Color.white);
-                Debug.Log("Human AI has been hit!");
                 Bullet bullet = collision.gameObject.GetComponent<Bullet>();
                 TakeDamage(bullet);
             }
@@ -330,6 +335,7 @@ public class HumanAI : MonoBehaviour
                     Move(cover);
                 }
                 endTimer = 0.8f;
+                isTakingCover = true;
             }
             else
             {
@@ -342,6 +348,7 @@ public class HumanAI : MonoBehaviour
 
                 Move(charge);
                 endTimer = 0.8f;
+                isTakingCover = false;
             }
         }
         else
@@ -374,9 +381,10 @@ public class HumanAI : MonoBehaviour
 
     void Shoot()
     {
+        gun.CurrentMag = gun.MaxMagSize[(int)gun.SelectedGun];
         gun.CanFire = true;
         gun.Fire = true;
-        isShooting = false;
+        //isShooting = false;
     }
 
     bool CheckLineOfSight(Vector3 checkPosition)

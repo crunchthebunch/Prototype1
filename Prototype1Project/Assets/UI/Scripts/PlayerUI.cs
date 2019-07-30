@@ -74,6 +74,8 @@ public class PlayerUI : MonoBehaviour
                 {
                     Destroy(G);
                 }
+
+
                 HPTileSet = new GameObject[(int)player.HP];
 
                 for (int y = 0; y < oldHP / 2; y++)

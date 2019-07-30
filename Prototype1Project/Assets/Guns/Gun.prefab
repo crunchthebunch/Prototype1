@@ -163,18 +163,14 @@ MonoBehaviour:
   - {fileID: 1082375177043661082, guid: e798fa874c67d1f439d15db4020e8c80, type: 3}
   spreadFactor:
   - 0
-  - 0.1
+  - 2
   - 5
-  Damage:
-  - 0
-  - 0
-  - 0
-  MaxMagSize: 050000001400000003000000
+  MaxMagSize: 030000000f00000005000000
   CurrentMag: 0
   Reload: []
   ReloadTimer: 0
   FireRate:
-  - 1
+  - 0.75
   - 0.1
   - 0.5
   FireRateTimer: 0
