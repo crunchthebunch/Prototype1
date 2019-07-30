@@ -50,10 +50,18 @@ public class Player : MonoBehaviour
         agent.angularSpeed = 360.0f;
         groundLayerMask = LayerMask.GetMask("Ground");
         mainCamera = Camera.main;
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.receiveShadows = false;
+
+        lineRenderer = GetComponent<LineRenderer>();
+
+        //lineRenderer = gameObject.AddComponent<LineRenderer>();
+        //lineRenderer.textureMode = LineTextureMode.Tile;
+        lineRenderer.material.mainTexture = lineRendererTexture;
+        lineRenderer.startWidth = lineRenderer.endWidth;
+        lineRenderer.numCornerVertices = 50;
+        lineRenderer.numCapVertices = 50;
+        lineRenderer.widthMultiplier = 0.3f;
+
         shootTimer = 0.0f;
-        lineRenderer.widthMultiplier = 0.2f;
         playerCam = GetComponentInChildren<Camera>();
         playerCam.gameObject.SetActive(false);
         updatingAP = false;
@@ -68,7 +76,7 @@ public class Player : MonoBehaviour
         if (!isDead)
         {
             // Initializing LineRenderer and Raycasting
-            lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.1f, transform.position.z));
+            lineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y - 0.45f, transform.position.z));
             ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             lineRenderer.material.mainTexture = lineRendererTexture;
 
@@ -154,6 +162,8 @@ public class Player : MonoBehaviour
                     animator.SetBool("isAiming", true);
                     attachedGun.CanFire = true;
 
+                    lineRenderer.enabled = false;
+
                     // Lock Cursor
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
@@ -178,7 +188,7 @@ public class Player : MonoBehaviour
                                 {
                                     attachedGun.Fire = true;
                                     attachedGun.CanFire = true;
-                                    shootTimer = 1.0f;
+                                    shootTimer = attachedGun.FireRate[0];
                                     animator.SetBool("isShooting", true);
                                     AP -= 5;
                                 }
@@ -190,7 +200,7 @@ public class Player : MonoBehaviour
                                 {
                                     attachedGun.Fire = true;
                                     attachedGun.CanFire = true;
-                                    shootTimer = 0.4f;
+                                    shootTimer = attachedGun.FireRate[1] * 4.0f;
                                     animator.SetBool("isShootingAR", true);
                                     AP -= 2;
                                 }
@@ -202,7 +212,7 @@ public class Player : MonoBehaviour
                                 {
                                     attachedGun.Fire = true;
                                     attachedGun.CanFire = true;
-                                    shootTimer = 0.5f;
+                                    shootTimer = attachedGun.FireRate[2];
                                     animator.SetBool("isShooting", true);
                                     AP -= 3;
                                 }
@@ -270,7 +280,7 @@ public class Player : MonoBehaviour
     {
         if (!startedMoving)
         {
-            lineRenderer.SetPosition(0, new Vector3(transform.position.x, 0.0f, transform.position.z));
+            lineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y - 0.45f, transform.position.z));
 
             startPoint = lineRenderer.GetPosition(0);
 
@@ -298,7 +308,7 @@ public class Player : MonoBehaviour
 
             for (var i = 1; i < path.corners.Length; i++)
             {
-                lineRenderer.SetPosition(i, path.corners[i]);
+                lineRenderer.SetPosition(i, new Vector3(path.corners[i].x, path.corners[i].y + 0.05f, path.corners[i].z));
                 //lineRenderer.materials[i].mainTexture = lineRendererTexture;
             }
         }
