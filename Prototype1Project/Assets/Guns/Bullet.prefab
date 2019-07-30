@@ -107,7 +107,7 @@ MonoBehaviour:
   - {fileID: 3181320228003296214, guid: 68e30db7669a6a54f9cbdf0c56bbe9d1, type: 3}
   - {fileID: 8276323307584568215, guid: fceb1c82e2853b64aaa1e4fedef0209f, type: 3}
   bulletType: 0
-  damage: 030000000200000001000000
+  damage: 0a0000000200000001000000
 --- !u!54 &8153651717574463940
 Rigidbody:
   m_ObjectHideFlags: 0

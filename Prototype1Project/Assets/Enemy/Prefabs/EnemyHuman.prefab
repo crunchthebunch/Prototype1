@@ -122,9 +122,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
-  m_Height: 2
+  m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.19, z: 0}
 --- !u!114 &5240786738339347440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +141,11 @@ MonoBehaviour:
   AP: 5
   speed: 5
   initiative: 0
+  isMyTurn: 0
+  isAggro: 0
   gunObject: {fileID: 7700045153898449554}
   gunSlot: {fileID: 706171797064818892}
+  enemyType: 0
 --- !u!195 &5240786738339347455
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -177,11 +180,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Idle Standing
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 3c562eb5067c80247b64b21fd2ee6703,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: a7b85a83c1fc6624d89b6940b627e4dc, type: 2}
     - target: {fileID: -4216859302048453862, guid: 3c562eb5067c80247b64b21fd2ee6703,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -252,6 +250,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 3c562eb5067c80247b64b21fd2ee6703,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a7b85a83c1fc6624d89b6940b627e4dc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c562eb5067c80247b64b21fd2ee6703, type: 3}
 --- !u!4 &7033648049184479155 stripped
@@ -277,6 +280,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
+        type: 3}
+      propertyPath: SnapPoint
+      value: 
+      objectReference: {fileID: 7419022294567848348}
+    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
+        type: 3}
+      propertyPath: SelectedGun
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 470641276392592227, guid: 9b179534308030844a8fb283e4f93a1a,
         type: 3}
@@ -347,16 +360,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: SnapPoint
-      value: 
-      objectReference: {fileID: 7419022294567848348}
-    - target: {fileID: 470641276392592231, guid: 9b179534308030844a8fb283e4f93a1a,
-        type: 3}
-      propertyPath: SelectedGun
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b179534308030844a8fb283e4f93a1a, type: 3}
