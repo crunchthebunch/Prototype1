@@ -30,7 +30,8 @@ public class CoverObject : MonoBehaviour
     public bool isFullCover;
     MeshRenderer render;
 
-    float originOffset = 0.2f;
+    public Vector3 originOffset;
+    float offsetDistance = 0.2f;
 
     private void Awake()
     {
@@ -147,7 +148,7 @@ public class CoverObject : MonoBehaviour
             frontPoints[i].id = coverToUpdate;
             frontPoints[i].parent = this;
             frontPoints[i].pos = transform.position + (transform.forward * (extent.z * 1.0f));
-            frontPoints[i].pos += transform.forward * originOffset;
+            frontPoints[i].pos += originOffset + (transform.forward * offsetDistance);
             frontPoints[i].side = 0;
 
             if (frontPoints.Length > 1)
@@ -168,7 +169,7 @@ public class CoverObject : MonoBehaviour
             backPoints[i].id = coverToUpdate;
             backPoints[i].parent = this;
             backPoints[i].pos = transform.position + (transform.forward * (-extent.z * 1.0f));
-            backPoints[i].pos += -transform.forward * originOffset;
+            backPoints[i].pos += originOffset + (-transform.forward * offsetDistance);
             backPoints[i].side = 1;
 
             if (backPoints.Length > 1)
@@ -189,7 +190,7 @@ public class CoverObject : MonoBehaviour
             leftPoints[i].id = coverToUpdate;
             leftPoints[i].parent = this;
             leftPoints[i].pos = transform.position + (transform.right * (-extent.x * 1.0f));
-            leftPoints[i].pos += -transform.right * originOffset;
+            leftPoints[i].pos += originOffset + (-transform.right * offsetDistance);
             leftPoints[i].side = 2;
 
             if (leftPoints.Length > 1)
@@ -210,7 +211,7 @@ public class CoverObject : MonoBehaviour
             rightPoints[i].id = coverToUpdate;
             rightPoints[i].parent = this;
             rightPoints[i].pos = transform.position + (transform.right * (extent.x * 1.0f));
-            rightPoints[i].pos += transform.right * originOffset;
+            rightPoints[i].pos += originOffset + (transform.right * offsetDistance);
             rightPoints[i].side = 3;
 
             if (rightPoints.Length > 1)
