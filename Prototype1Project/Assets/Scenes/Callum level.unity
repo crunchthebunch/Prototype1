@@ -102394,7 +102394,7 @@ PrefabInstance:
     - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
       propertyPath: SelectedGun
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 470641275118886711, guid: de6c6fe2f3210814fad4979cf11ed57e,
         type: 3}
