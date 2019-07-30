@@ -131,6 +131,7 @@ public class HumanAI : MonoBehaviour
             animator.SetBool("isDead",true);
             gun.DetachGun();
             GetComponent<CapsuleCollider>().enabled = false;
+            //GetComponent<NavMeshAgent>().enabled = false;
         }
         else
         {
