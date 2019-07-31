@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: ca1331e881c18784f8d915f28cda2ea2
+=======
+guid: d262230a338853e4c8d9db72d84d1faf
+>>>>>>> PlayerCharacter
 TextScriptImporter:
   externalObjects: {}
   userData: 

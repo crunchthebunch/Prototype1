@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 6d6653621acb1ee4e82c63593bb85a02
+=======
+guid: 374ab9949f6ccea4a8fc8edcbaced417
+>>>>>>> PlayerCharacter
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

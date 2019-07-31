@@ -9,6 +9,7 @@ TagManager:
   - CoverObject
   - Gun
   - Bullet
+  - HealthPickup
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Floor
   - Player
   - Bullet
-  - 
-  - 
+  - Gun
+  - Ceiling
   - 
   - 
   - 
