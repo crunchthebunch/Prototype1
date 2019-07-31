@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3197047564154726307}
   m_Layer: 0
   m_Name: Health Pickup
-  m_TagString: Untagged
+  m_TagString: HealthPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 830202225482941145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.017, y: 0.99, z: -8.57}
-  m_LocalScale: {x: 0.5, y: 0.241565, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.25, z: 0.4}
   m_Children:
   - {fileID: 7228556482269790982}
   m_Father: {fileID: 0}
@@ -126,6 +126,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4415575863406944864, guid: 1247ab195acffd9488b1639f1b5a1b9b,
+        type: 3}
+      propertyPath: m_TagString
+      value: HealthPickup
+      objectReference: {fileID: 0}
     - target: {fileID: 7118941019618472712, guid: 1247ab195acffd9488b1639f1b5a1b9b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -184,17 +189,17 @@ PrefabInstance:
     - target: {fileID: 7118941019618472712, guid: 1247ab195acffd9488b1639f1b5a1b9b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.26861998
       objectReference: {fileID: 0}
     - target: {fileID: 7118941019618472712, guid: 1247ab195acffd9488b1639f1b5a1b9b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.26861998
       objectReference: {fileID: 0}
     - target: {fileID: 7118941019618472712, guid: 1247ab195acffd9488b1639f1b5a1b9b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.26861998
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1247ab195acffd9488b1639f1b5a1b9b, type: 3}
