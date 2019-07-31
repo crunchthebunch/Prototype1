@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -336,6 +337,8 @@ public class Player : MonoBehaviour
             HP = 0;
             isDead = true;
             animator.SetBool("isDead", true);
+            
+            Invoke("LoseCondition", 5.0f);
         }
         else
         {
@@ -386,5 +389,10 @@ public class Player : MonoBehaviour
     void ResetPickUp()
     {
         animator.SetBool("isPickingUp", false);
+    }
+
+    void LoseCondition()
+    {
+        SceneManager.LoadScene("Lose Screen");
     }
 }
