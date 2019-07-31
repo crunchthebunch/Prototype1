@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 6af3808b6865e9d45921248173d6244a
+=======
 guid: 9c7cd71672da86442b436abef1c7e9d0
+>>>>>>> PlayerCharacter
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -7,7 +11,11 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+<<<<<<< HEAD
+    sRGBTexture: 1
+=======
     sRGBTexture: 0
+>>>>>>> PlayerCharacter
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -51,7 +59,11 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
+<<<<<<< HEAD
+  textureType: 0
+=======
   textureType: 1
+>>>>>>> PlayerCharacter
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0

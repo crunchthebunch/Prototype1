@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 7e1472d445e6f844ab18eae4c548f71a
+=======
 guid: e0467ce58d29d4e41bb11e6352f682d1
+>>>>>>> PlayerCharacter
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

@@ -165,7 +165,7 @@ MonoBehaviour:
   HP: 1
   AP: 0
   HPStartDisplacement: {x: 10, y: -10, z: 0}
-  HPDisplacementDivision: 10
+  HPDisplacementDivision: -20
   HPTile: {fileID: 217640405067698770, guid: 5765424b37341ab4cb8d029d999ec83c, type: 3}
   APStartDisplacement: {x: 0, y: 0, z: 0}
   APDisplacementDivision: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
   HPStartDisplacement: {x: 0, y: 0, z: 0}
   HPDisplacementDivision: 0
   HPTile: {fileID: 0}
-  APStartDisplacement: {x: 50, y: 0, z: 0}
-  APDisplacementDivision: 50
+  APStartDisplacement: {x: 35, y: 0, z: 0}
+  APDisplacementDivision: 20
   APTile: {fileID: 4410153006217211335, guid: 55bb1ae8026594e499f39295a671e236, type: 3}
 --- !u!1 &6442713139316905713
 GameObject:

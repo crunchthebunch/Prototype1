@@ -369,6 +369,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("HealthPickup"))
+        {
+            HP += 10;
+            Destroy(other.gameObject);
+        }
+    }
+
     void ResetHit()
     {
         animator.SetBool("isHit", false);
