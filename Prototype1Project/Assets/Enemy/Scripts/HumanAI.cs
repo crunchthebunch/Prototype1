@@ -29,6 +29,7 @@ public class HumanAI : MonoBehaviour
     private CoverObject[] coverObjects;
     public GameObject gunObject;
     public GameObject gunSlot;
+    public ParticleSystem alertParticle;
     GameObject player;
 
     AudioSource audioSource;
@@ -152,6 +153,7 @@ public class HumanAI : MonoBehaviour
             isAggro = true;
             audioSource.clip = alertSound;
             audioSource.Play();
+            alertParticle.Play();
             CallBackup();
         }
     }
@@ -165,6 +167,7 @@ public class HumanAI : MonoBehaviour
             CallBackup();
             audioSource.clip = alertSound;
             audioSource.Play();
+            alertParticle.Play();
             isAggro = true;
         }
 
@@ -377,10 +380,11 @@ public class HumanAI : MonoBehaviour
 
             float allyDist = Vector3.Distance(transform.position, ally.transform.position);
 
-            if (allyDist < 10)
+            if (allyDist < 10 && ally.isAggro == false)
             {
                 ally.audioSource.clip = ally.alertSound;
                 ally.audioSource.Play();
+                ally.alertParticle.Play();
                 ally.isAggro = true;
             }
         }

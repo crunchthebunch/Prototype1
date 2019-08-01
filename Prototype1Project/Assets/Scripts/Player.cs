@@ -399,6 +399,11 @@ public class Player : MonoBehaviour
             HP += 10;
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Exit"))
+        {
+            SceneManager.LoadScene("Win Screen");
+        }
     }
 
     void ResetHit()

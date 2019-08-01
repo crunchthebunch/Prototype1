@@ -10,6 +10,7 @@ TagManager:
   - Gun
   - Bullet
   - HealthPickup
+  - Exit
   layers:
   - Default
   - TransparentFX
