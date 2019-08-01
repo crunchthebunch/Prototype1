@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public ParticleSystem healthSprite;
 
     AudioSource PlayerSound;
+    public AudioClip healthPickupSound;
 
     float X, Y;
 
@@ -72,7 +73,7 @@ public class Player : MonoBehaviour
         lineRenderer.receiveShadows = false;
         lineRenderer.generateLightingData = false;
 
-        
+        PlayerSound = GetComponent<AudioSource>();
 
         shootTimer = 0.0f;
         playerCam = GetComponentInChildren<Camera>();
@@ -391,6 +392,9 @@ public class Player : MonoBehaviour
             healthCircle.Play();
             healthLight.Play();
             healthSprite.Play();
+
+            PlayerSound.clip = healthPickupSound;
+            PlayerSound.Play();
             HP += 10;
             Destroy(other.gameObject);
         }
