@@ -10,20 +10,20 @@ public class Bullet : MonoBehaviour
     public GameObject[] bulletHit;
     public GameObject[] bulletTrail;
     public Guns.E_Guns bulletType;
-    private bool Trail = true;
     public int[] damage;
+
+    private void Awake()
+    {
+        bulletType = transform.parent.parent.GetComponent<Guns>().SelectedGun;
+        transform.parent = null;
+        GetComponent<MeshFilter>().mesh = M_Bullet[(int)bulletType];
+        GetComponent<MeshCollider>().sharedMesh = M_Bullet[(int)bulletType];
+        Instantiate(bulletTrail[(int)bulletType], transform);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Trail)
-        {
-            transform.parent = null;
-            GetComponent<MeshFilter>().mesh = M_Bullet[(int)bulletType];
-            GetComponent<MeshCollider>().sharedMesh = M_Bullet[(int)bulletType];
-            Instantiate(bulletTrail[(int)bulletType], transform);
-            Trail = false;
-        }
         if (killTimer <= 0)
         {
             Destroy(gameObject);
