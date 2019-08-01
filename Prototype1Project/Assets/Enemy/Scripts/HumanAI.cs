@@ -16,6 +16,7 @@ public class HumanAI : MonoBehaviour
 
     public bool isMyTurn;
     public bool isAggro;
+    bool isDead;
     bool isWandering;
     bool isEndingTurn;
     bool isShooting;
@@ -69,6 +70,7 @@ public class HumanAI : MonoBehaviour
     void Start()
     {
         isAggro = false;
+        isDead = false;
         state = AI.engage;
         isMyTurn = false;
         agent = GetComponent<NavMeshAgent>();
@@ -140,7 +142,8 @@ public class HumanAI : MonoBehaviour
             GetComponent<CapsuleCollider>().enabled = false;
             audioSource.clip = deathSound;
             audioSource.Play();
-            //GetComponent<NavMeshAgent>().enabled = false;
+            isDead = true;
+            isAggro = false;
         }
         else
         {
@@ -148,7 +151,7 @@ public class HumanAI : MonoBehaviour
             Invoke("ResetHit", 0.4f);
         }
 
-        if (!isAggro)
+        if (!isAggro && !isDead)
         {
             isAggro = true;
             audioSource.clip = alertSound;
@@ -162,7 +165,7 @@ public class HumanAI : MonoBehaviour
     {
         float playerDist = Vector3.Distance(transform.position, player.transform.position);
 
-        if (!isAggro && playerDist < AP * 3.0f && CheckLineOfSight(transform.position))
+        if (!isAggro && playerDist < AP * 3.0f && CheckLineOfSight(transform.position) && !isDead)
         {
             CallBackup();
             audioSource.clip = alertSound;
@@ -379,7 +382,7 @@ public class HumanAI : MonoBehaviour
 
             float allyDist = Vector3.Distance(transform.position, ally.transform.position);
 
-            if (allyDist < 10 && ally.isAggro == false)
+            if (allyDist < 10 && ally.isAggro == false && ally.isDead == false)
             {
                 ally.audioSource.clip = ally.alertSound;
                 ally.audioSource.Play();
