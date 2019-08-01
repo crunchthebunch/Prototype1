@@ -10,15 +10,19 @@ public class GameManager : MonoBehaviour
     public TopDownCamera mainCamera;
     public Camera playerCam;
     [HideInInspector] public GameObject[] enemies;
+    public GameObject[] aggroEnemies;
     public int initiativeCount = 0;
     public bool camSwitch;
     public bool isShooting;
 
     AudioSource audioSource;
     public AudioClip backGroundMusicLevel;
+    public AudioClip backGroundAggroMusic;
     public AudioClip playerDeathSound;
 
     public bool isPlayerDead;
+    public bool isPlayingAudio;
+    public bool isAnyAggro;
 
     public enum PlayerState
     {
@@ -33,13 +37,15 @@ public class GameManager : MonoBehaviour
         //isShooting = false;
         playerState = PlayerState.MOVING;
         isPlayerDead = false;
-
+        isPlayingAudio = false;
+        isAnyAggro = false;
         camSwitch = false;
         player = FindObjectOfType<Player>();
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = backGroundMusicLevel;
+        audioSource.volume = 0.3f;
         audioSource.Play();
 
         for (int i = 0; i < enemies.Length; i++)
@@ -75,6 +81,47 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
             isPlayerDead = false;
         }
+
+        isAnyAggro = false;
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            HumanAI ai = enemies[i].GetComponent<HumanAI>();
+            if (ai.isAggro)
+            {
+                isAnyAggro = true;   
+            }
+            else
+            {
+
+            }
+
+        }
+
+        if (isAnyAggro)
+        {
+            if (isPlayingAudio)
+            {
+                audioSource.clip = backGroundAggroMusic;
+                audioSource.volume = 1.0f;
+                audioSource.Play();
+                isPlayingAudio = false;
+            }
+           
+        }
+        else
+        {
+            if (!isPlayingAudio)
+            {
+                audioSource.clip = backGroundMusicLevel;
+                audioSource.volume = 0.3f;
+                audioSource.Play();
+                isPlayingAudio = true;
+            }
+            
+        }
+        
+
     }
 
     public void EndTurn()

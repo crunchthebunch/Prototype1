@@ -201,11 +201,11 @@ public class Player : MonoBehaviour
 
                                 if (AP >= 5 && attachedGun.CurrentMag > 0)
                                 {
-                                    attachedGun.Fire = true;
+                                    attachedGun.FireGun();
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[0];
-                                    animator.SetBool("isShooting", true);
                                     AP -= 5;
+                                    animator.SetBool("isShooting", true);
                                 }
                                 break;
 
@@ -213,11 +213,11 @@ public class Player : MonoBehaviour
 
                                 if (AP >= 2 && attachedGun.CurrentMag > 0)
                                 {
-                                    attachedGun.Fire = true;
+                                    attachedGun.FireGun();
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[1] * 4.0f;
-                                    animator.SetBool("isShootingAR", true);
                                     AP -= 2;
+                                    animator.SetBool("isShootingAR", true);
                                 }
                                 break;
 
@@ -225,11 +225,11 @@ public class Player : MonoBehaviour
 
                                 if (AP >= 3 && attachedGun.CurrentMag > 0)
                                 {
-                                    attachedGun.Fire = true;
+                                    attachedGun.FireGun();
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[2];
-                                    animator.SetBool("isShooting", true);
                                     AP -= 3;
+                                    animator.SetBool("isShooting", true);
                                 }
                                 break;
 
@@ -279,12 +279,11 @@ public class Player : MonoBehaviour
             if (shootTimer > 0.0f)
             {
                 shootTimer -= Time.deltaTime;
-                attachedGun.Fire = true;
+                attachedGun.FireGun();
                 attachedGun.CanFire = true;
             }
             else
             {
-                attachedGun.Fire = false;
                 attachedGun.CanFire = false;
             }
         }
