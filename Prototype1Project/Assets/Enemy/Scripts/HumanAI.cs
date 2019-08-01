@@ -131,7 +131,7 @@ public class HumanAI : MonoBehaviour
             animator.SetBool("isDead",true);
             gun.DetachGun();
             GetComponent<CapsuleCollider>().enabled = false;
-            //GetComponent<NavMeshAgent>().enabled = false;
+            agent.isStopped = true;
         }
         else
         {
@@ -345,7 +345,6 @@ public class HumanAI : MonoBehaviour
                 charge = transform.position + (charge.normalized * AP * 1.5f);
                 charge += offset;
               
-
                 Move(charge);
                 endTimer = 0.8f;
                 isTakingCover = false;
@@ -365,7 +364,7 @@ public class HumanAI : MonoBehaviour
 
             float allyDist = Vector3.Distance(transform.position, ally.transform.position);
 
-            if (allyDist < 10)
+            if (allyDist < 15)
             {
                 ally.isAggro = true;
             }
