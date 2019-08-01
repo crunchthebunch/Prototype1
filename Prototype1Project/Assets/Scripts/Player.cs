@@ -204,8 +204,8 @@ public class Player : MonoBehaviour
                                     attachedGun.Fire = true;
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[0];
-                                    animator.SetBool("isShooting", true);
                                     AP -= 5;
+                                    animator.SetBool("isShooting", true);
                                 }
                                 break;
 
@@ -216,8 +216,8 @@ public class Player : MonoBehaviour
                                     attachedGun.Fire = true;
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[1] * 4.0f;
-                                    animator.SetBool("isShootingAR", true);
                                     AP -= 2;
+                                    animator.SetBool("isShootingAR", true);
                                 }
                                 break;
 
@@ -228,8 +228,8 @@ public class Player : MonoBehaviour
                                     attachedGun.Fire = true;
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[2];
-                                    animator.SetBool("isShooting", true);
                                     AP -= 3;
+                                    animator.SetBool("isShooting", true);
                                 }
                                 break;
 
