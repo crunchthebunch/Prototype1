@@ -28,6 +28,13 @@ public class Player : MonoBehaviour
     private float elapsed = 0.0f;
     private float viewRange = 60.0f;
     float rotVertical;
+
+    public ParticleSystem healthCircle;
+    public ParticleSystem healthLight;
+    public ParticleSystem healthSprite;
+
+    AudioSource PlayerSound;
+
     float X, Y;
 
     float shootTimer = 0.8f;
@@ -61,6 +68,11 @@ public class Player : MonoBehaviour
         lineRenderer.numCornerVertices = 50;
         lineRenderer.numCapVertices = 50;
         lineRenderer.widthMultiplier = 0.3f;
+        lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        lineRenderer.receiveShadows = false;
+        lineRenderer.generateLightingData = false;
+
+        
 
         shootTimer = 0.0f;
         playerCam = GetComponentInChildren<Camera>();
@@ -376,6 +388,9 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("HealthPickup"))
         {
+            healthCircle.Play();
+            healthLight.Play();
+            healthSprite.Play();
             HP += 10;
             Destroy(other.gameObject);
         }
