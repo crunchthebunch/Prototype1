@@ -31,6 +31,10 @@ public class HumanAI : MonoBehaviour
     public GameObject gunSlot;
     GameObject player;
 
+    AudioSource audioSource;
+    public AudioClip deathSound;
+    public AudioClip alertSound;
+
     public List<CoverPoint> viablePoints = new List<CoverPoint>(); //List of viable cover points this turn
 
     Guns gun;
@@ -75,6 +79,8 @@ public class HumanAI : MonoBehaviour
         endTimer = -1.0f;
         checkOrigin = transform.position;
         isShooting = false;
+        audioSource = GetComponent<AudioSource>();
+
 
         switch (enemyType)
         {
@@ -131,6 +137,8 @@ public class HumanAI : MonoBehaviour
             animator.SetBool("isDead",true);
             gun.DetachGun();
             GetComponent<CapsuleCollider>().enabled = false;
+            audioSource.clip = deathSound;
+            audioSource.Play();
             //GetComponent<NavMeshAgent>().enabled = false;
         }
         else
@@ -142,6 +150,8 @@ public class HumanAI : MonoBehaviour
         if (!isAggro)
         {
             isAggro = true;
+            audioSource.clip = alertSound;
+            audioSource.Play();
             CallBackup();
         }
     }
@@ -153,6 +163,8 @@ public class HumanAI : MonoBehaviour
         if (!isAggro && playerDist < AP * 3.0f && CheckLineOfSight(transform.position))
         {
             CallBackup();
+            audioSource.clip = alertSound;
+            audioSource.Play();
             isAggro = true;
         }
 
@@ -367,6 +379,8 @@ public class HumanAI : MonoBehaviour
 
             if (allyDist < 10)
             {
+                ally.audioSource.clip = ally.alertSound;
+                ally.audioSource.Play();
                 ally.isAggro = true;
             }
         }

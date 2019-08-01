@@ -63,7 +63,7 @@ public class PlayerUI : MonoBehaviour
         }
         if (HP)
         {
-            if (player.HP != oldHP)
+            if (player.HP != oldHP && player.HP >= 0)
             {
                 oldHP = player.HP;
                 Vector3 temp = transform.position;
