@@ -140,7 +140,7 @@ public class HumanAI : MonoBehaviour
             GetComponent<CapsuleCollider>().enabled = false;
             audioSource.clip = deathSound;
             audioSource.Play();
-            //GetComponent<NavMeshAgent>().enabled = false;
+            isAggro = false;
         }
         else
         {
@@ -357,7 +357,7 @@ public class HumanAI : MonoBehaviour
                 Vector3 charge = player.transform.position - transform.position;
                 Vector3 offset = Random.insideUnitSphere * 0.1f;
 
-                charge = transform.position + (charge.normalized * AP * 1.5f);
+                charge = transform.position + (charge.normalized * AP);
                 charge += offset;
               
 
