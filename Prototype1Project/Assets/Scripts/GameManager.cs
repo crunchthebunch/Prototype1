@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && initiativeCount == 0 && !player.startedMoving && playerState != PlayerState.SHOOTING)
         {
             EndTurn();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Main Menu");
         }
 
         if (Input.GetMouseButton(1) && !player.startedMoving)

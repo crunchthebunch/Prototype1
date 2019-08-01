@@ -417,6 +417,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Gun"))
+        {
+            gunPickUpUI.enabled = false;
+        }
+    }
+
     void ResetHit()
     {
         animator.SetBool("isHit", false);
