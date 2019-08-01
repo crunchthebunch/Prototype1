@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     public AudioClip healthPickupSound;
     public AudioClip deathSound;
 
+    public SpriteRenderer gunPickUpUI;
+
     float X, Y;
 
     float shootTimer = 0.8f;
@@ -73,6 +75,8 @@ public class Player : MonoBehaviour
         lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         lineRenderer.receiveShadows = false;
         lineRenderer.generateLightingData = false;
+
+        
 
         PlayerSound = GetComponent<AudioSource>();
 
@@ -286,6 +290,9 @@ public class Player : MonoBehaviour
             {
                 attachedGun.CanFire = false;
             }
+
+            gunPickUpUI.transform.rotation = Quaternion.RotateTowards(gunPickUpUI.transform.rotation, playerCam.transform.rotation, 360);
+
         }
     }
 
@@ -373,6 +380,8 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Gun"))
         {
+
+            gunPickUpUI.enabled = true;
             
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -380,7 +389,7 @@ public class Player : MonoBehaviour
                 Invoke("ResetPickUp", 0.7f);
                 Guns tempGun = other.GetComponent<Guns>();
                 attachedGun.GunSwap(tempGun);
-                
+                gunPickUpUI.enabled = false;
             }
         }
     }
@@ -398,6 +407,9 @@ public class Player : MonoBehaviour
             HP += 10;
             Destroy(other.gameObject);
         }
+
+        
+
 
         if (other.gameObject.CompareTag("Exit"))
         {
