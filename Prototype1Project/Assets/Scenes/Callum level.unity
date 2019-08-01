@@ -52,7 +52,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 0
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
@@ -70040,7 +70040,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 806e9a2257090254abc4af7a3531e0ae,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.67549646
+      value: -0.6754964
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 806e9a2257090254abc4af7a3531e0ae,
         type: 3}
@@ -70055,7 +70055,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 806e9a2257090254abc4af7a3531e0ae,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.67549646
+      value: 0.6754964
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 806e9a2257090254abc4af7a3531e0ae,
         type: 3}
