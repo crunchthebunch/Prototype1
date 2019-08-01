@@ -235,7 +235,6 @@ public class HumanAI : MonoBehaviour
                             {
                                 endTimer = -1.0f;
                                 gun.CanFire = false;
-                                gun.Fire = false;
                                 isEndingTurn = true;
                                 animator.SetBool("isShooting", false);
                                 animator.SetBool("isCrouching", isTakingCover);
@@ -401,7 +400,7 @@ public class HumanAI : MonoBehaviour
     {
         gun.CurrentMag = gun.MaxMagSize[(int)gun.SelectedGun];
         gun.CanFire = true;
-        gun.Fire = true;
+        gun.FireGun();
         //isShooting = false;
     }
 
@@ -422,7 +421,7 @@ public class HumanAI : MonoBehaviour
             }
         }
 
-        Debug.Log("Did Not Hit");
+        //Debug.Log("Did Not Hit");
         //isShooting = false;
         return false;
     }

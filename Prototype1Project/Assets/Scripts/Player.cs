@@ -201,7 +201,7 @@ public class Player : MonoBehaviour
 
                                 if (AP >= 5 && attachedGun.CurrentMag > 0)
                                 {
-                                    attachedGun.Fire = true;
+                                    attachedGun.FireGun();
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[0];
                                     AP -= 5;
@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
 
                                 if (AP >= 2 && attachedGun.CurrentMag > 0)
                                 {
-                                    attachedGun.Fire = true;
+                                    attachedGun.FireGun();
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[1] * 4.0f;
                                     AP -= 2;
@@ -225,7 +225,7 @@ public class Player : MonoBehaviour
 
                                 if (AP >= 3 && attachedGun.CurrentMag > 0)
                                 {
-                                    attachedGun.Fire = true;
+                                    attachedGun.FireGun();
                                     attachedGun.CanFire = true;
                                     shootTimer = attachedGun.FireRate[2];
                                     AP -= 3;
@@ -279,12 +279,11 @@ public class Player : MonoBehaviour
             if (shootTimer > 0.0f)
             {
                 shootTimer -= Time.deltaTime;
-                attachedGun.Fire = true;
+                attachedGun.FireGun();
                 attachedGun.CanFire = true;
             }
             else
             {
-                attachedGun.Fire = false;
                 attachedGun.CanFire = false;
             }
         }

@@ -175,9 +175,11 @@ MonoBehaviour:
   - 0.1
   - 0.5
   FireRateTimer: 0
-  assaultSound: {fileID: 8300000, guid: d3446a6264eb6f44eb45fd37c3969897, type: 3}
-  shotgunSound: {fileID: 8300000, guid: 49a78ee72249cc2428a1e9ec44cd2752, type: 3}
-  sniperSound: {fileID: 8300000, guid: ed586750fca49904c98ca0eecb955b90, type: 3}
+  audioSource: {fileID: 4819689503712690335}
+  gunSound:
+  - {fileID: 8300000, guid: ed586750fca49904c98ca0eecb955b90, type: 3}
+  - {fileID: 8300000, guid: d3446a6264eb6f44eb45fd37c3969897, type: 3}
+  - {fileID: 8300000, guid: 49a78ee72249cc2428a1e9ec44cd2752, type: 3}
   laserSight: {fileID: 0}
   SelectedGun: 2
 --- !u!64 &7366573499973520381
