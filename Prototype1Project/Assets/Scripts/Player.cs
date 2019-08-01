@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
 
     AudioSource PlayerSound;
     public AudioClip healthPickupSound;
+    public AudioClip deathSound;
 
     float X, Y;
 
@@ -350,8 +351,8 @@ public class Player : MonoBehaviour
             HP = 0;
             isDead = true;
             animator.SetBool("isDead", true);
-            
-            Invoke("LoseCondition", 5.0f);
+            gameManager.isPlayerDead = isDead;
+            Invoke("LoseCondition", 4.0f);
         }
         else
         {
@@ -397,6 +398,11 @@ public class Player : MonoBehaviour
             PlayerSound.Play();
             HP += 10;
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Exit"))
+        {
+            SceneManager.LoadScene("Win Screen");
         }
     }
 

@@ -14,6 +14,12 @@ public class GameManager : MonoBehaviour
     public bool camSwitch;
     public bool isShooting;
 
+    AudioSource audioSource;
+    public AudioClip backGroundMusicLevel;
+    public AudioClip playerDeathSound;
+
+    public bool isPlayerDead;
+
     public enum PlayerState
     {
         MOVING,
@@ -26,10 +32,15 @@ public class GameManager : MonoBehaviour
     {
         //isShooting = false;
         playerState = PlayerState.MOVING;
+        isPlayerDead = false;
 
         camSwitch = false;
         player = FindObjectOfType<Player>();
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = backGroundMusicLevel;
+        audioSource.Play();
 
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -56,6 +67,13 @@ public class GameManager : MonoBehaviour
             playerState = PlayerState.MOVING;
             playerCam.gameObject.SetActive(false);
             mainCamera.gameObject.SetActive(true);
+        }
+
+        if (isPlayerDead)
+        {
+            audioSource.clip = playerDeathSound;
+            audioSource.Play();
+            isPlayerDead = false;
         }
     }
 

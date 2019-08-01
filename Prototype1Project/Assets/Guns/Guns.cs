@@ -40,6 +40,12 @@ public class Guns : MonoBehaviour
     public float[] FireRate;
     public float FireRateTimer;
 
+    AudioSource audioSource;
+
+    public AudioClip assaultSound;
+    public AudioClip shotgunSound;
+    public AudioClip sniperSound;
+
     public LineRenderer laserSight;
 
     public enum E_Guns
@@ -57,6 +63,9 @@ public class Guns : MonoBehaviour
         laserSight = GetComponentInChildren<LineRenderer>();
         //laserSight.enabled = true;
         AttachGun(SnapPoint);
+
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -87,15 +96,29 @@ public class Guns : MonoBehaviour
                             shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                             shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                             Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection), FirePoint[(int)SelectedGun]).GetComponent<Bullet>().bulletType = SelectedGun;
+                            audioSource.clip = shotgunSound;
+                            audioSource.Play();
                         }
                     }
-                    else
+                    else if (SelectedGun == E_Guns.AssaultRifle)
                     {
                         shootDirection = FirePoint[(int)SelectedGun].rotation.eulerAngles;
                         shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                         shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
                         Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection), FirePoint[(int)SelectedGun]).GetComponent<Bullet>().bulletType = SelectedGun;
+                        audioSource.clip = assaultSound;
+                        audioSource.Play();
                     }
+                    else if (SelectedGun == E_Guns.Sniper)
+                    {
+                        shootDirection = FirePoint[(int)SelectedGun].rotation.eulerAngles;
+                        shootDirection.x += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
+                        shootDirection.y += Random.Range(-spreadFactor[(int)SelectedGun], spreadFactor[(int)SelectedGun]);
+                        Instantiate(Bullet, FirePoint[(int)SelectedGun].position, Quaternion.Euler(shootDirection), FirePoint[(int)SelectedGun]).GetComponent<Bullet>().bulletType = SelectedGun;
+                        audioSource.clip = sniperSound;
+                        audioSource.Play();
+                    }
+
                     Instantiate(MuzzleFlash[(int)SelectedGun], FirePoint[(int)SelectedGun].position, transform.rotation, FirePoint[(int)SelectedGun]);
                     CurrentMag--;
                     FireRateTimer = FireRate[(int)SelectedGun];

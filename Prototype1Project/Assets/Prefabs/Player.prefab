@@ -198,6 +198,7 @@ MonoBehaviour:
   healthLight: {fileID: 3750584024233858141}
   healthSprite: {fileID: 3750584022659665182}
   healthPickupSound: {fileID: 8300000, guid: 7eb1fb9516f34f04296929464e5ed21c, type: 3}
+  deathSound: {fileID: 8300000, guid: 5a355a5758cd0ab4ea9d7e4704553a8c, type: 3}
   startedMoving: 0
   defaultCam: {fileID: 3506877408361407310}
   crouchCam: {fileID: 4412203402553807678}
@@ -810,16 +811,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1140218915060193179}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 3e34b177281a31640b38dfddb393977d,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerStand_Idle
-      objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 3e34b177281a31640b38dfddb393977d,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 37e684e00d47ae9469186d08f27da77c, type: 2}
+    - target: {fileID: -927199367670048503, guid: 3e34b177281a31640b38dfddb393977d,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerStand_Idle
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3e34b177281a31640b38dfddb393977d,
         type: 3}
       propertyPath: m_LocalPosition.x

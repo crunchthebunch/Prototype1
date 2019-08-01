@@ -29,7 +29,12 @@ public class HumanAI : MonoBehaviour
     private CoverObject[] coverObjects;
     public GameObject gunObject;
     public GameObject gunSlot;
+    public ParticleSystem alertParticle;
     GameObject player;
+
+    AudioSource audioSource;
+    public AudioClip deathSound;
+    public AudioClip alertSound;
 
     public List<CoverPoint> viablePoints = new List<CoverPoint>(); //List of viable cover points this turn
 
@@ -75,6 +80,8 @@ public class HumanAI : MonoBehaviour
         endTimer = -1.0f;
         checkOrigin = transform.position;
         isShooting = false;
+        audioSource = GetComponent<AudioSource>();
+
 
         switch (enemyType)
         {
@@ -131,7 +138,9 @@ public class HumanAI : MonoBehaviour
             animator.SetBool("isDead",true);
             gun.DetachGun();
             GetComponent<CapsuleCollider>().enabled = false;
-            agent.isStopped = true;
+            audioSource.clip = deathSound;
+            audioSource.Play();
+            //GetComponent<NavMeshAgent>().enabled = false;
         }
         else
         {
@@ -142,6 +151,9 @@ public class HumanAI : MonoBehaviour
         if (!isAggro)
         {
             isAggro = true;
+            audioSource.clip = alertSound;
+            audioSource.Play();
+            alertParticle.Play();
             CallBackup();
         }
     }
@@ -153,6 +165,9 @@ public class HumanAI : MonoBehaviour
         if (!isAggro && playerDist < AP * 3.0f && CheckLineOfSight(transform.position))
         {
             CallBackup();
+            audioSource.clip = alertSound;
+            audioSource.Play();
+            alertParticle.Play();
             isAggro = true;
         }
 
@@ -345,6 +360,7 @@ public class HumanAI : MonoBehaviour
                 charge = transform.position + (charge.normalized * AP * 1.5f);
                 charge += offset;
               
+
                 Move(charge);
                 endTimer = 0.8f;
                 isTakingCover = false;
@@ -364,8 +380,11 @@ public class HumanAI : MonoBehaviour
 
             float allyDist = Vector3.Distance(transform.position, ally.transform.position);
 
-            if (allyDist < 15)
+            if (allyDist < 10 && ally.isAggro == false)
             {
+                ally.audioSource.clip = ally.alertSound;
+                ally.audioSource.Play();
+                ally.alertParticle.Play();
                 ally.isAggro = true;
             }
         }
